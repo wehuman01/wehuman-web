@@ -1,0 +1,23 @@
+---
+import BrushStrokes from './BrushStrokes.astro';
+
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="px-6 pt-24 pb-4 text-center md:pt-32">
+  <h1 class="font-serif text-4xl leading-snug font-semibold tracking-wide text-ink md:text-6xl">
+    {t.tagline}
+  </h1>
+  <p class="mx-auto mt-6 max-w-xl text-base leading-loose text-ink-light md:text-lg">
+    {t.description}
+  </p>
+  <div class="mt-10 flex items-center justify-center gap-4">
+    <a href="#works" class="btn-primary">{t.cta_work}</a>
+    <a href={t.github_org} target="_blank" rel="noopener" class="btn-ghost">{t.cta_github}</a>
+  </div>
+  <BrushStrokes class="mx-auto mt-16 block w-full max-w-2xl md:mt-20" />
+</section>

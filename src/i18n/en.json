@@ -1,0 +1,86 @@
+{
+  "site": {
+    "title": "wehuman",
+    "tagline": "Stay human in the age of AI",
+    "description": "We believe AI's greatest value is not replacing humans — it is making humans more human."
+  },
+  "links": {
+    "github_org": "https://github.com/wehuman01"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "hero": {
+    "cta_work": "Our Work",
+    "cta_github": "GitHub"
+  },
+  "philosophy": {
+    "label": "Philosophy",
+    "lines": [
+      "AI should not replace people.",
+      "It should protect their focus.",
+      "And return their time to what truly matters."
+    ]
+  },
+  "works": {
+    "label": "Works",
+    "title": "Works",
+    "subtitle": "Two calm tools for developers who live in AI agents",
+    "link_github": "GitHub",
+    "more": "More works — the ink is still grinding…"
+  },
+  "about_bridge": "About us",
+  "projects": {
+    "awedot": {
+      "name": "awedot",
+      "tagline": "AI Session Bookmark Manager",
+      "desc": "A floating orb rests at the edge of your screen. One click bookmarks any AI coding session — context, API profile, terminal state — and restores it exactly where you left off.",
+      "tags": ["Session", "Flow", "macOS · Windows"],
+      "github": "https://github.com/mugpeng/awedot",
+      "site": "https://awedot.wehuman.top",
+      "site_label": "Website"
+    },
+    "awewarm": {
+      "name": "awewarm",
+      "tagline": "Subscription Window Warmer",
+      "desc": "One minimal scheduled request keeps your AI plan's usage window warm, so when you sit down to work, the quota window is already open.",
+      "tags": ["Warm-up", "CLI", "pip"],
+      "github": "https://github.com/wehuman01/awewarm",
+      "site": "https://pypi.org/project/awewarm/",
+      "site_label": "PyPI"
+    }
+  },
+  "about_page": {
+    "label": "About",
+    "title": "More human, not less",
+    "mission": {
+      "title": "Mission",
+      "text": "We believe AI's greatest value is not replacing humans, but making humans more human — more creative, more focused, more able to do what they truly care about.\n\nAI tools keep getting stronger, yet using them feels increasingly fragmented and draining. Developers bounce between agents and sessions, lose hard-won context, and watch their attention leak into the tools themselves instead of the work.\n\nwehuman builds calm tools that give that attention back — so people have more energy for the things only humans can do."
+    },
+    "values": {
+      "label": "Values",
+      "items": [
+        {
+          "name": "More human",
+          "desc": "Technology should amplify people, not diminish them."
+        },
+        {
+          "name": "Guard the flow",
+          "desc": "The best tool is the one you forget — it quietly protects your attention."
+        },
+        {
+          "name": "Return the time",
+          "desc": "Hand the repetitive, draining work to automation. Give the hours back."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "github_desc": "Follow our work and releases."
+    }
+  },
+  "footer": {
+    "line": "Grounded in ink, built for humans."
+  }
+}

@@ -1,0 +1,52 @@
+---
+interface Props {
+  t: any;
+  lang: string;
+}
+
+const { t, lang } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const projects = [t.projects.awedot, t.projects.awewarm];
+const aboutHref = `${basePath}${lang === 'zh' ? '/zh/about' : '/about'}`;
+---
+
+<section id="works" class="px-6 py-24">
+  <div class="mx-auto max-w-3xl">
+    <p class="label-mono">{t.works.label}</p>
+    <h2 class="mt-3 font-serif text-3xl font-semibold text-ink">{t.works.title}</h2>
+    <p class="mt-3 text-ink-light">{t.works.subtitle}</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {projects.map((p: any, i: number) => (
+        <article class="leaf">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-serif text-2xl font-semibold text-ink">{p.name}</h3>
+            <span class="label-mono">{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <p class="mt-1 text-sm font-medium text-ink-light">{p.tagline}</p>
+          <p class="mt-3 text-[15px] leading-loose text-ink/90">{p.desc}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {p.tags.map((tag: string) => (
+              <span class="leaf-tag">{tag}</span>
+            ))}
+          </div>
+          <div class="mt-6 flex items-center gap-6 border-t border-ink-line pt-4">
+            <a class="leaf-link text-vermilion hover:text-vermilion-dark" href={p.github} target="_blank" rel="noopener">
+              {t.works.link_github} ↗
+            </a>
+            <a class="leaf-link text-ink-light hover:text-ink" href={p.site} target="_blank" rel="noopener">
+              {p.site_label} ↗
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-12 text-center text-sm text-ink-light">{t.works.more}</p>
+    <p class="mt-8 text-center">
+      <a class="text-sm text-ink-light transition-colors hover:text-vermilion" href={aboutHref}>
+        {t.about_bridge} →
+      </a>
+    </p>
+  </div>
+</section>

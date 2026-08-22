@@ -1,0 +1,68 @@
+---
+import Seal from './Seal.astro';
+
+interface Props {
+  t: any;
+  lang: string;
+  current?: 'home' | 'about';
+}
+
+const { t, lang, current } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${basePath}${path}`;
+const homeHref = withBase(lang === 'zh' ? '/zh/' : '/');
+const aboutHref = withBase(lang === 'zh' ? '/zh/about' : '/about');
+
+// Build lang-switch href from current path
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+let langHref: string;
+if (lang === 'zh') {
+  langHref = currentPath.replace(/^\/zh(\/|$)/, '/') || '/';
+} else {
+  langHref = currentPath === '/' ? '/zh/' : `/zh${currentPath}`;
+}
+langHref = withBase(langHref);
+---
+
+<header class="sticky top-0 z-50 border-b border-ink-line backdrop-blur-md" style="background: rgba(246, 241, 231, 0.82);">
+  <div class="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
+    <a href={homeHref} class="flex shrink-0 items-center gap-2.5 no-underline" aria-label="wehuman home">
+      <Seal size={26} />
+      <span class="font-serif text-lg font-bold tracking-[0.14em] text-ink">WEHUMAN</span>
+    </a>
+    <nav class="flex items-center gap-5">
+      <a
+        href={homeHref}
+        class:list={[
+          'rounded-md px-2 py-1 text-sm font-medium transition-colors',
+          current === 'home' ? 'font-semibold text-ink' : 'text-ink-light hover:text-ink',
+        ]}
+      >
+        {t.nav.home}
+      </a>
+      <a
+        href={aboutHref}
+        class:list={[
+          'rounded-md px-2 py-1 text-sm font-medium transition-colors',
+          current === 'about' ? 'font-semibold text-ink' : 'text-ink-light hover:text-ink',
+        ]}
+      >
+        {t.nav.about}
+      </a>
+      <a
+        href={t.links.github_org}
+        target="_blank"
+        rel="noopener"
+        class="rounded-md px-2 py-1 text-sm font-medium text-ink-light transition-colors hover:text-vermilion"
+      >
+        GitHub ↗
+      </a>
+      <a
+        href={langHref}
+        class="rounded-full border border-ink-line px-3 py-1 font-mono text-xs text-ink-light transition-colors hover:border-vermilion hover:text-vermilion"
+      >
+        {lang === 'zh' ? 'EN' : '中文'}
+      </a>
+    </nav>
+  </div>
+</header>

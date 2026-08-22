@@ -1,0 +1,17 @@
+---
+import Seal from './Seal.astro';
+
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink-line px-6 py-10">
+  <div class="flex flex-col items-center gap-3 text-center">
+    <Seal size={22} />
+    <p class="text-xs text-ink-light">© {year} wehuman · {t.footer.line}</p>
+  </div>
+</footer>

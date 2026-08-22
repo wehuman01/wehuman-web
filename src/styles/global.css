@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F6F1E7;
+  --color-card: #FCF9F2;
+  --color-ink: #37362F;
+  --color-ink-light: #8B867B;
+  --color-ink-line: rgba(55, 54, 47, 0.14);
+  --color-vermilion: #BC3A2C;
+  --color-vermilion-dark: #9E2F23;
+
+  --font-serif: 'EB Garamond', 'Noto Serif SC', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-vermilion);
+  color: var(--color-paper);
+}
+
+/* ── 宣纸底晕：极淡的墨晕与朱晕，纯装饰 ── */
+.paper-wash::before {
+  content: '';
+  position: fixed;
+  top: -15%;
+  right: -10%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(ellipse, rgba(55, 54, 47, 0.035) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.paper-wash::after {
+  content: '';
+  position: fixed;
+  bottom: -12%;
+  left: -8%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(ellipse, rgba(188, 58, 44, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── 册页卡：宣纸册页，hover 墨色微润、轻浮 ── */
+.leaf {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-card);
+  border: 1px solid var(--color-ink-line);
+  border-radius: 6px;
+  padding: 32px 28px 26px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leaf:hover {
+  transform: translateY(-4px);
+  border-color: rgba(55, 54, 47, 0.32);
+  box-shadow: 0 14px 36px rgba(55, 54, 47, 0.08);
+}
+
+.leaf-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border: 1px solid var(--color-ink-line);
+  border-radius: 9999px;
+  color: var(--color-ink-light);
+  white-space: nowrap;
+}
+
+.leaf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* ── 题跋小签 ── */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-light);
+}
+
+/* ── CTA：朱砂实心 / 墨色描边 ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  background: var(--color-vermilion);
+  color: var(--color-paper);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-vermilion-dark);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  border: 1px solid rgba(55, 54, 47, 0.28);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(55, 54, 47, 0.55);
+  background: rgba(55, 54, 47, 0.04);
+}

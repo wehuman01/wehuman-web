@@ -1,0 +1,21 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const indents = ['', 'ml-6 md:ml-16', 'ml-12 md:ml-32'];
+---
+
+<section class="px-6 py-16">
+  <div class="mx-auto max-w-2xl">
+    <p class="label-mono">{t.philosophy.label}</p>
+    <div class="mt-8 space-y-5">
+      {t.philosophy.lines.map((line: string, i: number) => (
+        <p class:list={['font-serif text-2xl leading-relaxed font-medium text-ink md:text-3xl', indents[i]]}>
+          {line}
+        </p>
+      ))}
+    </div>
+  </div>
+</section>

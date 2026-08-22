@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Philosophy from '../../components/Philosophy.astro';
+import ProjectLeaves from '../../components/ProjectLeaves.astro';
+import Footer from '../../components/Footer.astro';
+import t from '../../i18n/zh.json';
+---
+
+<Layout title={`${t.site.title} — ${t.site.tagline}`} lang="zh" description={t.site.description}>
+  <Header t={t} lang="zh" current="home" />
+  <main>
+    <Hero t={{ ...t.hero, github_org: t.links.github_org, tagline: t.site.tagline, description: t.site.description }} />
+    <Philosophy t={t} />
+    <ProjectLeaves t={t} lang="zh" />
+  </main>
+  <Footer t={t} />
+</Layout>

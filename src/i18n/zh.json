@@ -1,0 +1,86 @@
+{
+  "site": {
+    "title": "wehuman",
+    "tagline": "AI 时代，更像人地工作",
+    "description": "我们相信，AI 最重要的价值不是替代人类，而是让人类更像人类。"
+  },
+  "links": {
+    "github_org": "https://github.com/wehuman01"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于"
+  },
+  "hero": {
+    "cta_work": "查看作品",
+    "cta_github": "GitHub"
+  },
+  "philosophy": {
+    "label": "理念",
+    "lines": [
+      "AI 不该替代人，",
+      "它该守住人的专注，",
+      "把时间还给真正在乎的事。"
+    ]
+  },
+  "works": {
+    "label": "作品",
+    "title": "作品",
+    "subtitle": "两件安静的工具，给与 AI 同行的开发者",
+    "link_github": "GitHub",
+    "more": "更多作品，研墨中……"
+  },
+  "about_bridge": "关于我们",
+  "projects": {
+    "awedot": {
+      "name": "awedot",
+      "tagline": "AI 会话书签管理器",
+      "desc": "一枚悬浮球常驻屏幕边缘。一键收藏任何 AI 编程会话——上下文、API 配置、终端状态——随时原样恢复，思路不断。",
+      "tags": ["会话", "心流", "macOS · Windows"],
+      "github": "https://github.com/mugpeng/awedot",
+      "site": "https://awedot.wehuman.top",
+      "site_label": "官网"
+    },
+    "awewarm": {
+      "name": "awewarm",
+      "tagline": "订阅窗口保温器",
+      "desc": "用一次最小的定时请求，把订阅配额窗口焐热。等你坐下开工时，窗口已经开了。",
+      "tags": ["保温", "CLI", "pip"],
+      "github": "https://github.com/wehuman01/awewarm",
+      "site": "https://pypi.org/project/awewarm/",
+      "site_label": "PyPI"
+    }
+  },
+  "about_page": {
+    "label": "关于",
+    "title": "更像人，而非更不像",
+    "mission": {
+      "title": "使命",
+      "text": "我们相信，AI 最重要的价值不是替代人类，而是让人类更像人类——更有创造力、更专注、更能做自己真正在乎的事。\n\nAI 工具越来越强大，使用它的体验却越来越碎片化、越来越消耗人。开发者在多个 agent、多个会话之间切换，辛苦积累的上下文随时丢失，注意力被工具本身拖垮，而不是被工作吸引。\n\nwehuman 做安静的工具，把注意力还给人——让人有更多精力，去做只有人才能做的事。"
+    },
+    "values": {
+      "label": "价值观",
+      "items": [
+        {
+          "name": "更像人",
+          "desc": "技术应当放大人，而不是削弱人。"
+        },
+        {
+          "name": "守心流",
+          "desc": "最好的工具是被忘掉的工具——它默默守住你的注意力。"
+        },
+        {
+          "name": "还时间",
+          "desc": "把重复、消耗的事交给自动化，把时间还给人。"
+        }
+      ]
+    },
+    "contact": {
+      "title": "联系",
+      "github_desc": "关注我们的作品与发布。"
+    }
+  },
+  "footer": {
+    "line": "研墨而作，为人而作。"
+  }
+}
