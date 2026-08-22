@@ -86,7 +86,7 @@ wehuman 是"让人类更像人类"的 AI 产品组织（定义见 `others/0619/a
 
 ```
 wehuman-web/
-├── astro.config.mjs        # site: https://wehuman.top，sitemap
+├── astro.config.mjs        # site: https://www.wehuman.top，sitemap
 ├── DESIGN.md               # 笔墨设计系统（实施时同步产出）
 ├── public/                 # favicon.svg（朱点/印章）、CNAME
 ├── .github/workflows/      # Pages 部署
@@ -105,7 +105,7 @@ wehuman-web/
 
 - 仓库：GitHub `wehuman01/wehuman-web`（org 账号新建）
 - GitHub Actions 构建 → gh-pages（照搬 webioinfo workflow 模式）
-- 域名：CNAME `wehuman.top`（与 `awedot.wehuman.top` 同域；实施时按 DNS 实际情况可退 `www.wehuman.top`）
+- 域名：CNAME `www.wehuman.top`（与 `awedot.wehuman.top` 同域）
 
 ## 6. 范围外（未来）
 
