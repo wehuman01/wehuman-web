@@ -1,0 +1,25 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const items = t.features.items as { no: string; key: string; name: string; desc: string }[];
+---
+
+<!-- 特性：册页界格六格，朱号领起，墨字点题 -->
+<section class="section" data-scroll-fade>
+  <p class="eyebrow">{t.features.label}</p>
+  <div class="feat-grid">
+    {items.map((item: any) => (
+      <div class="feat">
+        <div class="feat__head">
+          <span class="feat__key">{item.key}</span>
+          <span class="feat__no">#{item.no}</span>
+        </div>
+        <p class="feat__name">{item.name}</p>
+        <p class="feat__desc">{item.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

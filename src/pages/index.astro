@@ -1,19 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ScrollOpening from '../components/ScrollOpening.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Works from '../components/Works.astro';
+import Features from '../components/Features.astro';
 import Philosophy from '../components/Philosophy.astro';
-import ProjectLeaves from '../components/ProjectLeaves.astro';
+import InkMountains from '../components/InkMountains.astro';
 import Footer from '../components/Footer.astro';
 import t from '../i18n/en.json';
 ---
 
 <Layout title={`${t.site.title} — ${t.site.tagline}`} lang="en" description={t.site.description}>
+  <ScrollOpening />
   <Header t={t} lang="en" current="home" />
   <main>
-    <Hero t={{ ...t.hero, github_org: t.links.github_org, tagline: t.site.tagline, description: t.site.description }} />
-    <Philosophy t={t} />
-    <ProjectLeaves t={t} lang="en" />
+    <Hero t={t} />
+    <Works t={t} />
+    <Features t={t} />
+    <Philosophy t={t} lang="en" />
+    <div class="interlude" aria-hidden="true">
+      <InkMountains class="absolute inset-x-0 bottom-0" />
+    </div>
   </main>
-  <Footer t={t} />
+  <Footer t={t} lang="en" />
 </Layout>

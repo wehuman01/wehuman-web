@@ -10,17 +10,17 @@ const paragraphs = a.mission.text.split('\n\n');
 
 <section class="px-6 py-20">
   <div class="mx-auto max-w-2xl">
-    <p class="label-mono">{a.label}</p>
-    <h1 class="mt-3 font-serif text-4xl font-semibold text-ink">{a.title}</h1>
+    <p class="eyebrow">{a.label}</p>
+    <h1 class="brush mt-4 text-5xl leading-tight text-ink md:text-6xl">{a.title}</h1>
 
-    <h2 class="mt-14 font-serif text-xl font-semibold text-ink">{a.mission.title}</h2>
+    <h2 class="mt-16 font-serif text-xl font-semibold text-ink">{a.mission.title}</h2>
     <div class="mt-5 space-y-5 leading-loose text-ink/90">
       {paragraphs.map((p: string) => (
         <p>{p}</p>
       ))}
     </div>
 
-    <h2 class="mt-14 font-serif text-xl font-semibold text-ink">{a.values.label}</h2>
+    <h2 class="mt-16 font-serif text-xl font-semibold text-ink">{a.values.label}</h2>
     <div class="mt-6 space-y-6">
       {a.values.items.map((v: any) => (
         <div class="border-l-2 border-ink-line pl-5">
@@ -30,7 +30,7 @@ const paragraphs = a.mission.text.split('\n\n');
       ))}
     </div>
 
-    <h2 class="mt-14 font-serif text-xl font-semibold text-ink">{a.contact.title}</h2>
+    <h2 class="mt-16 font-serif text-xl font-semibold text-ink">{a.contact.title}</h2>
     <a
       class="mt-5 flex items-center gap-4 no-underline transition-opacity hover:opacity-80"
       href={t.links.github_org}

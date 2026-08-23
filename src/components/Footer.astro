@@ -3,15 +3,28 @@ import Seal from './Seal.astro';
 
 interface Props {
   t: any;
+  lang: string;
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
 const year = new Date().getFullYear();
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeHref = `${basePath}${lang === 'zh' ? '/zh/' : '/'}`;
+const worksHref = `${homeHref}#works`;
+const aboutHref = `${basePath}${lang === 'zh' ? '/zh/about' : '/about'}`;
 ---
 
-<footer class="border-t border-ink-line px-6 py-10">
-  <div class="flex flex-col items-center gap-3 text-center">
-    <Seal size={22} />
-    <p class="text-xs text-ink-light">© {year} wehuman · {t.footer.line}</p>
+<footer class="foot">
+  <div class="foot-inner">
+    <a href={homeHref} class="foot-brand no-underline" aria-label="wehuman home">
+      <Seal size={20} />
+      <span>WEHUMAN</span>
+    </a>
+    <span class="foot-meta">{t.footer.line} © {year} · {t.footer.license}</span>
+    <nav class="foot-links" aria-label="footer">
+      <a href={worksHref}>{t.nav.works}</a>
+      <a href={aboutHref}>{t.nav.about}</a>
+      <a href={t.links.github_org} target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
   </div>
 </footer>

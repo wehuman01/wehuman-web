@@ -11,6 +11,7 @@ const { t, lang, current } = Astro.props;
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${basePath}${path}`;
 const homeHref = withBase(lang === 'zh' ? '/zh/' : '/');
+const worksHref = `${homeHref}#works`;
 const aboutHref = withBase(lang === 'zh' ? '/zh/about' : '/about');
 
 // Build lang-switch href from current path
@@ -39,6 +40,12 @@ langHref = withBase(langHref);
         ]}
       >
         {t.nav.home}
+      </a>
+      <a
+        href={worksHref}
+        class="rounded-md px-2 py-1 text-sm font-medium text-ink-light transition-colors hover:text-ink"
+      >
+        {t.nav.works}
       </a>
       <a
         href={aboutHref}

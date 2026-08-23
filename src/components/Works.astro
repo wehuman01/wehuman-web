@@ -1,0 +1,61 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const projects = [t.projects.awedot, t.projects.awewarm];
+---
+
+<!-- 作品：册页双卡，一物一图，各带印钮 -->
+<section id="works" class="section" data-scroll-fade>
+  <p class="eyebrow">{t.works.label}</p>
+  <h2 class="section-title">{t.works.title}</h2>
+  <p class="section-subtitle">{t.works.subtitle}</p>
+
+  <div class="tool-grid">
+    {projects.map((p: any) => (
+      <article class="tool-card">
+        <div class="tool-card__art" aria-hidden="true">
+          {p.name === 'awedot' ? (
+            <svg viewBox="0 0 220 120" fill="none">
+              <path d="M76 44 C 74 26, 90 14, 108 15 C 126 16, 138 30, 136 47 C 134 63, 118 72, 102 71 C 88 70, 77 59, 76 44" stroke="#37362F" stroke-width="3" stroke-linecap="round" opacity="0.72"></path>
+              <circle cx="107" cy="43" r="6.5" fill="#BC3A2C"></circle>
+              <path d="M56 92 C 90 84, 130 96, 168 88" stroke="#37362F" stroke-width="2.2" stroke-linecap="round" opacity="0.28"></path>
+              <path d="M78 104 C 104 98, 132 106, 158 100" stroke="#37362F" stroke-width="1.6" stroke-linecap="round" opacity="0.16"></path>
+              <path d="M150 30 q 18 4 26 18" stroke="#37362F" stroke-width="1.6" stroke-linecap="round" opacity="0.2"></path>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 220 120" fill="none">
+              <rect x="82" y="34" width="56" height="52" rx="7" stroke="#37362F" stroke-width="3" opacity="0.72"></rect>
+              <path d="M110 36 v48 M84 60 h52" stroke="#37362F" stroke-width="1.8" opacity="0.4"></path>
+              <circle cx="110" cy="60" r="6" fill="#BC3A2C"></circle>
+              <circle cx="110" cy="60" r="12" stroke="#BC3A2C" stroke-width="1" opacity="0.3"></circle>
+              <path d="M98 26 q 3 -8 0 -14 M122 26 q -3 -8 0 -14" stroke="#37362F" stroke-width="1.8" stroke-linecap="round" opacity="0.32"></path>
+              <path d="M60 100 C 96 94, 132 102, 164 96" stroke="#37362F" stroke-width="2" stroke-linecap="round" opacity="0.18"></path>
+            </svg>
+          )}
+        </div>
+        <h3 class="tool-name">{p.name}</h3>
+        <p class="tool-tagline">{p.tagline}</p>
+        <p class="tool-desc">{p.desc}</p>
+        <p class="tool-meta">{p.tags.join(' · ')}</p>
+        <div class="tool-actions">
+          <a class="tool-link tool-link--cinnabar" href={p.site} target="_blank" rel="noopener">
+            {p.site_label} ↗
+          </a>
+          <a class="tool-link" href={p.github} target="_blank" rel="noopener">
+            {t.works.link_github} ↗
+          </a>
+          {p.install_cmd && (
+            <span class="tool-install">
+              {t.works.install_hint} <code>$ {p.install_cmd}</code>
+            </span>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <p class="more-line">{t.works.more}</p>
+</section>

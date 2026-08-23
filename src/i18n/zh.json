@@ -9,25 +9,24 @@
   },
   "nav": {
     "home": "首页",
+    "works": "作品",
     "about": "关于"
   },
   "hero": {
+    "badge": "开源 · 安静的工具",
+    "title_lines": ["AI 时代，", "更像人地工作"],
     "cta_work": "查看作品",
-    "cta_github": "GitHub"
-  },
-  "philosophy": {
-    "label": "理念",
-    "lines": [
-      "AI 不该替代人，",
-      "它该守住人的专注，",
-      "把时间还给真正在乎的事。"
-    ]
+    "cta_github": "GitHub ↗",
+    "install_label": "终端安装 awewarm",
+    "install_cmd": "pip install awewarm",
+    "install_copied": "已复制"
   },
   "works": {
     "label": "作品",
-    "title": "作品",
-    "subtitle": "两件安静的工具，给与 AI 同行的开发者",
+    "title": "两件安静的工具",
+    "subtitle": "给与 AI 同行的开发者",
     "link_github": "GitHub",
+    "install_hint": "或终端安装：",
     "more": "更多作品，研墨中……"
   },
   "about_bridge": "关于我们",
@@ -48,8 +47,29 @@
       "tags": ["保温", "CLI", "pip"],
       "github": "https://github.com/wehuman01/awewarm",
       "site": "https://pypi.org/project/awewarm/",
-      "site_label": "PyPI"
+      "site_label": "PyPI",
+      "install_cmd": "pip install awewarm"
     }
+  },
+  "features": {
+    "label": "为什么是 wehuman",
+    "items": [
+      { "no": "01", "key": "收", "name": "一键收藏", "desc": "任何 AI 编程会话——上下文、API 配置、终端状态——一键存档。" },
+      { "no": "02", "key": "复", "name": "原样恢复", "desc": "上次中断的地方，下次原样回来，思路不断。" },
+      { "no": "03", "key": "温", "name": "窗口保温", "desc": "一次最小的定时请求，把订阅配额窗口焐热。" },
+      { "no": "04", "key": "静", "name": "常驻不扰", "desc": "不弹窗、不催促，安静地待在屏幕边缘。" },
+      { "no": "05", "key": "简", "name": "最小自动化", "desc": "每个工具只做一件事，做到刚好够用。" },
+      { "no": "06", "key": "人", "name": "把人放回中心", "desc": "工具守住专注，把时间还给真正在乎的事。" }
+    ]
+  },
+  "philosophy": {
+    "label": "理念",
+    "rows": [
+      { "pre": "AI 不该替代", "key": "人", "post": "，" },
+      { "pre": "它该守住人的", "key": "专注", "post": "，" },
+      { "pre": "把", "key": "时间", "post": "还给真正在乎的事。" }
+    ],
+    "badges": ["开源", "免费", "MIT"]
   },
   "about_page": {
     "label": "关于",
@@ -81,6 +101,7 @@
     }
   },
   "footer": {
-    "line": "研墨而作，为人而作。"
+    "line": "研墨而作，为人而作。",
+    "license": "开源工具 · MIT"
   }
 }

@@ -1,20 +1,31 @@
 ---
 interface Props {
   class?: string;
+  style?: string;
 }
 
-const { class: className = '' } = Astro.props;
+const { class: className = '', style: styleAttr = '' } = Astro.props;
 ---
 
-<!-- 水纹：三条浓淡不同的干笔横陈，一枚朱砂点悬于线上，倒影入水 -->
-<svg class={className} viewBox="0 0 1200 170" fill="none" aria-hidden="true">
-  <circle cx="380" cy="34" r="7" fill="#BC3A2C"></circle>
-  <ellipse cx="380" cy="60" rx="12" ry="3.5" fill="#BC3A2C" opacity="0.18" filter="url(#soften)"></ellipse>
-  <path d="M40 66 C 210 56, 400 72, 580 64 S 920 70, 1160 58" stroke="#37362F" stroke-width="4.5" stroke-linecap="round" opacity="0.55"></path>
-  <path d="M120 94 C 320 84, 520 100, 720 92 S 1030 98, 1160 86" stroke="#37362F" stroke-width="3.2" stroke-linecap="round" opacity="0.3"></path>
-  <path d="M60 122 C 280 112, 520 126, 780 116 S 1070 124, 1180 112" stroke="#37362F" stroke-width="2.4" stroke-linecap="round" opacity="0.15" stroke-dasharray="28 7 44 5 62 9"></path>
-  <path d="M210 146 q 42 -8 84 0" stroke="#37362F" stroke-width="1.4" stroke-linecap="round" opacity="0.12"></path>
-  <path d="M770 144 q 42 -8 84 0" stroke="#37362F" stroke-width="1.4" stroke-linecap="round" opacity="0.1"></path>
+<!-- 水纹：三条浓淡不同的干笔横陈，一枚朱砂点悬于线上，倒影入水，一叶乌篷舟横陈波间 -->
+<svg class:list={['brush-scene', className]} style={styleAttr} viewBox="0 0 1200 170" fill="none" aria-hidden="true">
+  <circle class="sun-dot" cx="380" cy="34" r="7" fill="#BC3A2C"></circle>
+  <g class="fade-in">
+    <ellipse cx="380" cy="60" rx="12" ry="3.5" fill="#BC3A2C" opacity="0.18" filter="url(#soften)"></ellipse>
+  </g>
+  <path class="flow" style="--i: 0" pathLength="1" d="M40 66 C 210 56, 400 72, 580 64 S 920 70, 1160 58" stroke="#37362F" stroke-width="4.5" stroke-linecap="round" opacity="0.55"></path>
+  <path class="flow" style="--i: 1" pathLength="1" d="M120 94 C 320 84, 520 100, 720 92 S 1030 98, 1160 86" stroke="#37362F" stroke-width="3.2" stroke-linecap="round" opacity="0.3"></path>
+  <g class="fade-in">
+    <path d="M60 122 C 280 112, 520 126, 780 116 S 1070 124, 1180 112" stroke="#37362F" stroke-width="2.4" stroke-linecap="round" opacity="0.15" stroke-dasharray="28 7 44 5 62 9"></path>
+    <path d="M210 146 q 42 -8 84 0" stroke="#37362F" stroke-width="1.4" stroke-linecap="round" opacity="0.12"></path>
+    <path d="M770 144 q 42 -8 84 0" stroke="#37362F" stroke-width="1.4" stroke-linecap="round" opacity="0.1"></path>
+  </g>
+  <!-- 乌篷舟：一枚极简剪影，泊在二笔水纹之间，随波极缓横移 -->
+  <g class="boat">
+    <path d="M860 100 q 40 15 80 0" stroke="#37362F" stroke-width="2.4" stroke-linecap="round" opacity="0.42"></path>
+    <path d="M872 100 c 1 -11, 10 -16, 19 -16 c 10 0, 19 7, 22 16" stroke="#37362F" stroke-width="2.2" stroke-linecap="round" opacity="0.42"></path>
+    <path d="M892 82 l 3 -9" stroke="#37362F" stroke-width="1.4" stroke-linecap="round" opacity="0.3"></path>
+  </g>
   <defs>
     <filter id="soften" x="-50%" y="-200%" width="200%" height="500%">
       <feGaussianBlur stdDeviation="3"></feGaussianBlur>

@@ -6,18 +6,54 @@ interface Props {
 }
 
 const { t } = Astro.props;
+const lines = t.hero.title_lines as string[];
 ---
 
-<section class="px-6 pt-24 pb-4 text-center md:pt-32">
-  <h1 class="font-serif text-4xl leading-snug font-semibold tracking-wide text-ink md:text-6xl">
-    {t.tagline}
+<!-- 引首：居中大字 + 印钮 + 墨砚终端，如一幅立轴正面观 -->
+<section class="hero">
+  <span class="hero-badge rise" style="--fd: 0s">{t.hero.badge}</span>
+
+  <h1 class="hero-title rise" style="--fd: 0.25s">
+    {lines.map((line: string) => (
+      <span class="block">{line}</span>
+    ))}
+    <span class="hero-title-dot" aria-hidden="true"></span>
   </h1>
-  <p class="mx-auto mt-6 max-w-xl text-base leading-loose text-ink-light md:text-lg">
-    {t.description}
-  </p>
-  <div class="mt-10 flex items-center justify-center gap-4">
-    <a href="#works" class="btn-primary">{t.cta_work}</a>
-    <a href={t.github_org} target="_blank" rel="noopener" class="btn-ghost">{t.cta_github}</a>
+
+  <p class="hero-desc rise" style="--fd: 0.55s">{t.site.description}</p>
+
+  <div class="btn-row rise" style="--fd: 0.8s">
+    <a href="#works" class="btn btn--seal">{t.hero.cta_work}</a>
+    <a href={t.links.github_org} target="_blank" rel="noopener" class="btn btn--ghost">{t.hero.cta_github}</a>
   </div>
-  <BrushStrokes class="mx-auto mt-16 block w-full max-w-2xl md:mt-20" />
+
+  <div class="ink-terminal rise" style="--fd: 1s">
+    <div class="ink-terminal__bar">
+      <span class="ink-terminal__label">{t.hero.install_label}</span>
+      <button class="ink-terminal__copy" type="button" data-copy={t.hero.install_cmd} data-copied={t.hero.install_copied}>copy</button>
+    </div>
+    <div class="ink-terminal__body">
+      <span class="ink-terminal__prompt" aria-hidden="true">$</span>
+      <code>{t.hero.install_cmd}</code>
+    </div>
+  </div>
+
+  <BrushStrokes class="hero-water" />
 </section>
+
+<script>
+  // 复制安装命令：落印式小反馈，失败则静默降级
+  document.querySelectorAll<HTMLButtonElement>('.ink-terminal__copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const cmd = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(cmd);
+        const original = btn.textContent;
+        btn.textContent = btn.dataset.copied ?? 'copied';
+        setTimeout(() => (btn.textContent = original), 1600);
+      } catch {
+        /* 剪贴板不可用时保持原样 */
+      }
+    });
+  });
+</script>

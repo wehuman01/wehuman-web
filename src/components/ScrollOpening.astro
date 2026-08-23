@@ -1,0 +1,35 @@
+---
+// 开场卷轴：宣纸覆屏，木轴自左向右卷开，露出页面（同一会话只播一次）
+---
+
+<div class="scroll-opening" aria-hidden="true">
+  <div class="scroll-opening__paper"></div>
+  <div class="scroll-opening__roller"></div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const opening = document.querySelector('.scroll-opening');
+
+  if (opening) {
+    // CSS 会在 .js/.no-opening/prefers-reduced-motion 下决定是否显示；
+    // 只有真正播出时才锁滚动，结束时移除遮罩并记入 sessionStorage
+    const playing = getComputedStyle(opening).display !== 'none';
+
+    if (playing) {
+      root.classList.add('opening');
+      const paper = opening.querySelector('.scroll-opening__paper');
+      paper?.addEventListener('animationend', () => {
+        opening.remove();
+        root.classList.remove('opening');
+        try {
+          sessionStorage.setItem('wehuman-opened', '1');
+        } catch {
+          /* 隐私模式下静默跳过 */
+        }
+      });
+    } else {
+      opening.remove();
+    }
+  }
+</script>

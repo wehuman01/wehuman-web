@@ -26,11 +26,21 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@500&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      // 动效标记：JS 可用才启用动画初态；同一会话已展过卷轴则跳过开场
+      document.documentElement.classList.add('js');
+      try {
+        if (sessionStorage.getItem('wehuman-opened')) {
+          document.documentElement.classList.add('no-opening');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body class="paper-wash min-h-screen overflow-x-hidden bg-paper font-serif text-ink antialiased">
     <slot />
+    <script src="../scripts/ink-motion.js"></script>
   </body>
 </html>
