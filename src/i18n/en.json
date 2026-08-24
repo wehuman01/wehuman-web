@@ -2,78 +2,87 @@
   "site": {
     "title": "wehuman",
     "tagline": "Stay human in the age of AI",
-    "description": "We believe AI's greatest value is not replacing humans — it is making humans more human."
+    "description": "Calm, open-source tools that protect your attention and give the hours back to what matters."
   },
   "links": {
-    "github_org": "https://github.com/wehuman01"
+    "github_org": "https://github.com/wehuman01",
+    "awedot_site": "https://awedot.wehuman.top",
+    "awedot_github": "https://github.com/mugpeng/awedot",
+    "awewarm_pypi": "https://pypi.org/project/awewarm/",
+    "awewarm_github": "https://github.com/wehuman01/awewarm"
   },
   "nav": {
     "home": "Home",
-    "works": "Works",
-    "about": "About"
+    "about": "About",
+    "install": "Install"
   },
   "hero": {
-    "badge": "Open Source · Calm Tools",
-    "title_lines": ["Stay human", "in the age of AI"],
-    "cta_work": "Our Work",
-    "cta_github": "GitHub ↗",
-    "install_label": "Install awewarm from the terminal",
-    "install_cmd": "pip install awewarm",
-    "install_copied": "Copied"
+    "eyebrow": "Open Source • MIT License",
+    "title_lines": ["Stay human", "in the age", "of AI"],
+    "desc": "Calm, open-source tools for developers who live in AI agents — they guard your focus, and give the hours back.",
+    "cta_label": "Try the orb",
+    "cta": "Get awedot",
+    "install_label": "Install via terminal",
+    "tabs": ["pip", "pipx"],
+    "cmds": {
+      "pip": ["pip install", "awewarm"],
+      "pipx": ["pipx install", "awewarm"]
+    },
+    "copied": "Copied"
+  },
+  "preview": {
+    "label": "awedot · session restore"
   },
   "works": {
-    "label": "Works",
-    "title": "Two calm tools",
-    "subtitle": "For developers who live in AI agents",
-    "link_github": "GitHub",
-    "install_hint": "Or from the terminal:",
-    "more": "More works — the ink is still grinding…"
-  },
-  "about_bridge": "About us",
-  "projects": {
-    "awedot": {
-      "name": "awedot",
-      "tagline": "AI Session Bookmark Manager",
-      "desc": "A floating orb rests at the edge of your screen. One click bookmarks any AI coding session — context, API profile, terminal state — and restores it exactly where you left off.",
-      "tags": ["Session", "Flow", "macOS · Windows"],
-      "github": "https://github.com/mugpeng/awedot",
-      "site": "https://awedot.wehuman.top",
-      "site_label": "Website"
-    },
-    "awewarm": {
-      "name": "awewarm",
-      "tagline": "Subscription Window Warmer",
-      "desc": "One minimal scheduled request keeps your AI plan's usage window warm, so when you sit down to work, the quota window is already open.",
-      "tags": ["Warm-up", "CLI", "pip"],
-      "github": "https://github.com/wehuman01/awewarm",
-      "site": "https://pypi.org/project/awewarm/",
-      "site_label": "PyPI",
-      "install_cmd": "pip install awewarm"
-    }
-  },
-  "features": {
-    "label": "Why wehuman",
-    "items": [
-      { "no": "01", "key": "Keep", "name": "One-click bookmark", "desc": "Any AI coding session — context, API profile, terminal state — saved in one click." },
-      { "no": "02", "key": "Restore", "name": "Exactly where you left off", "desc": "Interrupt today, return tomorrow. The thread never breaks." },
-      { "no": "03", "key": "Warm", "name": "Windows kept warm", "desc": "One minimal scheduled request keeps the quota window open." },
-      { "no": "04", "key": "Quiet", "name": "Present, never pushy", "desc": "No popups, no nagging. It rests at the edge of your screen." },
-      { "no": "05", "key": "Minimal", "name": "One tool, one job", "desc": "Every tool does exactly one thing, just enough to be useful." },
-      { "no": "06", "key": "Human", "name": "People back at the center", "desc": "Tools guard your focus and give the hours back to what matters." }
+    "eyebrow": "Our Works",
+    "title": "Two calm tools for the AI age",
+    "cards": [
+      {
+        "art": "awedot",
+        "eyebrow": "macOS · Windows",
+        "name": "awedot",
+        "desc": "A floating orb rests at the edge of your screen. One click bookmarks any AI coding session — context, API profile, terminal state — and restores it exactly where you left off.",
+        "cta": "Go to website"
+      },
+      {
+        "art": "awewarm",
+        "eyebrow": "CLI · Python",
+        "name": "awewarm",
+        "desc": "One minimal scheduled request keeps your AI plan's usage window warm, so when you sit down to work, the quota window is already open.",
+        "cta": "pip install awewarm"
+      },
+      {
+        "art": "wehuman",
+        "eyebrow": "Open Source · MIT",
+        "name": "wehuman",
+        "desc": "Every tool does exactly one thing, just enough to be useful. Free, open-source, built to be forgotten while it quietly guards your attention.",
+        "cta": "View on GitHub"
+      }
     ]
   },
-  "philosophy": {
-    "label": "Philosophy",
-    "rows": [
-      { "pre": "AI should not replace ", "key": "people", "post": "." },
-      { "pre": "It should protect their ", "key": "focus", "post": "." },
-      { "pre": "And return their ", "key": "time", "post": " to what truly matters." }
-    ],
-    "badges": ["Open Source", "Free", "MIT"]
+  "features": {
+    "tag1": "Feature",
+    "tag2": "Preview",
+    "items": [
+      { "no": "#1", "key": "Keep", "title": "One-click bookmark", "desc": "Any AI coding session — context, API profile, terminal state — saved in one click, from the edge of your screen." },
+      { "no": "#2", "key": "Restore", "title": "Exactly where you left off", "desc": "Interrupt today, return tomorrow. The orb brings the whole session back, and the thread never breaks." },
+      { "no": "#3", "key": "Warm", "title": "Windows kept warm", "desc": "One minimal scheduled request keeps the quota window open, so the tools are ready the moment you are." },
+      { "no": "#4", "key": "Quiet", "title": "Present, never pushy", "desc": "No popups, no nagging, no feeds. It rests at the edge of your screen and speaks only when asked." },
+      { "no": "#5", "key": "Minimal", "title": "One tool, one job", "desc": "Every tool does exactly one thing, just enough to be useful. Nothing to configure, nothing to babysit." },
+      { "no": "#6", "key": "Human", "title": "People back at the center", "desc": "Tools guard your focus and hand the repetitive work to automation — the hours go back to what matters." }
+    ]
+  },
+  "footer": {
+    "eyebrow": "Open Source • Free • MIT",
+    "title_lines": ["More human,", "not less."],
+    "desc": "AI should not replace people. It should protect their focus, and return their time to what truly matters.",
+    "cta": "View on GitHub",
+    "left": "awedot · awewarm — calm tools",
+    "right": "MIT License · 2026"
   },
   "about_page": {
     "label": "About",
-    "title": "More human, not less",
+    "title": ["More human,", "not less."],
     "mission": {
       "title": "Mission",
       "text": "We believe AI's greatest value is not replacing humans, but making humans more human — more creative, more focused, more able to do what they truly care about.\n\nAI tools keep getting stronger, yet using them feels increasingly fragmented and draining. Developers bounce between agents and sessions, lose hard-won context, and watch their attention leak into the tools themselves instead of the work.\n\nwehuman builds calm tools that give that attention back — so people have more energy for the things only humans can do."
@@ -99,9 +108,5 @@
       "title": "Contact",
       "github_desc": "Follow our work and releases."
     }
-  },
-  "footer": {
-    "line": "Grounded in ink, built for humans.",
-    "license": "Open-source tools · MIT"
   }
 }

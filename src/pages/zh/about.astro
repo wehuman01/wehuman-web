@@ -6,10 +6,10 @@ import Footer from '../../components/Footer.astro';
 import t from '../../i18n/zh.json';
 ---
 
-<Layout title={`${t.about_page.title} · wehuman`} lang="zh" description={t.site.description}>
+<Layout title={`${t.about_page.title.join(' ')} · wehuman`} lang="zh" description={t.site.description}>
   <Header t={t} lang="zh" current="about" />
   <main>
     <AboutPage t={t} />
   </main>
-  <Footer t={t} />
+  <Footer t={t} lang="zh" />
 </Layout>

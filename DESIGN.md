@@ -2,117 +2,75 @@
 name: wehuman
 description: Official website for wehuman — calm AI tools that protect human attention
 colors:
-  paper: "#F6F1E7"
-  card: "#FCF9F2"
+  bg: "#2A2925"
+  fg: "#F6F1E7"
+  accent: "#BC3A2C"
+  paper: "#FCF9F2"
   ink: "#37362F"
-  ink-light: "#8B867B"
-  ink-line: "rgba(55,54,47,0.14)"
-  vermilion: "#BC3A2C"
-  vermilion-dark: "#9E2F23"
 typography:
   display:
     fontFamily: EB Garamond, Noto Serif SC, serif
-    fontWeight: "600"
-  body:
-    fontFamily: EB Garamond, Noto Serif SC, serif
-    fontSize: 16px
-    lineHeight: 1.8
-  label:
+    fontWeight: "400 (300 for zh)"
+  mono:
     fontFamily: JetBrains Mono, ui-monospace, monospace
-    fontSize: 12px
+    fontSize: clamp(0.66rem, 0.55vw + 0.5rem, 0.8rem)
     letterSpacing: 0.14em
+    textTransform: uppercase
 rounded:
-  DEFAULT: 6px
-  full: 9999px
+  DEFAULT: 4px
 spacing:
-  unit: 8px
-  section: 96px
+  gutter: clamp(1.25rem, 8.9vw, 8.5rem)
 ---
 
 ## Overview
 
-wehuman is the official website for a team building calm AI tools that protect human attention ("让人类更像人类"). The visual identity is East-Asian ink-wash aesthetics meets modern editorial minimalism: warm rice-paper ground, a few expressive ink strokes, and exactly one strong color — vermilion, warmth in emptiness. The page structure (hero badge + install command + product cards + numbered features + closing) is modeled on agent-product landing pages such as hermes-agent.nousresearch.com, translated into the ink-wash language.
+wehuman is the official website for a team building calm AI tools that protect human attention ("AI 时代，更像人地工作"). The layout system is modeled on the current hermes-agent.nousresearch.com landing page: viewport-wide ink frame, giant light-serif display titles, uppercase monospace labels for everything else, a paper-white terminal card, three big platform-style cards, a paper feature panel with `#N` numbered features, and a 100dvh statement footer with a ghost wordmark. The palette is translated from Hermes' electric-blue into wehuman's ink-and-vermilion identity.
 
 ## Colors
 
-The palette is ink on rice paper with a single vermilion accent.
+Four roles, mapped 1:1 from the Hermes system:
 
-- **Paper (#F6F1E7):** Page background — warm rice-paper white. Never cold or pure white.
-- **Card (#FCF9F2):** Album-leaf card background, slightly lighter than the paper.
-- **Ink (#37362F):** Primary text — near-black with a warm gray cast. Never pure black.
-- **Ink-light (#8B867B):** Secondary text, metadata, labels.
-- **Ink-line (rgba ink 14%):** Hairline borders and dividers.
-- **Vermilion (#BC3A2C / #9E2F23):** The ONLY strong color — links, CTAs, the seal, hover states, ::selection. Its scarcity is the design.
+- **bg (#2A2925 墨黑):** Page ground — hero, tool cards, art frames, footer. (Hermes: #0000f2)
+- **fg (#F6F1E7 纸白):** Text and solid buttons on dark. Never pure white. (Hermes: #f5f5f5)
+- **accent (#BC3A2C 朱砂):** The single strong color — eyebrow numbers, terminal highlight, the seal, hover states. Scarce by design. (Hermes: #edff45)
+- **paper (#FCF9F2):** The feature-panel flip and the terminal card. (Hermes: #fff)
 
 ## Typography
 
-**Three layers, like a painting and its colophons:**
+Two layers, like Hermes:
 
-- **「画」Brush layer:** Ma Shan Zheng (马善政毛笔楷书, OFL) for all large characters — hero title, section titles, tool names, feature key characters, philosophy keywords, About title. Its Latin glyphs are written by the same brush, so EN and ZH share one hand. Display lines are centered; key characters inside sentences are set at 1.55em to punctuate the line.
-- **「跋」Colophon layer:** EB Garamond + Noto Serif SC for body copy, metadata, links — the printed small text beside the painting. Never pure black; faded ink tones (0.6–0.85 alpha).
-- **「印」Seal layer:** the vermilion seal, JetBrains Mono for eyebrows/labels/badges and the ink terminal, and one vermilion pill button as the "pressed seal" CTA.
+- **Display (EB Garamond / Noto Serif SC 300):** Hero three-line title, section titles, card names, footer statement, giant wordmarks. Weight 400 (300 for zh), line-height ≈ 1.02 (1.14 zh), tracking 0.02–0.04em.
+- **Mono (JetBrains Mono):** Everything else — eyebrows, descriptions, buttons, terminal, nav. Uppercase, 0.14em tracking. This all-mono body voice is the signature of the style.
 
-Chinese body copy uses generous line-height (1.8+). The wordmark remains `WEHUMAN` in the header/footer (unchanged).
+## Signature Mechanisms
 
-## Visual Elements
+- **Frame:** A fixed border (`--frame-w` ≈ 10–18px) in bg color around the whole viewport. Invisible over dark sections; crops the paper panel and wordmarks as they pass — the page reads as printed matter under a matte.
+- **Noise:** Full-page fractal-noise overlay at 0.05 opacity; stronger (0.16, overlay blend) inside art frames. Flat color never looks flat.
+- **Vignette:** Radial darkening on the hero and footer (`hw-vignette`).
+- **Gutter:** `clamp(1.25rem, 8.9vw, 8.5rem)` — 210/2360 of viewport, Hermes' proportion. Text sizes use direct `clamp()` instead of Hermes' 2360-unit system; same result, simpler implementation.
+- **Arc hover:** Tool cards reveal an animated gradient border (fg → accent → bg) on hover/focus (`hw-arc`, mask-composite ring).
+- **Giant wordmarks:** `WEHUMAN` at ~21vw closes the feature panel and haunts the footer (ghost, accent at 0.13). Intentionally bleeding past the viewport edges.
 
-### Seal (印章)
+## Page Structure
 
-A vermilion rounded square with an inner frame and a minimal "人" (human) glyph carved in paper color. Used next to the header wordmark and as the footer colophon. Also the favicon. Pure inline SVG.
+1. **Nav (3-column):** left Home/About · center WEHUMAN wordmark + GitHub icon · right language pill + Install. Mobile: stacked centered rows.
+2. **Hero (ink):** eyebrow `OPEN SOURCE • MIT LICENSE` → three-line display title ending in an accent period → one mono line → "Get awedot" solid button beside the paper terminal card (pip/pipx tabs, `$` dim / package bold accent / copy button).
+3. **Preview:** thick ink-bordered SVG scene (editor window, cursor, session arc, orb) — the stand-in for Hermes' video.
+4. **Works (3 cards):** eyebrow + title, then awedot / awewarm / wehuman cards (aspect 627/547, line-art background, mono desc, paper button).
+5. **Feature panel (paper):** `FEATURE / PREVIEW` corner tags, six `#N 动词` features (text ⇄ ink art frame with noise, alternating), giant WEHUMAN wordmark.
+6. **Footer (100dvh, ink):** `OPEN SOURCE • FREE • MIT` eyebrow → statement title → manifesto line → GitHub CTA; ghost wordmark behind; bottom-left tools line, bottom-right seal + `MIT License · 2026`.
+7. **About:** ink hero (ABOUT + display title) → paper panel (mission, 3 value cards, GitHub contact) → same giant footer.
 
-### Water Strokes (水纹)
+## Motion
 
-The hero closes with 2–3 horizontal dry-brush strokes of varying depth (one dashed for 飞白 texture) plus faint ripple marks — the "river". Above them hangs one small vermilion dot (the ember/sun) with a blurred red reflection touching the water. A tiny 乌篷船 (black-awning boat) rests between strokes. Inline SVG, no bitmaps.
-
-### Paper Wash
-
-Two fixed, barely-there radial washes (ink top-right at 3.5%, vermilion bottom-left at 3%) keep the paper from feeling flat. Purely decorative, no pointer events.
-
-### Album Leaves (册页)
-
-Project cards are album leaves: card background, hairline ink border, 10px radius, a faint lift on hover — the only place where boxes exist. Each leaf carries a small inline-SVG "picture" (a hand-drawn stroke sketch of the tool), the brush-script name, colophon-size description, meta line, and vermilion links. One leaf per tool, two per row on desktop.
-
-### Ink Mountains (远山)
-
-Two or three layered low rolling hill silhouettes in fading ink opacities (0.03–0.08), with soft paper-colored mist bands blurring their feet — Jiangnan in the rain, suggested not depicted. Placed at the homepage's foot; drifts with a gentle scroll parallax. `InkMountains.astro`, inline SVG.
-
-### Boat (舟)
-
-On the hero water rests one tiny 乌篷船 (black-awning boat) stroke sketch between two brush strokes — the only living presence in the emptiness. It drifts ±14px over 44s.
-
-## Motion (动效)
-
-The homepage behaves like a handscroll. All effects are CSS animations over inline SVG, gated to run only under `html.js` (+ `fonts-ready` for writing), and fully disabled by `prefers-reduced-motion` — content never depends on them. **Restraint rule: the page is 95% still.**
-
-- **Scroll Opening (展卷):** On first visit per session, a rice-paper overlay with silk-mount borders is rolled away left-to-right by a wooden roller with vermilion end caps (~1.5s, once via sessionStorage). `ScrollOpening.astro`.
-- **Ink Soak (落笔洇墨):** Hero blocks (badge → title → description → CTAs → terminal) rise one by one as a blur of pale ink that dries into focus (opacity + blur + lift). Starts only after webfonts are ready.
-- **Water entrance (水纹出场):** after the hero blocks, the vermilion dot lifts into place, the dry-brush strokes draw themselves (`pathLength` dash), then the reflection and ripples bleed in — then everything settles into slow life.
-- **Roll-up fade (收卷):** Scrolled-past sections (works, features, closing) fade toward 0.18 opacity as they leave the viewport (`data-scroll-fade` + `ink-motion.js`) — the scroll reads as one continuous unrolling, not per-section entrances.
-- **Slow life (慢动):** water strokes breathe (26s), the boat drifts ±14px (44s), mountain mist slides ±22px (46–60s), mountains parallax slightly. Almost imperceptible; the paper is alive.
-- **Ink-wash hover (墨晕):** album leaves darken their border and lift 3px; `.ink-link` cinnabar links grow an underline from the left like ink spreading, and press down like stamping.
-- **Timing:** one `--ink-t` base delay (1.5s after the opening, 0.15s when skipped) sequences the hero; vermilion stays one point per view throughout.
-
-## Layout
-
-**A structured handscroll, read like a hanging scroll (立轴正面观).** Content is centered with generous breathing room (sections ≤64rem, vertical rhythm ≥5.5rem). The hero stacks: badge pill → large brush title ending in a vermilion dot → one-line description → seal-pill + ghost CTAs → ink terminal (`pip install awewarm`, copyable) → water strokes along the bottom. Works shows the two tool album leaves side by side. Features is a six-cell album grid (hairline rules, brush key character + vermilion number per cell). The closing holds the philosophy declaration (key words in vermilion brush script), the license badges, and the About link. Ink mountains press the page's foot before the footer.
-
-## Components
-
-- **Header:** Sticky, paper at 82% opacity with backdrop blur, hairline bottom border. Seal + WEHUMAN wordmark left; Home / Works / About / GitHub / language pill right.
-- **Hero (引首):** Badge pill, centered brush title + vermilion dot, description, CTA pair, ink terminal with copy button, water strokes at the bottom (`Hero.astro`).
-- **Works (作品):** `#works` anchor. Eyebrow + section title + subtitle, two album-leaf tool cards (SVG stroke art, brush name, tagline, description, meta, vermilion site link + GitHub + install hint), "more works grinding" line (`Works.astro`).
-- **Features (特性):** Six-cell hairline grid, each cell a vermilion `#no`, a brush key character (收/复/温/静/简/人 · Keep/Restore/Warm/Quiet/Minimal/Human), a name and one line of description (`Features.astro`).
-- **Philosophy (跋尾):** Centered declaration — three sentences with key words (人/专注/时间 · people/focus/time) in large vermilion brush script — license badges, About link (`Philosophy.astro`).
-- **AboutPage:** Label + large brush title, mission paragraphs, three value rows with hairline left rules, GitHub contact row.
-- **Footer:** Small seal + colophon line + works/about/GitHub links.
-- **ScrollOpening / InkMountains / BrushStrokes:** Homepage motion & scenery components (see Motion above).
+One small vanilla script (`src/scripts/motion.js`): terminal tabs, clipboard copy, IntersectionObserver reveals (opacity + 14px lift). All content is visible without JS (`html.js` gates the hidden initial state). `prefers-reduced-motion` disables everything. No scroll-jacking, no parallax.
 
 ## Do's and Don'ts
 
-- **Do** keep vast negative space — when in doubt, leave it empty.
-- **Do** keep vermilion to one role per view: a link, a button, the seal, the dot.
-- **Do** keep all brush/seal artwork as inline SVG.
-- **Do** maintain the bilingual (en default at `/`, zh at `/zh/`) structure; all copy lives in `src/i18n/*.json`.
-- **Do** keep motion gated (`html.js` + `prefers-reduced-motion` fallback) so content is always visible without it.
-- **Don't** use pure black or pure white, gradients, glassmorphism, sticker rotations, or saturated secondary colors.
-- **Don't** add frameworks or client dependencies — motion is one small vanilla script (`src/scripts/ink-motion.js`: fonts-ready flag, scroll-fade, mountain parallax) plus a tiny clipboard handler for the install terminal. The site stays otherwise fully static.
+- **Do** keep accent scarce — one role per view (a number, a period, a highlight).
+- **Do** keep body copy in uppercase mono; keep display in light serif.
+- **Do** keep art as inline SVG line work; no bitmaps, no photos.
+- **Do** keep the bilingual structure (`/` EN, `/zh/` ZH); all copy in `src/i18n/*.json`.
+- **Don't** add frameworks or client dependencies — Astro static + one vanilla script.
+- **Don't** let wordmarks shrink to fit — they bleed by design; body clips overflow-x.
+- **Don't** reintroduce the previous ink-wash motion (scroll opening, water strokes, boat, mountains). That version lives in git history.

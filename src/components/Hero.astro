@@ -1,59 +1,92 @@
 ---
-import BrushStrokes from './BrushStrokes.astro';
-
 interface Props {
   t: any;
 }
 
 const { t } = Astro.props;
 const lines = t.hero.title_lines as string[];
+const tabs = t.hero.tabs as string[];
+const cmds = t.hero.cmds as Record<string, string[]>;
 ---
 
-<!-- 引首：居中大字 + 印钮 + 墨砚终端，如一幅立轴正面观 -->
-<section class="hero">
-  <span class="hero-badge rise" style="--fd: 0s">{t.hero.badge}</span>
+<!-- 引首：眉题 + 三行巨题 + 主按钮 + 纸白终端卡 -->
+<header class="hw-hero hw-vignette">
+  <div class="hw-hero__inner">
+    <p class="hw-mono hw-hero__eyebrow reveal">{t.hero.eyebrow}</p>
 
-  <h1 class="hero-title rise" style="--fd: 0.25s">
-    {lines.map((line: string) => (
-      <span class="block">{line}</span>
-    ))}
-    <span class="hero-title-dot" aria-hidden="true"></span>
-  </h1>
+    <h1 class="hw-display hw-hero__title reveal" style="--rd:.08s">
+      {lines.map((line: string, i: number) => (
+        <span class="block">
+          {line}{i === lines.length - 1 && <span class="accent-dot">.</span>}
+        </span>
+      ))}
+    </h1>
 
-  <p class="hero-desc rise" style="--fd: 0.55s">{t.site.description}</p>
+    <p class="hw-mono hw-hero__desc reveal" style="--rd:.16s">{t.hero.desc}</p>
 
-  <div class="btn-row rise" style="--fd: 0.8s">
-    <a href="#works" class="btn btn--seal">{t.hero.cta_work}</a>
-    <a href={t.links.github_org} target="_blank" rel="noopener" class="btn btn--ghost">{t.hero.cta_github}</a>
-  </div>
+    <div class="hw-hero__actions">
+      <section class="reveal" style="--rd:.24s">
+        <p class="hw-mono mb-3 opacity-90">{t.hero.cta_label}</p>
+        <a class="hw-btn" href={t.links.awedot_site} target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          {t.hero.cta}
+        </a>
+      </section>
 
-  <div class="ink-terminal rise" style="--fd: 1s">
-    <div class="ink-terminal__bar">
-      <span class="ink-terminal__label">{t.hero.install_label}</span>
-      <button class="ink-terminal__copy" type="button" data-copy={t.hero.install_cmd} data-copied={t.hero.install_copied}>copy</button>
+      <section class="reveal" style="--rd:.32s" id="install">
+        <p class="hw-mono mb-3 opacity-90">{t.hero.install_label}</p>
+        <div class="hw-term">
+          <div class="hw-term__tabs" role="tablist" aria-label="install">
+            {tabs.map((tab: string, i: number) => (
+              <button
+                type="button"
+                class="hw-term__tab"
+                role="tab"
+                id={`term-tab-${i}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls={`term-panel-${i}`}
+                data-term-tab={i}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          {tabs.map((tab: string, i: number) => (
+            <div
+              class="hw-term__body"
+              role="tabpanel"
+              id={`term-panel-${i}`}
+              aria-labelledby={`term-tab-${i}`}
+              data-term-panel={i}
+              hidden={i !== 0}
+            >
+              <span class="hw-term__cmd" aria-label={cmds[tab].join(' ')}>
+                <span class="dim">$ </span><span class="dim">{cmds[tab][0]}</span> <span class="hl">{cmds[tab][1]}</span>
+              </span>
+              <button
+                type="button"
+                class="hw-term__copy"
+                data-copy={cmds[tab].join(' ')}
+                data-copied={t.hero.copied}
+                aria-label="copy"
+                title="copy"
+              >
+                <svg class="hw-term__copy-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="hw-term__check-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
-    <div class="ink-terminal__body">
-      <span class="ink-terminal__prompt" aria-hidden="true">$</span>
-      <code>{t.hero.install_cmd}</code>
-    </div>
   </div>
-
-  <BrushStrokes class="hero-water" />
-</section>
-
-<script>
-  // 复制安装命令：落印式小反馈，失败则静默降级
-  document.querySelectorAll<HTMLButtonElement>('.ink-terminal__copy').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const cmd = btn.dataset.copy ?? '';
-      try {
-        await navigator.clipboard.writeText(cmd);
-        const original = btn.textContent;
-        btn.textContent = btn.dataset.copied ?? 'copied';
-        setTimeout(() => (btn.textContent = original), 1600);
-      } catch {
-        /* 剪贴板不可用时保持原样 */
-      }
-    });
-  });
-</script>
+</header>

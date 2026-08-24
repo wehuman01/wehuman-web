@@ -1,7 +1,7 @@
 <div align="center">
   <h1>wehuman-web</h1>
   <p><strong>wehuman 官网 — AI 时代，更像人地工作。</strong></p>
-  <p>Ink-wash themed static site built with Astro. Bilingual (EN / 中文).</p>
+  <p>Hermes-style landing site (ink &amp; vermilion) built with Astro. Bilingual (EN / 中文).</p>
 </div>
 
 ## Development
@@ -16,9 +16,9 @@ npm run preview  # preview the build
 ## Structure
 
 - `src/pages/` — `/`, `/about` (EN) and `/zh/`, `/zh/about` (中文)
-- `src/components/` — Header, Hero, Philosophy, ProjectLeaves, AboutPage, Footer, Seal, BrushStrokes
+- `src/components/` — Header (3-col nav), Hero (terminal card), Preview, Works (tool cards), Features (paper panel), Footer (100dvh statement), AboutPage, Seal
 - `src/i18n/` — all site copy (`en.json` / `zh.json`)
-- `DESIGN.md` — ink-wash design system (colors, typography, elements)
+- `DESIGN.md` — design system (Hermes-style layout, ink & vermilion palette)
 
 ## Deploy
 
