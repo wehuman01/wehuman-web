@@ -1,309 +1,138 @@
-# wehuman 官网设计
+# wehuman 多页官网设计
 
 日期：2026-08-27
 
 ## 目标
 
-为 wehuman 建立一个中英双语、单页、静态的品牌官网。页面介绍 wehuman 的价值观，以及 awedot、awewarm、aweshare 三款产品。
+将现有长叙事单页改为克制、清晰的多页品牌官网。网站借鉴 Nous Research 的编辑式信息架构和留白节奏，但保持 wehuman 自己的现代中国水墨气质。
 
-官网应让访问者首先感到安静、舒展和可信，然后清楚理解：wehuman 不以替代人为目标，而是用 AI 工具保护人的注意力、创造力和选择。
+核心主张：
 
-## 核心主张
+> AI should not make humans obsolete. It should make us more human — more creative, more focused, and freer to do what truly matters.
 
 中文：
 
 > AI 最重要的价值，不是替代人类，而是让人类更像人类——更有创造力、更专注、更能做自己真正在乎的事。
 
-英文：
+英文为默认语言。所有页面提供完整中文镜像。
 
-> AI should not make humans obsolete. It should make us more human — more creative, more focused, and freer to do what truly matters.
+## 设计原则
 
-页面不使用“颠覆”“革命”“无限生产力”等夸张表达，也不把产品能力描述得超过各自 README 所陈述的范围。
-
-## 范围
-
-首版包含：
-
-- 单页品牌官网。
-- 中文与英文完整内容。
-- wehuman 品牌理念。
-- awedot、awewarm、aweshare 三款产品。
-- 产品官网或 GitHub 外链。
-- 响应式布局、无障碍支持、基础 SEO 和社交分享元数据。
-
-首版不包含：
-
-- CMS、后台或数据库。
-- 博客、招聘、新闻和多级产品详情页。
-- 登录、表单收集、分析埋点和 Cookie 横幅。
-- 3D、Canvas 粒子、滚动劫持或持续消耗资源的动画。
-- 与产品真实界面或能力不符的演示截图。
-
-## 参考与反面案例
-
-### 参考 Nous Research 的部分
-
-只借鉴其编辑式节奏：克制导航、全屏章节、大尺度排版、鲜明的章节编号和充足留白。页面不会复制其品牌元素、代码或具体版式。
-
-### 水墨视觉来源
-
-采用 `ref/prompt.md` 与 awewarm `logo/prompt.md` 的共同意象：暖色宣纸、大面积天空与雾、下三分之一的水墨河流、少量干笔纹理、唯一的朱砂暖点和小型印章。
-
-### 旧版 wehuman 官网
-
-`product2/website/archive/wehuman-web` 的视觉被明确视为反面案例。新版不得复用以下表现：
-
-- 深色大底与强渐晕主导整页。
-- 全站等宽大写正文。
-- 巨型溢出字标和粗重视口边框。
-- 密集卡片、发光弧线和终端式首屏。
-- 以 awedot 安装为中心，而不是以 wehuman 价值观为中心。
-- 装饰、动效或技术符号压过阅读。
-
-旧版仅可作为 Astro 目录组织和静态部署方式的工程参考，不能复制其视觉 CSS 或页面组件。
-
-## 视觉方向：留白中的人
-
-页面像一卷缓慢展开的现代水墨画，而不是套用水墨贴图的 SaaS 模板。
-
-### 色彩
-
-- 宣纸：`#F4F0E7`，页面主背景，避免纯白刺眼。
-- 淡纸：`#E9E2D5`，用于轻微区块层次。
-- 主墨：`#20211D`，正文与标题。
-- 次墨：`#66635B`，说明文字与编号。
-- 淡墨线：`rgba(32, 33, 29, 0.16)`，分隔与水纹。
-- 朱砂：`#A33A2B`，全站唯一强调色。
-
-朱砂每个视口最多承担一个主要强调角色，例如红日、编号或链接状态，不同时制造多个竞争焦点。
-
-### 排版
-
-- 展示标题使用有书卷气但清晰的衬线字体栈；中文优先系统宋体，英文优先系统高可读衬线字体。
-- 正文使用现代无衬线系统字体，避免旧版全站等宽字造成的机械和疲劳感。
-- 正文行宽控制在约 38–68 个中文字符或 55–75 个英文字符。
-- 桌面正文基础字号不低于 18px，移动端不低于 17px；正文行高约 1.7–1.85。
-- 大标题保留呼吸感，不以极端字号挤压有效阅读空间。
-- 中英文分别调校字距、断行和段落宽度，不通过直译后的同一宽度强行对齐。
-
-### 水墨系统
-
-水墨由内联 SVG 和 CSS 构成：
-
-- 一条贯穿页面的抽象河流，以 2–3 层不同透明度的笔触建立深度。
-- 少量干笔纹理由 SVG filter 或纹理 mask 生成，不覆盖正文。
-- 极淡涟漪、枝叶和雾气只出现在章节留白处。
-- 朱砂红日位于首屏偏左；其倒影与河流相接。
-- 页尾使用一个含抽象“人”或火种意象的小型朱砂印章。
-
-装饰层设置 `pointer-events: none` 和 `aria-hidden="true"`。正文所在区域始终有稳定底色，不让墨迹穿过文字。
+- **克制：** 一个页面只回答一个问题，不重复营销，不堆卡片。
+- **舒适：** 暖宣纸底、深墨正文、充分留白、可控行宽和稳定行高。
+- **水墨而非古风：** 水墨只建立气氛，不使用书法字、仿古边框或复杂山水插画压过内容。
+- **诚实：** 产品与文章内容不超出 README 和原稿所陈述的边界。
+- **快速：** 静态 HTML、少量 CSS 动效，无滚动劫持和持续动画。
 
 ## 信息架构
 
-### 1. 导航
+英文路径：
 
-- 左侧：`wehuman` 字标。
-- 右侧：`Products / 产品`、`Philosophy / 理念`、`中 / EN`。
-- 导航使用锚点滚动；语言切换保持当前章节。
-- 移动端不使用汉堡菜单，保留精简的可见入口。
+- `/`：Home
+- `/research/`：Research
+- `/philosophy/`：Philosophy
+- `/articles/`：Articles
+- `/articles/<slug>/`：文章详情
 
-### 2. 首屏 Hero
+中文路径在 `/zh/` 下完整镜像。语言切换进入当前页面或当前文章的对应语言版本。
 
-主标题：
+全站 Header 固定为：`Home / Research / Philosophy / Articles / 中文`。当前栏目使用一条细朱砂线标记。移动端仍显示所有入口，必要时允许导航区域横向滚动，不使用汉堡菜单。
 
-> AI should not make humans obsolete.  
-> It should make us more human.
+## 页面内容
 
-中文版本：
+### Home
 
-> AI 不应让人消失。  
-> 它应该让我们更像人。
+首页控制在桌面约 2–3 屏：
 
-下方用一段较小正文解释创造力、专注和真正重要的事，并提供 `Explore our work / 看看我们在做什么` 锚点入口。
+1. 首屏只有品牌主张、简短解释和低位水墨景观。
+2. 三个横向文字入口：Research、Philosophy、Latest Article。
+3. 简洁页脚。
 
-首屏保留大面积暖白天空。水墨河流位于下三分之一，朱砂红日偏左，品牌文字不压在复杂墨迹上。
+首页不再完整介绍产品、不展示功能列表，也不重复结尾宣言。
 
-### 3. 理念章节
+### Research
 
-用一段简短文字回答“为什么是 wehuman”：AI 工具越来越强，但使用体验也越来越碎片化和消耗人。wehuman 选择让工具适应人的节奏。
+Research 表达 wehuman 如何把理念落实为真实工具。awedot、awewarm、aweshare 各占一个横向条目，只包含：
 
-该章节不使用功能网格。通过一组大尺度对句形成阅读停顿：
+- 项目名和一句价值描述。
+- 最多三个能力关键词。
+- 官网与 GitHub 入口。
 
-- 少一点切换，多一点专注。
-- 少一点重复，多一点创造。
-- 少一点被工具支配，多一点人的选择。
+条目以编号和细墨线分隔，不使用圆角卡片、阴影和图标阵列。aweshare 明确说明 Hub 可见明文流量、不是端到端加密，并提醒上游服务条款边界。
 
-### 4. 产品长卷
+### Philosophy
 
-三个产品不是三张同质卡片，而是沿同一条水墨河流展开的三个连续章节。
+以 wehuman 的价值观为主体，正文控制在 4–6 个短段落，并以三组对句建立节奏：
 
-#### 01 / Remember — 留住思路
+- Less switching / More attention
+- Less repetition / More creation
+- Less tool-shaped work / More human choice
 
-**awedot**：保存、整理并恢复 AI agent session，让重要上下文可被重新找到，让人把注意力留给问题本身。
+末尾只使用一枚小朱砂印章收束，不追加产品营销。
 
-展示能力：
+### Articles
 
-- 一键保存与恢复 session。
-- 按项目和分类管理上下文。
-- 支持多个 AI agent，并保留恢复时的 API profile。
+内容来源为 `product/aweshare/aweshare/docs/article_media`。首版导入四组中英文文章：
 
-主入口：`https://awedot.wehuman.top/`。次入口可指向 GitHub。
+- aweshare: I Let My Agent Share My Tokens
+- aweshare Dev Note: I Hid My Hub Behind a Cloudflare Tunnel
+- aweshare Community Hub Opens for Beta: 10 Consumer Spots, Unlimited Producers
+- aweshare's Three Roles: Who Provides Compute, Who Uses It, Who Keeps the Gate
 
-#### 02 / Stay ready — 守住节奏
+索引页使用文章真实标题；日期只是次要元数据，不得以 `0820` 等目录编号代替标题。列表按日期倒序排列，显示标题、摘要和主题标签。
 
-**awewarm**：用一次极小请求提前保持 AI coding-plan 使用窗口就绪，让工具适应人的工作时间。
+文章详情采用窄栏排版，支持标题、分级标题、列表、引用、代码和表格。原稿末尾的相关项目内容统一整理为简短的 wehuman 相关链接区。源文章复制到本站仓库中，避免 GitHub Pages 构建依赖另一个本地仓库。
 
-展示能力：
+## 视觉系统
 
-- 固定时间或已验证窗口的周期调度。
-- 支持 Claude Code、Codex 账户和兼容订阅端点。
-- 本机或可信远程服务器运行，并明确凭据边界。
+### 色彩
 
-主入口：`https://github.com/wehuman01/awewarm`。
+- 主纸色：`#F2EEE5`
+- 浅纸色：`#F8F5EE`
+- 主墨：`#1D1E1A`
+- 次墨：`#66635C`
+- 淡墨线：`rgba(29, 30, 26, 0.16)`
+- 朱砂：`#A33B2E`
 
-#### 03 / Share — 分享余力
+每个视口只设置一个主要朱砂焦点。正文和大标题以墨色为主。
 
-**aweshare**：以本地优先、自托管的方式分享闲置模型能力，通过标准 OpenAI 或 Anthropic SDK 使用命名空间模型。
+### 字体
 
-展示能力：
+- 英文展示字体使用 Newsreader、Iowan Old Style、Georgia 一类温和衬线栈。
+- 中文展示字体使用 Noto Serif SC、Songti SC、STSong。
+- 正文使用 Avenir Next、PingFang SC 等清晰无衬线栈。
+- 所有页面共享相同字号比例、最大行宽和垂直节奏。
 
-- 本地 Ollama、vLLM 或获授权上游后端。
-- 上游密钥留在提供者设备，并由本地 agent 注入。
-- 自托管 Hub、邀请制接入和清晰的可信边界。
+### 水墨
 
-文案必须同时说明：请求内容会以明文经过受信任 Hub，并非端到端加密；用户需要遵守上游服务条款。
+- 首屏保留低位抽象墨迹和一个小朱砂日。
+- 内页只保留淡墨水平笔触、纸纤维和小印章。
+- 墨迹不得穿过正文，不制造贯穿全站的长河，也不以装饰增加页面高度。
+- 装饰全部 `aria-hidden`、不可交互，并在 reduced-motion 下静止。
 
-主入口：`https://github.com/wehuman01/aweshare`。
+## 内容与组件边界
 
-### 5. 收束章节
+- `Layout` 统一 SEO、语言、基础结构和全站样式。
+- `Header` 根据当前路径生成导航和语言对应链接。
+- `PageIntro` 为三个内页提供一致标题区。
+- Research 产品数据与页面模板分离。
+- Articles 使用 Astro 内容集合保存 Markdown 与元数据；列表和动态详情页都从集合生成。
+- 中英文文案分别维护，不在客户端替换整页文本。
 
-结尾回到品牌，而不是追加营销卡片：
+## 响应式与无障碍
 
-> 我们不追求让人消失在自动化之后。  
-> 我们创造工具，让人重新拥有注意力、创造力和选择。
+- 桌面正文最大宽度约 68–72 个英文字符；文章中文保持舒适行长。
+- 移动端基础正文不低于 17px，触控目标不低于 44px。
+- 所有键盘焦点可见，当前导航使用 `aria-current="page"`。
+- 页面在无 JavaScript 时仍完整可读。
+- 动画限于一次轻微淡入；`prefers-reduced-motion` 下全部关闭。
 
-英文：
+## 验收
 
-> We do not build for humans to disappear behind automation.  
-> We build so people can reclaim attention, creativity, and choice.
-
-下方展示小型朱砂印章、GitHub 组织入口和版权信息。
-
-## 交互与动效
-
-- 页面加载时只使用轻微淡入和不超过 12px 的位移。
-- 产品章节进入视口时，水墨线可以有一次低速显现；不循环播放。
-- 桌面端红日与淡墨层可产生不超过数像素的轻微视差。
-- 不使用滚动劫持，不把内容隐藏在需要交互才能发现的状态里。
-- `prefers-reduced-motion: reduce` 时关闭视差、笔触显现和平滑滚动。
-- hover、focus 和 active 状态均使用清晰的下划线、墨色变化或单一朱砂色，不依靠颜色之外的唯一提示。
-
-## 中英文策略
-
-- 英文默认路径为 `/`，中文路径为 `/zh/`。
-- 首次访问时读取浏览器语言；若用户主动切换，则记录偏好。
-- 不在客户端替换整页文本，两个语言版本都在构建时生成完整 HTML。
-- 语言切换链接携带当前章节 hash，例如 `/zh/#products`。
-- 所有可见文案、页面标题、描述、导航、外链标签和无障碍标签均本地化。
-- `<html lang>`、canonical、alternate hreflang 和 Open Graph 元数据按语言输出。
-
-## 技术架构
-
-使用 Astro 构建纯静态站点。选择 Astro 的原因是同级网站与旧工程已有一致经验，同时它可在无 JavaScript 时输出完整可读页面。
-
-建议目录：
-
-```text
-wehuman-web/
-├── public/
-│   ├── favicon.svg
-│   └── og/
-├── src/
-│   ├── components/
-│   │   ├── Header.astro
-│   │   ├── InkLandscape.astro
-│   │   ├── Hero.astro
-│   │   ├── Philosophy.astro
-│   │   ├── ProductStory.astro
-│   │   ├── ClosingStatement.astro
-│   │   └── Footer.astro
-│   ├── data/
-│   │   └── products.ts
-│   ├── i18n/
-│   │   ├── en.ts
-│   │   └── zh.ts
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   ├── index.astro
-│   │   └── zh/index.astro
-│   ├── scripts/
-│   │   └── motion.ts
-│   └── styles/
-│       └── global.css
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
-
-`products.ts` 保存稳定的产品事实、链接和能力条目；语言文件保存面向访问者的叙事。组件接收构建时数据，不发起运行时 API 请求。
-
-少量原生脚本只负责：
-
-- 记录语言偏好。
-- 使用 `IntersectionObserver` 添加一次性进入状态。
-- 在浏览器不支持相关 API 时自然退化为全部内容立即可见。
-
-## 资产策略
-
-- 三个产品现有 Logo 可作为小型识别标记使用，但统一放在低干扰的宣纸版式中。
-- 不直接使用 awewarm 横幅中带有 `AWEWARM` 字样的整张图作为 wehuman 首屏。
-- 不从旧版复制视觉 CSS、组件或插画。
-- 首屏水墨以新的内联 SVG 实现，避免大幅位图在不同屏幕裁切时破坏构图。
-- 如后续需要品牌级位图或社交分享图，单独生成，不阻塞首版页面。
-
-## 可访问性与阅读舒适度
-
-- 正文和背景达到 WCAG AA 对比度。
-- 页面具有单一 `h1`、清晰标题层级、语义化 `nav/main/section/footer`。
-- 提供跳到主要内容的链接。
-- 所有交互可通过键盘访问，焦点样式始终可见。
-- 装饰 SVG 不进入辅助技术阅读顺序；有意义的产品 Logo 提供替代文本。
-- 链接文案说明目的，外链使用安全属性并在视觉上标示。
-- 移动端不出现小于 44px 的主要触控目标。
-- 在 320px 宽度和 200% 文本缩放下不产生横向滚动。
-- 墨迹、纹理和低对比装饰不得进入正文安全区。
-
-## 响应式行为
-
-- 桌面端使用宽阔留白和横向水墨走势。
-- 平板端缩小非必要空白，但保持正文行宽。
-- 移动端转为纵向画卷；产品编号、标题、描述和入口依次排列。
-- 水墨 SVG 为移动端提供独立 viewBox 和构图，不简单压缩桌面图。
-- 移动端首屏允许内容自然超过一屏，避免为了“首屏完整”而缩小字号。
-
-## 失败与降级
-
-- JavaScript 关闭时：语言页面、导航、产品内容和外链全部可用；内容不依赖 reveal class 隐藏。
-- 动效 API 不可用时：所有内容直接显示。
-- 自定义字体不可用时：使用系统字体栈，布局不依赖单一字体指标。
-- 产品 Logo 加载失败时：产品名称仍完整显示。
-- 外链不可用时：本站不伪造成功状态，也不捕获或重写错误。
-
-## 验证标准
-
-实现完成后至少验证：
-
-- `npm run build` 成功，Astro 与 TypeScript 无错误。
-- `/` 和 `/zh/` 均生成完整静态 HTML。
-- 语言切换保留当前章节，并记住用户选择。
-- 键盘可访问导航、语言切换和所有产品链接。
-- `prefers-reduced-motion` 下无视差或显现动画。
-- 320px、768px、1440px 三档没有内容溢出或正文被装饰遮挡。
-- 200% 文本缩放下仍能阅读和操作。
-- Lighthouse 或等价检查中没有严重的 accessibility、SEO 和 best-practices 问题。
-- 三个产品的核心文案与当前 README 一致，尤其保留 aweshare 的可信边界说明。
-
-## 完成定义
-
-当中英文静态页面均可构建、在桌面和移动端舒适阅读、三个产品事实准确、所有关键交互可键盘使用，并且水墨视觉在不干扰正文的前提下形成明确品牌辨识度时，首版完成。
+- 英文与中文各自生成 Home、Research、Philosophy、Articles 和四篇文章详情。
+- 首页不超过约三屏，不再包含完整产品长卷。
+- Header 在所有页面正确标记当前栏目，语言切换保持页面语义。
+- 文章索引使用真实标题，不显示目录日期作为标题。
+- Astro 类型检查与静态构建无错误。
+- 桌面和移动端无水平溢出，长文、代码块和表格可读。
+- GitHub Pages 子路径 `/wehuman-web/` 下的内部链接与资源均可访问。
