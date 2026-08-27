@@ -1,22 +1,18 @@
 ---
-import type { SiteCopy } from '../i18n/types';
+import type { Locale } from '../i18n/types';
+import { en } from '../i18n/en';
+import { zh } from '../i18n/zh';
 
-interface Props { t: SiteCopy }
-const { t } = Astro.props;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const languageHref = t.locale === 'en' ? `${basePath}/zh/` : `${basePath}/`;
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = locale === 'en' ? en : zh;
 ---
 
-<footer class="footer">
-  <div class="seal" aria-label="wehuman seal">
-    <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
-      <rect x="3" y="3" width="58" height="58" rx="4" />
-      <path d="M18 17v29m0-15h13m0-14v29m0-15h14m0-14v29M31 17c8 5 11 14 14 29" />
-    </svg>
-  </div>
+<footer class="site-footer">
+  <div class="footer-seal" aria-hidden="true"><span>人</span></div>
   <p>{t.footer.note}</p>
   <div class="footer-meta">
-    <a href={languageHref} data-language-link data-language={t.locale === 'en' ? 'zh' : 'en'}>{t.footer.language}</a>
+    <a href="https://github.com/wehuman01">{t.footer.github}</a>
     <span>© {new Date().getFullYear()} wehuman</span>
   </div>
 </footer>

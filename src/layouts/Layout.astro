@@ -1,60 +1,48 @@
 ---
 import '../styles/global.css';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-  lang: 'en' | 'zh';
+  locale: Locale;
   title: string;
   description: string;
-  canonicalPath: '/' | '/zh/';
+  canonicalPath: string;
+  alternatePath: string;
+  ogType?: 'website' | 'article';
 }
 
-const { lang, title, description, canonicalPath } = Astro.props;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const canonical = new URL(`${basePath}${canonicalPath}`, Astro.site);
-const alternatePath = lang === 'en' ? '/zh/' : '/';
-const alternate = new URL(`${basePath}${alternatePath}`, Astro.site);
+const { locale, title, description, canonicalPath, alternatePath, ogType = 'website' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(`${base}${canonicalPath}`, Astro.site);
+const alternate = new URL(`${base}${alternatePath}`, Astro.site);
+const englishUrl = locale === 'en' ? canonical : alternate;
+const chineseUrl = locale === 'zh' ? canonical : alternate;
 ---
 
 <!doctype html>
-<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f4f0e7" />
+    <meta name="theme-color" content="#f2eee5" />
     <meta name="color-scheme" content="light" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={lang === 'en' ? canonical : alternate} />
-    <link rel="alternate" hreflang="zh-CN" href={lang === 'zh' ? canonical : alternate} />
-    <link rel="alternate" hreflang="x-default" href={new URL(`${basePath}/`, Astro.site)} />
-    <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="zh-CN" href={chineseUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Noto+Serif+SC:wght@400;500;600&display=swap"
-    />
-    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Noto+Serif+SC:wght@400;500&display=swap" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="wehuman" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
-    <script is:inline define:vars={{ lang, basePath }}>
-      document.documentElement.classList.add('has-js');
-      if (lang === 'en') {
-        try {
-          const preference = localStorage.getItem('wehuman-language');
-          const prefersChinese = navigator.languages?.some((item) => item.toLowerCase().startsWith('zh'));
-          if (preference === 'zh' || (!preference && prefersChinese)) {
-            location.replace(`${basePath}/zh/${location.hash}`);
-          }
-        } catch {
-          // The English page remains fully usable when storage is unavailable.
-        }
-      }
-    </script>
+    <script is:inline>document.documentElement.classList.add('has-js');</script>
   </head>
   <body>
     <slot />

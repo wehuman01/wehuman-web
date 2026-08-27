@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import type { SiteCopy } from '../i18n/types';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props { t: SiteCopy; article: CollectionEntry<'articles'> }
+const { t, article } = Astro.props;
+const { Content } = await render(article);
+const prefix = t.locale === 'zh' ? '/zh' : '';
+const canonicalPath = `${prefix}/articles/${article.data.path}/`;
+const alternatePath = t.locale === 'en' ? `/zh/articles/${article.data.path}/` : `/articles/${article.data.path}/`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const dateLocale = t.locale === 'zh' ? 'zh-CN' : 'en-US';
+---
+
+<Layout locale={t.locale} title={`${article.data.title} — wehuman`} description={article.data.description} canonicalPath={canonicalPath} alternatePath={alternatePath} ogType="article">
+  <Header locale={t.locale} current="articles" alternatePath={alternatePath} />
+  <main id="main" class="article-page">
+    <header class="article-header reveal" data-reveal>
+      <a class="back-link" href={`${base}${prefix}/articles/`}>← {t.articles.back}</a>
+      <p class="eyebrow">{t.articles.eyebrow}</p>
+      <h1>{article.data.title}</h1>
+      <p class="article-deck">{article.data.description}</p>
+      <div class="article-byline">
+        <time datetime={article.data.date.toISOString()}>{article.data.date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        <span>wehuman</span>
+      </div>
+    </header>
+    <article class="article-body"><Content /></article>
+  </main>
+  <Footer locale={t.locale} />
+</Layout>

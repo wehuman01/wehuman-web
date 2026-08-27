@@ -1,0 +1,35 @@
+---
+import type { SiteCopy } from '../i18n/types';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import PageIntro from './PageIntro.astro';
+
+interface Props { t: SiteCopy }
+const { t } = Astro.props;
+const prefix = t.locale === 'zh' ? '/zh' : '';
+const canonicalPath = `${prefix}/philosophy/`;
+const alternatePath = t.locale === 'en' ? '/zh/philosophy/' : '/philosophy/';
+---
+
+<Layout locale={t.locale} title={t.meta.philosophy.title} description={t.meta.philosophy.description} canonicalPath={canonicalPath} alternatePath={alternatePath}>
+  <Header locale={t.locale} current="philosophy" alternatePath={alternatePath} />
+  <main id="main" class="inner-page philosophy-page">
+    <PageIntro eyebrow={t.philosophy.eyebrow} title={t.philosophy.title} intro={t.philosophy.lead} />
+    <div class="philosophy-prose reveal" data-reveal>
+      {t.philosophy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <div class="contrast-list">
+      {t.philosophy.contrasts.map((item, index) => (
+        <div class="contrast-row reveal" data-reveal>
+          <span>0{index + 1}</span>
+          <p>{item.less}</p>
+          <i aria-hidden="true"></i>
+          <strong>{item.more}</strong>
+        </div>
+      ))}
+    </div>
+    <div class="closing-seal" aria-hidden="true">人</div>
+  </main>
+  <Footer locale={t.locale} />
+</Layout>

@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import ArticlesView from '../../../components/ArticlesView.astro';
+import { zh } from '../../../i18n/zh';
+
+const articles = (await getCollection('articles', ({ data }) => data.locale === 'zh')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<ArticlesView t={zh} articles={articles} />

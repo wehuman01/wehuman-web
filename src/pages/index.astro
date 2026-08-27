@@ -1,21 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Philosophy from '../components/Philosophy.astro';
-import ProductStory from '../components/ProductStory.astro';
-import ClosingStatement from '../components/ClosingStatement.astro';
-import Footer from '../components/Footer.astro';
+import HomeView from '../components/HomeView.astro';
 import { en } from '../i18n/en';
 ---
 
-<Layout lang="en" title={en.meta.title} description={en.meta.description} canonicalPath="/">
-  <Header t={en} />
-  <main id="main">
-    <Hero t={en} />
-    <Philosophy t={en} />
-    <ProductStory t={en} />
-    <ClosingStatement t={en} />
-  </main>
-  <Footer t={en} />
-</Layout>
+<HomeView t={en} />

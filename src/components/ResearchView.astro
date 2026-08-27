@@ -1,0 +1,42 @@
+---
+import type { SiteCopy } from '../i18n/types';
+import { products } from '../data/products';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import PageIntro from './PageIntro.astro';
+
+interface Props { t: SiteCopy }
+const { t } = Astro.props;
+const prefix = t.locale === 'zh' ? '/zh' : '';
+const canonicalPath = `${prefix}/research/`;
+const alternatePath = t.locale === 'en' ? '/zh/research/' : '/research/';
+---
+
+<Layout locale={t.locale} title={t.meta.research.title} description={t.meta.research.description} canonicalPath={canonicalPath} alternatePath={alternatePath}>
+  <Header locale={t.locale} current="research" alternatePath={alternatePath} />
+  <main id="main" class="inner-page">
+    <PageIntro eyebrow={t.research.eyebrow} title={t.research.title} intro={t.research.intro} />
+    <div class="research-list">
+      {products.map((product, index) => {
+        const copy = product.copy[t.locale];
+        return (
+          <article class="research-row reveal" data-reveal>
+            <p class="research-number">0{index + 1}</p>
+            <div class="research-copy">
+              <h2>{product.name}</h2>
+              <p>{copy.description}</p>
+              <ul>{copy.keywords.map((keyword) => <li>{keyword}</li>)}</ul>
+              {copy.boundary && <aside><strong>{t.research.boundary}.</strong> {copy.boundary}</aside>}
+            </div>
+            <div class="research-links">
+              <a href={product.href}>{t.research.visit}<span aria-hidden="true">↗</span></a>
+              {product.sourceHref !== product.href && <a href={product.sourceHref}>{t.research.source}<span aria-hidden="true">↗</span></a>}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </main>
+  <Footer locale={t.locale} />
+</Layout>

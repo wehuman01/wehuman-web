@@ -1,34 +1,24 @@
-import type { ProductId } from '../data/products';
-
-export interface ProductCopy {
-  chapter: string;
-  title: string;
-  statement: string;
-  description: string;
-  features: string[];
-  boundary?: string;
-}
+export type Locale = 'en' | 'zh';
+export type Section = 'home' | 'research' | 'philosophy' | 'articles';
 
 export interface SiteCopy {
-  locale: 'en' | 'zh';
-  meta: { title: string; description: string };
-  nav: { products: string; philosophy: string; language: string; skip: string };
-  hero: {
+  locale: Locale;
+  nav: Record<Section, string> & { language: string; skip: string };
+  meta: Record<Section, { title: string; description: string }>;
+  home: {
     eyebrow: string;
-    lineOne: string;
-    lineTwo: string;
+    title: string;
     description: string;
-    cta: string;
-    scroll: string;
+    links: Record<'research' | 'philosophy' | 'articles', { label: string; note: string }>;
   };
+  research: { eyebrow: string; title: string; intro: string; visit: string; source: string; boundary: string };
   philosophy: {
     eyebrow: string;
     title: string;
-    body: string;
+    lead: string;
+    paragraphs: string[];
     contrasts: Array<{ less: string; more: string }>;
   };
-  work: { eyebrow: string; title: string; intro: string; view: string; source: string };
-  products: Record<ProductId, ProductCopy>;
-  closing: { eyebrow: string; lineOne: string; lineTwo: string; body: string; github: string };
-  footer: { note: string; language: string };
+  articles: { eyebrow: string; title: string; intro: string; read: string; latest: string; back: string };
+  footer: { note: string; github: string };
 }
