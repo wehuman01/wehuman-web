@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { ui, type Locale } from '../i18n/ui';
+import { url } from '../lib/base';
+
+interface Props { locale: Locale; altHref: string; }
+const { locale, altHref } = Astro.props;
+const t = ui[locale];
+const prefix = url(locale === 'zh' ? '/zh' : '');
+const hrefs = [`${prefix}/philosophy/`, `${prefix}/research/`, `${prefix}/articles/`];
+---
+
+<Base locale={locale} title={t.meta.home.title} description={t.meta.home.description} altHref={altHref}>
+  <!-- opening · one statement, one paragraph, nothing borrowed from subpages -->
+  <section class="band">
+    <div class="grid12">
+      <div style="grid-column: 1 / 9;">
+        <h1 class="display">{t.home.display}<span class="mark-period" aria-hidden="true"></span></h1>
+        <p class="lede prose" style="margin-block-start: var(--space-xl);">{t.home.lede}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- index · three destinations, ruled rows, no section content -->
+  <section class="band--tight" style="padding-block: 0 var(--space-3xl);">
+    <div class="grid12">
+      <div class="rows" style="grid-column: 1 / 13;">
+        {t.home.index.map((item, i) => (
+          <a class="row" href={hrefs[i]}>
+            <span class="row__name" style="grid-column: 1 / 4;">{item.name}</span>
+            <span class="row__desc" style="grid-column: 4 / 9;">{item.hint}</span>
+            <span class="row__meta" style="grid-column: 12 / 13; text-align: end;" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

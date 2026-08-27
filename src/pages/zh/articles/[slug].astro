@@ -1,0 +1,17 @@
+---
+import ArticleView from '../../../views/ArticleView.astro';
+import { getArticles } from '../../../lib/data';
+import { url } from '../../../lib/base';
+
+export async function getStaticPaths() {
+  const entries = await getArticles('zh');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.path },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ArticleView locale="zh" altHref={url(`/articles/${entry.data.path}/`)} entry={entry} />
