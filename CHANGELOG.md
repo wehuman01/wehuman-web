@@ -13,3 +13,7 @@
 
 - Use Astro 7.2.8 to avoid known vulnerabilities affecting earlier Astro, esbuild, and sharp releases.
 - State aweshare's plaintext trusted-hub boundary directly in both languages.
+
+### Fixes
+
+- Build links, assets, language redirects, and canonical URLs against the live `/wehuman-web` GitHub Pages base.

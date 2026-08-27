@@ -1,6 +1,6 @@
 # wehuman-web
 
-The bilingual website for [wehuman](https://www.wehuman.top): calm AI tools that leave room for being human.
+The bilingual website for [wehuman](https://wehuman01.github.io/wehuman-web/): calm AI tools that leave room for being human.
 
 ## What it presents
 
@@ -25,7 +25,7 @@ Production validation:
 npm run build
 ```
 
-English is generated at `/`, and Chinese at `/zh/`.
+The production build uses the GitHub project Pages base `/wehuman-web`: English is generated at `/wehuman-web/`, and Chinese at `/wehuman-web/zh/`.
 
 ## Design
 

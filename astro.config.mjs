@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.wehuman.top',
+  site: 'https://wehuman01.github.io',
+  base: '/wehuman-web',
   output: 'static',
   integrations: [sitemap()],
 });

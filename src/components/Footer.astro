@@ -3,7 +3,8 @@ import type { SiteCopy } from '../i18n/types';
 
 interface Props { t: SiteCopy }
 const { t } = Astro.props;
-const languageHref = t.locale === 'en' ? '/zh/' : '/';
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const languageHref = t.locale === 'en' ? `${basePath}/zh/` : `${basePath}/`;
 ---
 
 <footer class="footer">

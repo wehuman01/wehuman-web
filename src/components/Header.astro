@@ -4,12 +4,14 @@ import type { SiteCopy } from '../i18n/types';
 interface Props { t: SiteCopy }
 
 const { t } = Astro.props;
-const languageHref = t.locale === 'en' ? '/zh/' : '/';
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const languageHref = t.locale === 'en' ? `${basePath}/zh/` : `${basePath}/`;
+const homeHref = t.locale === 'en' ? `${basePath}/` : `${basePath}/zh/`;
 ---
 
 <a class="skip-link" href="#main">{t.nav.skip}</a>
 <header class="site-header" data-header>
-  <a class="wordmark" href={t.locale === 'en' ? '/' : '/zh/'} aria-label="wehuman home">
+  <a class="wordmark" href={homeHref} aria-label="wehuman home">
     <span>we</span><span class="wordmark-human">human</span>
   </a>
   <nav class="site-nav" aria-label="Primary navigation">
