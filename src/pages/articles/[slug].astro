@@ -1,15 +1,17 @@
 ---
-import type { GetStaticPaths } from 'astro';
-import { getCollection } from 'astro:content';
-import ArticleView from '../../components/ArticleView.astro';
-import { en } from '../../i18n/en';
+import ArticleView from '../../views/ArticleView.astro';
+import { getArticles } from '../../lib/data';
+import { url } from '../../lib/base';
 
-export const getStaticPaths = (async () => {
-  const articles = await getCollection('articles', ({ data }) => data.locale === 'en');
-  return articles.map((article) => ({ params: { slug: article.data.path }, props: { article } }));
-}) satisfies GetStaticPaths;
+export async function getStaticPaths() {
+  const entries = await getArticles('en');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.path },
+    props: { entry },
+  }));
+}
 
-const { article } = Astro.props;
+const { entry } = Astro.props;
 ---
 
-<ArticleView t={en} article={article} />
+<ArticleView locale="en" altHref={url(`/zh/articles/${entry.data.path}/`)} entry={entry} />

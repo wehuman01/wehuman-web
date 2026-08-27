@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { ui, type Locale } from '../i18n/ui';
+import { url } from '../lib/base';
+
+interface Props { locale: Locale; altHref: string; }
+const { locale, altHref } = Astro.props;
+const t = ui[locale];
+const prefix = url(locale === 'zh' ? '/zh' : '');
+---
+
+<Base locale={locale} title={t.meta.philosophy.title} description={t.meta.philosophy.description} altHref={altHref} active="philosophy">
+  <section class="band">
+    <div class="grid12">
+      <div style="grid-column: 1 / 8;">
+        <h1 class="display-s">{t.philosophy.display}</h1>
+      </div>
+    </div>
+  </section>
+
+  {t.philosophy.sections.map((section, i) => (
+    <section class="band--tight" style="padding-block: var(--space-2xl);">
+      <div class="grid12">
+        <div style={i === 0 ? 'grid-column: 1 / 8;' : 'grid-column: 2 / 9;'}>
+          <div class="sec-head">
+            <p class="label">{section.head}</p>
+          </div>
+          <div class="prose">
+            {section.body.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="plate">
+    <div class="grid12">
+      <div class="plate__stack">
+        {t.philosophy.plate.map((line) => <p class="plate__line">{line}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="band--tight">
+    <div class="grid12">
+      <p style="grid-column: 1 / 13; padding-block: var(--space-lg);">
+        <a class="tlink" href={`${prefix}/`}>{t.philosophy.back}</a>
+      </p>
+    </div>
+  </section>
+</Base>

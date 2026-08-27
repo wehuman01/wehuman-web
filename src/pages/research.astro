@@ -1,6 +1,6 @@
 ---
-import ResearchView from '../components/ResearchView.astro';
-import { en } from '../i18n/en';
+import Research from '../views/Research.astro';
+import { url } from '../lib/base';
 ---
 
-<ResearchView t={en} />
+<Research locale="en" altHref={url('/zh/research/')} />

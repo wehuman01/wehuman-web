@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import { render } from 'astro:content';
+import { ui, type Locale } from '../i18n/ui';
+import { articleHref, isoDate, type Article } from '../lib/data';
+import { url } from '../lib/base';
+
+interface Props {
+  locale: Locale;
+  altHref: string;
+  entry: Article;
+}
+const { locale, altHref, entry } = Astro.props;
+const t = ui[locale];
+const prefix = url(locale === 'zh' ? '/zh' : '');
+const { Content } = await render(entry);
+---
+
+<Base locale={locale} title={`${entry.data.title} — wehuman`} description={entry.data.description} altHref={altHref} active="articles">
+  <section class="band--tight">
+    <div class="grid12">
+      <article style="grid-column: 2 / 10;">
+        <header class="doc-head">
+          <div class="doc-head__meta label">
+            <span>{t.article.published} {isoDate(entry.data.date)}</span>
+            <span>{entry.data.tags.join(' · ')}</span>
+          </div>
+          <h1>{entry.data.title}</h1>
+          <div class="doc-head__rule" aria-hidden="true"></div>
+        </header>
+        <div class="prose">
+          <Content />
+        </div>
+        <footer class="doc-foot">
+          <a class="tlink" href={`${prefix}/articles/`}>{t.article.back}</a>
+        </footer>
+      </article>
+    </div>
+  </section>
+</Base>

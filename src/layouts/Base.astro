@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import { ui, type Locale } from '../i18n/ui';
+import { url } from '../lib/base';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  altHref: string;
+  active?: 'philosophy' | 'research' | 'articles';
+}
+
+const { locale, title, description, altHref, active } = Astro.props;
+const t = ui[locale];
+const prefix = url(locale === 'zh' ? '/zh' : '');
+const ORG = 'https://github.com/wehuman01';
+const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="alternate" hreflang={locale === 'en' ? 'zh-CN' : 'en'} href={altHref} />
+    <script is:inline>
+      // set the mode before first paint — no flash of the wrong theme
+      (function () {
+        var mode = 'light';
+        try {
+          mode = localStorage.getItem('wehuman-theme')
+            || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        } catch (e) {}
+        document.documentElement.dataset.theme = mode;
+      })();
+    </script>
+  </head>
+  <body>
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div class="frame">
+      <header class="mast">
+        <div class="shell-in">
+          <p class="mast__line label">{t.masthead.line}</p>
+          <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">wehuman</a>          <nav class="mast__nav" aria-label="primary">
+            <ul>
+              <li><a href={`${prefix}/philosophy/`} aria-current={active === 'philosophy' ? 'page' : undefined}>{t.masthead.nav.philosophy}</a></li>
+              <li><a href={`${prefix}/research/`} aria-current={active === 'research' ? 'page' : undefined}>{t.masthead.nav.research}</a></li>
+              <li><a href={`${prefix}/articles/`} aria-current={active === 'articles' ? 'page' : undefined}>{t.masthead.nav.articles}</a></li>
+              <li><a href={ORG} rel="noopener">{t.masthead.nav.github}</a></li>
+              <li>
+                {locale === 'en'
+                  ? <a href={altHref} hreflang="zh-CN">中文</a>
+                  : <a href={altHref} hreflang="en">en</a>}
+              </li>
+              <li>
+                <button class="theme-toggle" data-theme-toggle aria-label={locale === 'zh' ? '切换深浅模式' : 'toggle color mode'}>
+                  <span data-mode="dark">{modeLabel[0]}</span>
+                  <span class="sep" aria-hidden="true">/</span>
+                  <span data-mode="light">{modeLabel[1]}</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div class="mast__rule" aria-hidden="true"></div>
+        </div>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="colophon">
+        <div class="grid12">
+          <div style="grid-column: 1 / 9;">
+            <p class="colophon__motto">{t.colophon.motto}</p>
+            <p class="colophon__dense">{t.colophon.dense}</p>
+          </div>
+          <div style="grid-column: 10 / 13; align-self: start;" class="colophon__links">
+            <a class="tlink" href={ORG} rel="noopener">{t.colophon.github}</a>
+            <a class="tlink" href={`mailto:${t.colophon.email}`}>{t.colophon.email}</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const btn = document.querySelector('[data-theme-toggle]');
+      btn?.addEventListener('click', () => {
+        const root = document.documentElement;
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('wehuman-theme', next); } catch {}
+        window.dispatchEvent(new Event('themechange'));
+      });
+    </script>
+    <script src="../scripts/rain.js"></script>
+  </body>
+</html>

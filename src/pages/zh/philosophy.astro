@@ -1,6 +1,6 @@
 ---
-import PhilosophyView from '../../components/PhilosophyView.astro';
-import { zh } from '../../i18n/zh';
+import Philosophy from '../../views/Philosophy.astro';
+import { url } from '../../lib/base';
 ---
 
-<PhilosophyView t={zh} />
+<Philosophy locale="zh" altHref={url('/philosophy/')} />

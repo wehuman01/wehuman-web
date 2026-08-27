@@ -1,9 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
-import ArticlesView from '../../components/ArticlesView.astro';
-import { en } from '../../i18n/en';
-
-const articles = (await getCollection('articles', ({ data }) => data.locale === 'en')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+import ArticlesIndex from '../../views/ArticlesIndex.astro';
+import { url } from '../../lib/base';
 ---
 
-<ArticlesView t={en} articles={articles} />
+<ArticlesIndex locale="en" altHref={url('/zh/articles/')} />

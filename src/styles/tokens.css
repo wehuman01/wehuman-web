@@ -1,0 +1,87 @@
+/* wehuman · design tokens
+ * Custom theme (user-directed): terminal character-rain background with a
+ * pointer highlight, in two modes — light (cool sheet) and dark (charcoal).
+ * One grotesk (Archivo), one signal ink (ultramarine, brightened on dark),
+ * zero radius, zero shadow, zero cards. Structure is rules and ink.
+ */
+
+:root {
+  /* ---- color · light · OKLCH only, cool-tinted toward hue 255 ---- */
+  --color-paper:      oklch(99% 0.003 255);
+  --color-paper-2:    oklch(97.2% 0.004 255);
+  --color-paper-3:    oklch(94.5% 0.005 255);
+  --color-rule:       oklch(90% 0.006 255);
+  --color-rule-soft:  oklch(94% 0.005 255);
+  --color-muted:      oklch(42% 0.012 255);
+  --color-ink:        oklch(16% 0.01 255);
+  --color-ink-08:     oklch(16% 0.01 255 / 0.08);
+  --color-ink-30:     oklch(16% 0.01 255 / 0.3);
+  --color-accent:     oklch(45% 0.19 264);   /* ultramarine — the one signal ink */
+  --color-accent-ink: oklch(99% 0.003 255);  /* text on the accent plate */
+  --color-focus:      var(--color-accent);
+
+  /* ---- type · one family, weight and scale do the work ---- */
+  --font-display: "Archivo", "Noto Sans SC", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body:    var(--font-display);
+  --display-weight: 800;
+  --body-weight: 400;
+  --tracking-display: -0.045em;
+  --tracking-label: 0.09em;
+
+  /* scale · major third (1.25) from a 16px body */
+  --text-xs:      0.8rem;      /* 12.8px — label voice floor, never body */
+  --text-sm:      0.875rem;    /* 14px */
+  --text-base:    1rem;        /* 16px */
+  --text-md:      1.25rem;     /* 20px — lede */
+  --text-lg:      1.5625rem;   /* 25px */
+  --text-xl:      1.9531rem;   /* 31px */
+  --text-2xl:     2.4414rem;   /* 39px */
+  --text-3xl:     3.0518rem;   /* 49px — article titles */
+  --text-display-s: clamp(2.75rem, 4.2vw + 1rem, 4.25rem);   /* 51–90 char statements */
+  --text-display: clamp(3.25rem, 7.5vw + 0.5rem, 8.5rem);    /* ≤50 char statements */
+
+  /* ---- space · 4pt scale ---- */
+  --space-3xs: 0.125rem;  /* 2px */
+  --space-2xs: 0.25rem;   /* 4px */
+  --space-xs:  0.5rem;    /* 8px */
+  --space-sm:  0.75rem;   /* 12px */
+  --space-md:  1rem;      /* 16px */
+  --space-lg:  1.5rem;    /* 24px */
+  --space-xl:  2.5rem;    /* 40px */
+  --space-2xl: 4rem;      /* 64px */
+  --space-3xl: 6rem;      /* 96px */
+  --space-4xl: 9rem;      /* 144px */
+
+  /* ---- motion · named easings, micro durations ---- */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+
+  /* ---- rules · hairlines and ink, never boxes ---- */
+  --rule-hair: 1px;
+  --rule-heavy: 2px;
+  --radius-card: 0;
+  --shadow-card: none;
+
+  /* ---- layout ---- */
+  --shell: 1280px;
+  --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --measure: 62ch;
+}
+
+/* ---- color · dark · charcoal sheet, same hues, values move ---- */
+html[data-theme="dark"] {
+  --color-paper:      oklch(15% 0.006 255);
+  --color-paper-2:    oklch(19% 0.007 255);
+  --color-paper-3:    oklch(24% 0.008 255);
+  --color-rule:       oklch(31% 0.008 255);
+  --color-rule-soft:  oklch(26% 0.007 255);
+  --color-muted:      oklch(70% 0.01 255);
+  --color-ink:        oklch(92% 0.005 255);
+  --color-ink-08:     oklch(92% 0.005 255 / 0.08);
+  --color-ink-30:     oklch(92% 0.005 255 / 0.3);
+  --color-accent:     oklch(68% 0.16 264);   /* ultramarine, lifted for the dark ground */
+  --color-accent-ink: oklch(13% 0.006 255);  /* deep ink reads better than paper on the lifted plate */
+}

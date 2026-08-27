@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleRows from '../components/ArticleRows.astro';
+import { ui, type Locale } from '../i18n/ui';
+import { getArticles } from '../lib/data';
+
+interface Props { locale: Locale; altHref: string; }
+const { locale, altHref } = Astro.props;
+const t = ui[locale];
+const articles = await getArticles(locale);
+---
+
+<Base locale={locale} title={t.meta.articles.title} description={t.meta.articles.description} altHref={altHref} active="articles">
+  <section class="band">
+    <div class="grid12">
+      <div style="grid-column: 1 / 9;">
+        <h1 class="display-s">{t.articles.display}</h1>
+        <p class="lede prose" style="margin-block-start: var(--space-lg);">{t.articles.lede}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band--tight" style="padding-block: 0 var(--space-3xl);">
+    <div class="grid12">
+      <div style="grid-column: 1 / 13;">
+        <ArticleRows entries={articles} locale={locale} />
+      </div>
+    </div>
+  </section>
+</Base>

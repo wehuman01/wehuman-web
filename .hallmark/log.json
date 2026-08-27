@@ -1,11 +1,18 @@
 [
   {
     "date": "2026-08-27",
-    "scope": "app",
-    "macrostructure": "Statement+Index (home) / Ruled Archive (content) / Manifesto prose (philosophy)",
-    "theme": "custom (wehuman ink: paper #f2eee5 · ink #1d1e1a · vermilion #a33b2e)",
-    "theme_axes": "light / high-contrast-serif / warm",
-    "enrichment": "Tier-B hand-built SVG ink landscape + CSS vermilion sun",
-    "brief": "wehuman-web · anti-slop redesign with lively homepage interactions (pointer-reactive ink, orchestrated entrance, ruled index rows)"
+    "macrostructure": "Long Document",
+    "theme": "custom (terminal character-rain · dual light/dark · paper oklch(99% 0.003 255) / oklch(15% 0.006 255) · accent ultramarine oklch(45% 0.19 264) / oklch(68% 0.16 264))",
+    "theme_axes": "light+dark / grotesk-lowercase / cool-blue",
+    "enrichment": "Tier-A canvas character rain + pointer highlight (user-directed)",
+    "brief": "wehuman 官网 v2 · 反 AI slop · 用户指定：终端字符雨背景 + 指针高亮 + 双主题 + 首页极简索引化"
+  },
+  {
+    "date": "2026-08-27",
+    "macrostructure": "Long Document",
+    "theme": "Grid (ultramarine)",
+    "theme_axes": "light / grotesk-lowercase / cool-blue",
+    "enrichment": "Tier-A CSS geometry (marks kit)",
+    "brief": "wehuman 官网 v1 · 可见 12 栏底格 + N6 masthead + Ft4 colophon（已被 v2 方向替代）"
   }
 ]
