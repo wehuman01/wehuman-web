@@ -1,9 +1,10 @@
 ---
-interface Props { compact?: boolean }
-const { compact = false } = Astro.props;
+// Ink landscape for the home hero. Two independently drifting layers:
+// the wash band and the vermilion sun. `data-drift` carries the pointer
+// drift factors (px) consumed by scripts/motion.ts.
 ---
 
-<div class:list={['ink-mark', compact && 'ink-mark--compact']} aria-hidden="true">
+<div class="ink-layer" data-drift="9,5" aria-hidden="true">
   <svg viewBox="0 0 1440 340" preserveAspectRatio="none">
     <defs>
       <filter id="rough-ink">
@@ -19,6 +20,8 @@ const { compact = false } = Astro.props;
     </defs>
     <path class="ink-wash" d="M-30 247C164 202 267 263 438 221c187-45 273-5 433 4 193 11 314-58 599-1v95H-30Z" filter="url(#rough-ink)" />
     <path class="ink-stroke" d="M-40 264c213-49 347 17 518-27 172-45 275 21 443 9 175-12 313-49 567-7" />
-    {!compact && <circle class="vermilion-sun" cx="312" cy="142" r="18" />}
   </svg>
+</div>
+<div class="sun-layer" data-drift="-15,-9" aria-hidden="true">
+  <span class="sun-dot"></span>
 </div>

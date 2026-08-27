@@ -16,7 +16,7 @@ export const zh: SiteCopy = {
     links: {
       research: { label: '研究', note: '让工具适应人的节奏。' },
       philosophy: { label: '理念', note: '为什么能力应该创造空间，而不是噪音。' },
-      articles: { label: '最新文章', note: '谁出算力，谁来用，谁来守门。' },
+      articles: { label: '最新文章' },
     },
   },
   research: {

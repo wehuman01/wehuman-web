@@ -1,0 +1,11 @@
+[
+  {
+    "date": "2026-08-27",
+    "scope": "app",
+    "macrostructure": "Statement+Index (home) / Ruled Archive (content) / Manifesto prose (philosophy)",
+    "theme": "custom (wehuman ink: paper #f2eee5 · ink #1d1e1a · vermilion #a33b2e)",
+    "theme_axes": "light / high-contrast-serif / warm",
+    "enrichment": "Tier-B hand-built SVG ink landscape + CSS vermilion sun",
+    "brief": "wehuman-web · anti-slop redesign with lively homepage interactions (pointer-reactive ink, orchestrated entrance, ruled index rows)"
+  }
+]

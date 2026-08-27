@@ -5,8 +5,12 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import InkMark from './InkMark.astro';
 
-interface Props { t: SiteCopy }
-const { t } = Astro.props;
+interface Props {
+  t: SiteCopy;
+  latest: { href: string; note: string };
+}
+
+const { t, latest } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const prefix = t.locale === 'zh' ? '/zh' : '';
 const canonicalPath = `${prefix}/`;
@@ -14,30 +18,30 @@ const alternatePath = t.locale === 'en' ? '/zh/' : '/';
 const destinations = [
   { key: 'research' as const, path: `${prefix}/research/`, index: '01' },
   { key: 'philosophy' as const, path: `${prefix}/philosophy/`, index: '02' },
-  { key: 'articles' as const, path: `${prefix}/articles/three-roles/`, index: '03' },
+  { key: 'articles' as const, path: `${prefix}/articles/`, index: '03' },
 ];
 ---
 
 <Layout locale={t.locale} title={t.meta.home.title} description={t.meta.home.description} canonicalPath={canonicalPath} alternatePath={alternatePath}>
   <Header locale={t.locale} current="home" alternatePath={alternatePath} />
   <main id="main">
-    <section class="home-hero">
-      <div class="home-copy reveal" data-reveal>
+    <section class="home-hero" data-drift-scene>
+      <div class="home-copy">
         <p class="eyebrow">{t.home.eyebrow}</p>
         <h1>{t.home.title}</h1>
-        <p>{t.home.description}</p>
+        <p class="home-lead">{t.home.description}</p>
       </div>
       <InkMark />
     </section>
-    <nav class="home-gateways" aria-label="Explore wehuman">
+    <nav class="home-index" aria-label="Explore wehuman">
       {destinations.map((item) => (
-        <a class="gateway reveal" data-reveal href={`${base}${item.path}`}>
-          <span class="gateway-index">{item.index}</span>
-          <span class="gateway-copy">
+        <a class="index-row reveal" data-reveal href={item.key === 'articles' ? latest.href : `${base}${item.path}`}>
+          <span class="row-number">{item.index}</span>
+          <span class="row-body">
             <strong>{t.home.links[item.key].label}</strong>
-            <small>{t.home.links[item.key].note}</small>
+            <small>{item.key === 'articles' ? latest.note : t.home.links[item.key].note}</small>
           </span>
-          <span class="gateway-arrow" aria-hidden="true">↗</span>
+          <span class="row-arrow" aria-hidden="true">→</span>
         </a>
       ))}
     </nav>

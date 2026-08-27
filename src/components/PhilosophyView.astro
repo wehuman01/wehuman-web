@@ -20,16 +20,15 @@ const alternatePath = t.locale === 'en' ? '/zh/philosophy/' : '/philosophy/';
       {t.philosophy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
     <div class="contrast-list">
-      {t.philosophy.contrasts.map((item, index) => (
+      {t.philosophy.contrasts.map((item) => (
         <div class="contrast-row reveal" data-reveal>
-          <span>0{index + 1}</span>
           <p>{item.less}</p>
           <i aria-hidden="true"></i>
           <strong>{item.more}</strong>
         </div>
       ))}
     </div>
-    <div class="closing-seal" aria-hidden="true">人</div>
+    <div class="closing-seal reveal-stamp" data-reveal aria-hidden="true">人</div>
   </main>
   <Footer locale={t.locale} />
 </Layout>

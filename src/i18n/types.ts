@@ -9,7 +9,7 @@ export interface SiteCopy {
     eyebrow: string;
     title: string;
     description: string;
-    links: Record<'research' | 'philosophy' | 'articles', { label: string; note: string }>;
+    links: Record<'research' | 'philosophy', { label: string; note: string }> & { articles: { label: string } };
   };
   research: { eyebrow: string; title: string; intro: string; visit: string; source: string; boundary: string };
   philosophy: {

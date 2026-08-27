@@ -16,7 +16,7 @@ export const en: SiteCopy = {
     links: {
       research: { label: 'Research', note: 'Tools shaped around a human rhythm.' },
       philosophy: { label: 'Philosophy', note: 'Why capability should create room, not noise.' },
-      articles: { label: 'Latest article', note: 'Who provides compute, who uses it, who keeps the gate.' },
+      articles: { label: 'Latest article' },
     },
   },
   research: {

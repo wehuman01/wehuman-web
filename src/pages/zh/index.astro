@@ -1,6 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import HomeView from '../../components/HomeView.astro';
 import { zh } from '../../i18n/zh';
+
+const [latest] = (await getCollection('articles', ({ data }) => data.locale === 'zh'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<HomeView t={zh} />
+<HomeView t={zh} latest={{ href: `${base}/zh/articles/${latest.data.path}/`, note: latest.data.description }} />
