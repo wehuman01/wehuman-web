@@ -2,42 +2,61 @@
 import '../styles/global.css';
 
 interface Props {
+  lang: 'en' | 'zh';
   title: string;
-  lang: string;
-  description?: string;
+  description: string;
+  canonicalPath: '/' | '/zh/';
 }
 
-const { title, lang, description = '' } = Astro.props;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { lang, title, description, canonicalPath } = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const alternatePath = lang === 'en' ? '/zh/' : '/';
+const alternate = new URL(alternatePath, Astro.site);
 ---
 
-<!DOCTYPE html>
-<html lang={lang}>
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f0e7" />
+    <meta name="color-scheme" content="light" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <meta property="og:title" content={title} />
-    {description && <meta property="og:description" content={description} />}
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={lang === 'en' ? canonical : alternate} />
+    <link rel="alternate" hreflang="zh-CN" href={lang === 'zh' ? canonical : alternate} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Serif+SC:wght@300;400;600&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Noto+Serif+SC:wght@400;500;600&display=swap"
     />
-    <script is:inline>
-      // 动效标记：JS 可用才启用入场动画，内容本身不依赖它
-      document.documentElement.classList.add('js');
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="wehuman" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <script is:inline define:vars={{ lang }}>
+      document.documentElement.classList.add('has-js');
+      if (lang === 'en') {
+        try {
+          const preference = localStorage.getItem('wehuman-language');
+          const prefersChinese = navigator.languages?.some((item) => item.toLowerCase().startsWith('zh'));
+          if (preference === 'zh' || (!preference && prefersChinese)) {
+            location.replace(`/zh/${location.hash}`);
+          }
+        } catch {
+          // The English page remains fully usable when storage is unavailable.
+        }
+      }
     </script>
   </head>
-  <body class="min-h-screen overflow-x-hidden bg-wh-bg font-mono text-wh-fg antialiased">
-    <div class="hw-noise-page" aria-hidden="true"></div>
-    <div class="hw-frame" aria-hidden="true"></div>
+  <body>
     <slot />
-    <script src="../scripts/motion.js"></script>
+    <script src="../scripts/motion.ts"></script>
   </body>
 </html>

@@ -1,26 +1,34 @@
-<div align="center">
-  <h1>wehuman-web</h1>
-  <p><strong>wehuman 官网 — AI 时代，更像人地工作。</strong></p>
-  <p>Hermes-style landing site (ink &amp; vermilion) built with Astro. Bilingual (EN / 中文).</p>
-</div>
+# wehuman-web
+
+The bilingual website for [wehuman](https://www.wehuman.top): calm AI tools that leave room for being human.
+
+## What it presents
+
+- **awedot** — remember and resume AI agent sessions.
+- **awewarm** — keep supported coding-plan windows ready for a human work rhythm.
+- **aweshare** — relay authorised, idle AI capability through a self-hosted hub.
+
+The site is intentionally static and light. Astro renders complete English and Chinese HTML at build time; a small browser script only remembers language preference and adds optional, reduced-motion-aware reveals.
 
 ## Development
 
+Requires Node.js 22 or later.
+
 ```bash
 npm install
-npm run dev      # local dev server
-npm run build    # static build to dist/
-npm run preview  # preview the build
+npm run dev
 ```
 
-## Structure
+Production validation:
 
-- `src/pages/` — `/`, `/about` (EN) and `/zh/`, `/zh/about` (中文)
-- `src/components/` — Header (3-col nav), Hero (terminal card), Preview, Works (tool cards), Features (paper panel), Footer (100dvh statement), AboutPage, Seal
-- `src/i18n/` — all site copy (`en.json` / `zh.json`)
-- `DESIGN.md` — design system (Hermes-style layout, ink & vermilion palette)
+```bash
+npm run build
+```
 
-## Deploy
+English is generated at `/`, and Chinese at `/zh/`.
 
-Push to `main` — GitHub Actions builds and deploys to GitHub Pages
-(repo: `wehuman01/wehuman-web`). Custom domain: `www.wehuman.top` (`public/CNAME`).
+## Design
+
+The visual system combines editorial spacing with East Asian ink-wash restraint: warm rice paper, a continuous ink river, and one vermilion accent. Readability and accessibility take priority over decoration.
+
+See [the design specification](docs/superpowers/specs/2026-08-27-wehuman-website-design.md) for the full rationale and acceptance criteria.

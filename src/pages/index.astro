@@ -2,20 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import Preview from '../components/Preview.astro';
-import Works from '../components/Works.astro';
-import Features from '../components/Features.astro';
+import Philosophy from '../components/Philosophy.astro';
+import ProductStory from '../components/ProductStory.astro';
+import ClosingStatement from '../components/ClosingStatement.astro';
 import Footer from '../components/Footer.astro';
-import t from '../i18n/en.json';
+import { en } from '../i18n/en';
 ---
 
-<Layout title={`${t.site.title} — ${t.site.tagline}`} lang="en" description={t.site.description}>
-  <Header t={t} lang="en" current="home" />
-  <main>
-    <Hero t={t} />
-    <Preview t={t} />
-    <Works t={t} />
-    <Features t={t} />
+<Layout lang="en" title={en.meta.title} description={en.meta.description} canonicalPath="/">
+  <Header t={en} />
+  <main id="main">
+    <Hero t={en} />
+    <Philosophy t={en} />
+    <ProductStory t={en} />
+    <ClosingStatement t={en} />
   </main>
-  <Footer t={t} lang="en" />
+  <Footer t={en} />
 </Layout>

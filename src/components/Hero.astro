@@ -1,92 +1,34 @@
 ---
-interface Props {
-  t: any;
-}
+import type { SiteCopy } from '../i18n/types';
+import InkLandscape from './InkLandscape.astro';
 
+interface Props { t: SiteCopy }
 const { t } = Astro.props;
-const lines = t.hero.title_lines as string[];
-const tabs = t.hero.tabs as string[];
-const cmds = t.hero.cmds as Record<string, string[]>;
 ---
 
-<!-- 引首：眉题 + 三行巨题 + 主按钮 + 纸白终端卡 -->
-<header class="hw-hero hw-vignette">
-  <div class="hw-hero__inner">
-    <p class="hw-mono hw-hero__eyebrow reveal">{t.hero.eyebrow}</p>
-
-    <h1 class="hw-display hw-hero__title reveal" style="--rd:.08s">
-      {lines.map((line: string, i: number) => (
-        <span class="block">
-          {line}{i === lines.length - 1 && <span class="accent-dot">.</span>}
-        </span>
-      ))}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="paper-fibres" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <p class="eyebrow reveal" data-reveal>{t.hero.eyebrow}</p>
+    <h1 id="hero-title" class="hero-title reveal" data-reveal>
+      <span>{t.hero.lineOne}</span>
+      <span>{t.hero.lineTwo}</span>
     </h1>
-
-    <p class="hw-mono hw-hero__desc reveal" style="--rd:.16s">{t.hero.desc}</p>
-
-    <div class="hw-hero__actions">
-      <section class="reveal" style="--rd:.24s">
-        <p class="hw-mono mb-3 opacity-90">{t.hero.cta_label}</p>
-        <a class="hw-btn" href={t.links.awedot_site} target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          {t.hero.cta}
-        </a>
-      </section>
-
-      <section class="reveal" style="--rd:.32s" id="install">
-        <p class="hw-mono mb-3 opacity-90">{t.hero.install_label}</p>
-        <div class="hw-term">
-          <div class="hw-term__tabs" role="tablist" aria-label="install">
-            {tabs.map((tab: string, i: number) => (
-              <button
-                type="button"
-                class="hw-term__tab"
-                role="tab"
-                id={`term-tab-${i}`}
-                aria-selected={i === 0 ? 'true' : 'false'}
-                aria-controls={`term-panel-${i}`}
-                data-term-tab={i}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-          {tabs.map((tab: string, i: number) => (
-            <div
-              class="hw-term__body"
-              role="tabpanel"
-              id={`term-panel-${i}`}
-              aria-labelledby={`term-tab-${i}`}
-              data-term-panel={i}
-              hidden={i !== 0}
-            >
-              <span class="hw-term__cmd" aria-label={cmds[tab].join(' ')}>
-                <span class="dim">$ </span><span class="dim">{cmds[tab][0]}</span> <span class="hl">{cmds[tab][1]}</span>
-              </span>
-              <button
-                type="button"
-                class="hw-term__copy"
-                data-copy={cmds[tab].join(' ')}
-                data-copied={t.hero.copied}
-                aria-label="copy"
-                title="copy"
-              >
-                <svg class="hw-term__copy-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-                <svg class="hw-term__check-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
+    <p class="hero-description reveal" data-reveal>{t.hero.description}</p>
+    <a class="text-link hero-cta reveal" href="#products" data-reveal>
+      <span>{t.hero.cta}</span>
+      <svg viewBox="0 0 32 16" aria-hidden="true"><path d="M1 8h27m-7-6 7 6-7 6" /></svg>
+    </a>
   </div>
-</header>
+  <div class="branch" aria-hidden="true">
+    <svg viewBox="0 0 310 260">
+      <path d="M-8 19c85 14 129 55 168 112 23 34 57 61 143 88" />
+      <path d="M90 69c35-11 61-8 88 10M145 116c22-32 43-47 68-54" />
+      <path class="leaf" d="M160 80c19-22 38-24 48-19-11 17-27 28-48 19Z" />
+      <path class="leaf" d="M202 67c13-21 29-27 41-25-6 17-19 31-41 25Z" />
+      <path class="leaf" d="M99 68c-15-17-29-20-41-15 8 14 22 22 41 15Z" />
+    </svg>
+  </div>
+  <InkLandscape />
+  <p class="river-note" aria-hidden="true">{t.hero.scroll} <span>↓</span></p>
+</section>

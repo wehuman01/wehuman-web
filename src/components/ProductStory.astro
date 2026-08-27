@@ -1,0 +1,50 @@
+---
+import { products } from '../data/products';
+import type { SiteCopy } from '../i18n/types';
+import ProductMark from './ProductMark.astro';
+
+interface Props { t: SiteCopy }
+const { t } = Astro.props;
+---
+
+<section class="work" id="products" aria-labelledby="work-title">
+  <header class="work-intro section-shell reveal" data-reveal>
+    <p class="eyebrow"><span class="section-number">二</span>{t.work.eyebrow}</p>
+    <h2 id="work-title">{t.work.title}</h2>
+    <p>{t.work.intro}</p>
+  </header>
+
+  <div class="product-river">
+    {products.map((product, index) => {
+      const copy = t.products[product.id];
+      return (
+        <article class:list={['product-story', index % 2 === 1 && 'product-story--reverse']} id={product.id}>
+          <div class="product-art reveal" data-reveal>
+            <span class="product-number">{product.number}</span>
+            <ProductMark mark={product.mark} />
+            <span class="product-chapter">{copy.chapter}</span>
+          </div>
+          <div class="product-copy reveal" data-reveal>
+            <p class="eyebrow">{product.number} / {copy.chapter}</p>
+            <h3>{copy.title}</h3>
+            <p class="product-statement">{copy.statement}</p>
+            <p class="product-description">{copy.description}</p>
+            <ul>
+              {copy.features.map((feature) => <li>{feature}</li>)}
+            </ul>
+            {copy.boundary && <p class="trust-note"><span aria-hidden="true">※</span>{copy.boundary}</p>}
+            <div class="product-actions">
+              <a class="text-link" href={product.href} target="_blank" rel="noopener noreferrer">
+                <span>{t.work.view}</span>
+                <svg viewBox="0 0 32 16" aria-hidden="true"><path d="M1 8h27m-7-6 7 6-7 6" /></svg>
+              </a>
+              {product.sourceHref !== product.href && (
+                <a class="quiet-link" href={product.sourceHref} target="_blank" rel="noopener noreferrer">{t.work.source} ↗</a>
+              )}
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

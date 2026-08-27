@@ -1,0 +1,41 @@
+---
+interface Props {
+  variant?: 'hero' | 'quiet';
+}
+
+const { variant = 'hero' } = Astro.props;
+---
+
+<div class:list={['ink-landscape', `ink-landscape--${variant}`]} aria-hidden="true">
+  <svg viewBox="0 0 1600 520" preserveAspectRatio="none" role="presentation">
+    <defs>
+      <filter id={`dry-brush-${variant}`} x="-10%" y="-30%" width="120%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015 0.12" numOctaves="2" seed={variant === 'hero' ? '7' : '13'} result="grain" />
+        <feDisplacementMap in="SourceGraphic" in2="grain" scale="6" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+      <linearGradient id={`wash-${variant}`} x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#20211d" stop-opacity="0" />
+        <stop offset="0.16" stop-color="#20211d" stop-opacity=".62" />
+        <stop offset="0.54" stop-color="#20211d" stop-opacity=".35" />
+        <stop offset="1" stop-color="#20211d" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+    <g class="ink-strokes" filter={`url(#dry-brush-${variant})`}>
+      <path class="ink-stroke ink-stroke--deep" d="M-90 345C89 286 194 382 368 339c166-41 246-125 436-56 183 66 285 48 405 8 126-42 253-60 491 10" />
+      <path class="ink-stroke ink-stroke--middle" d="M-60 388c166-71 310 50 459-3 139-49 277-80 414-25 143 56 238 69 367 22 122-45 238-30 492 20" />
+      <path class="ink-stroke ink-stroke--pale" d="M-20 425c158-44 247 22 383-8 172-38 295-22 427 20 129 41 250 42 363 4 134-46 288-30 507 12" />
+    </g>
+    <g class="ripples" fill="none" stroke={`url(#wash-${variant})`} stroke-linecap="round">
+      <path d="M160 329c65-12 129-11 191 2" />
+      <path d="M176 348c42-8 86-7 129 1" />
+      <path d="M1020 339c64-10 121-7 176 5" />
+      <path d="M1065 360c42-6 78-4 113 4" />
+    </g>
+    {variant === 'hero' && (
+      <g class="sun-group">
+        <circle class="vermilion-sun" cx="565" cy="190" r="13" />
+        <path class="sun-reflection" d="M558 247c5 20 7 41 3 64m14-61c-3 14-3 32 1 49" />
+      </g>
+    )}
+  </svg>
+</div>

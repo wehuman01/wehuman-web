@@ -1,0 +1,25 @@
+---
+import type { SiteCopy } from '../i18n/types';
+
+interface Props { t: SiteCopy }
+const { t } = Astro.props;
+---
+
+<section class="philosophy section-shell" id="philosophy" aria-labelledby="philosophy-title">
+  <div class="section-heading reveal" data-reveal>
+    <p class="eyebrow"><span class="section-number">一</span>{t.philosophy.eyebrow}</p>
+    <h2 id="philosophy-title">{t.philosophy.title}</h2>
+  </div>
+  <div class="philosophy-body reveal" data-reveal>
+    <p>{t.philosophy.body}</p>
+  </div>
+  <div class="contrasts" aria-label={t.philosophy.title}>
+    {t.philosophy.contrasts.map((item, index) => (
+      <article class="contrast reveal" data-reveal style={`--delay: ${index * 90}ms`}>
+        <p>{item.less}</p>
+        <span aria-hidden="true"></span>
+        <p>{item.more}</p>
+      </article>
+    ))}
+  </div>
+</section>

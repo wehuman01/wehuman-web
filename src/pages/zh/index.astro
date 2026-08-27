@@ -2,20 +2,20 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
-import Preview from '../../components/Preview.astro';
-import Works from '../../components/Works.astro';
-import Features from '../../components/Features.astro';
+import Philosophy from '../../components/Philosophy.astro';
+import ProductStory from '../../components/ProductStory.astro';
+import ClosingStatement from '../../components/ClosingStatement.astro';
 import Footer from '../../components/Footer.astro';
-import t from '../../i18n/zh.json';
+import { zh } from '../../i18n/zh';
 ---
 
-<Layout title={`${t.site.title} — ${t.site.tagline}`} lang="zh" description={t.site.description}>
-  <Header t={t} lang="zh" current="home" />
-  <main>
-    <Hero t={t} />
-    <Preview t={t} />
-    <Works t={t} />
-    <Features t={t} />
+<Layout lang="zh" title={zh.meta.title} description={zh.meta.description} canonicalPath="/zh/">
+  <Header t={zh} />
+  <main id="main">
+    <Hero t={zh} />
+    <Philosophy t={zh} />
+    <ProductStory t={zh} />
+    <ClosingStatement t={zh} />
   </main>
-  <Footer t={t} lang="zh" />
+  <Footer t={zh} />
 </Layout>
