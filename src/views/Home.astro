@@ -16,7 +16,11 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
       <h1 class="display" style="grid-column: 1 / 13;">
         {t.home.display.map((line, i) =>
           i === t.home.rotateLine
-            ? <span class="display-line" data-cycle={JSON.stringify(t.home.rotate)}>{line}</span>
+            ? (
+              <span class="display-line">
+                {t.home.rotatePrefix}<span data-cycle={JSON.stringify(t.home.rotate)}>{t.home.rotate[0]!.word}</span>
+              </span>
+            )
             : <span class="display-line">{line}</span>
         )}
       </h1>
@@ -30,12 +34,14 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
 
 <script>
   // the cycling word in the hero · the same scramble the character rain speaks,
-  // borrowed from the awedot landing. Under prefers-reduced-motion the hero
-  // stays as set — "for humans" — and nothing moves.
+  // borrowed from the awedot landing. Each word carries its own OKLCH hue; the
+  // script only sets --cycle-hue — lightness/chroma stay in tokens.css so both
+  // themes keep their contrast. Under prefers-reduced-motion the hero stays as
+  // set — "humans" — and nothing moves.
   (() => {
     const el = document.querySelector<HTMLElement>('[data-cycle]');
     if (!el) return;
-    let words: string[];
+    let words: Array<{ word: string; hue: number }>;
     try { words = JSON.parse(el.dataset.cycle ?? '[]'); } catch { return; }
     if (!Array.isArray(words) || words.length < 2) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -44,8 +50,9 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
     const HOLD = 3400, STEP = 40, ROUNDS = 4, STAGGER = 30;
     let idx = 0;
 
-    function scramble(target: string) {
-      const len = Math.max(el!.textContent!.length, target.length);
+    function scramble(target: { word: string; hue: number }) {
+      el!.style.setProperty('--cycle-hue', String(target.hue));
+      const len = Math.max(el!.textContent!.length, target.word.length);
       const prev = el!.textContent!.padEnd(len);
       el!.textContent = '';
       const spans: HTMLSpanElement[] = [];
@@ -56,7 +63,7 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
         spans.push(s);
       }
       for (let i = 0; i < len; i++) {
-        const finalChar = i < target.length ? target[i] : '';
+        const finalChar = i < target.word.length ? target.word[i] : '';
         let rounds = ROUNDS;
         const tick = () => {
           if (rounds > 0) { spans[i].textContent = glyphs[(Math.random() * glyphs.length) | 0]; rounds--; setTimeout(tick, STEP); }
@@ -64,7 +71,7 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
         };
         setTimeout(tick, i * STAGGER);
       }
-      setTimeout(() => { el!.textContent = target; }, len * STAGGER + ROUNDS * STEP + 50);
+      setTimeout(() => { el!.textContent = target.word; }, len * STAGGER + ROUNDS * STEP + 50);
     }
 
     function next() {

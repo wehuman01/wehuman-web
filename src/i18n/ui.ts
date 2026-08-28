@@ -27,10 +27,21 @@ const en = {
     articles: { title: 'articles — wehuman', description: 'Field notes on human-first tooling, local-first AI infrastructure, and honest trust boundaries.' },
   },
   home: {
-    display: ['Building tools', 'for humans', 'in the AI age'],
-    // the hero word cycles through these (scramble effect); rotate[0] must equal display[rotateLine]
-    rotateLine: 1,
-    rotate: ['for humans', 'for women', 'for men', 'for builders', 'for makers', 'for thinkers', 'for artists', 'for teachers'],
+    display: ['Building tools', 'in the AI age', 'for humans'],
+    // the noun after the prefix cycles through the hero (scramble effect);
+    // display[rotateLine] must equal rotatePrefix + rotate[0].word.
+    // hue is the word's own ink (OKLCH); lightness/chroma live in tokens.css per theme.
+    rotateLine: 2,
+    rotatePrefix: 'for ',
+    rotate: [
+      { word: 'humans', hue: 264 },
+      { word: 'builders', hue: 220 },
+      { word: 'makers', hue: 165 },
+      { word: 'thinkers', hue: 300 },
+      { word: 'artists', hue: 350 },
+      { word: 'teachers', hue: 85 },
+      { word: 'you', hue: 30 },
+    ],
     lede: 'It should make us more human — more creative, more focused, freer. A small studio: three tools, and a notebook.',
     cta: 'Explore our products',
   },
@@ -142,10 +153,19 @@ const zh = {
     articles: { title: '文章 — wehuman', description: '关于以人为本的工具、本地优先 AI 基础设施与诚实信任边界的笔记。' },
   },
   home: {
-    display: ['在 AI 时代', '做工具', '给人用'],
-    // 同英文：rotate[0] 必须等于 display[rotateLine]
+    display: ['在 AI 时代', '做工具', '给人'],
+    // 同英文：display[rotateLine] 必须等于 rotatePrefix + rotate[0].word
     rotateLine: 2,
-    rotate: ['给人用', '给女人用', '给男人用', '给建造者用', '给手艺人用', '给思考者用', '给艺术家用', '给老师用'],
+    rotatePrefix: '给',
+    rotate: [
+      { word: '人', hue: 264 },
+      { word: '建造者', hue: 220 },
+      { word: '手艺人', hue: 165 },
+      { word: '思考者', hue: 300 },
+      { word: '艺术家', hue: 350 },
+      { word: '老师', hue: 85 },
+      { word: '你', hue: 30 },
+    ],
     lede: '它应该让我们更像人——更有创造力、更专注，也更自由。我们是一个小团队：三个工具，一本手记。',
     cta: '探索产品',
   },

@@ -21,6 +21,11 @@
   --color-focus:      var(--color-accent);
   --color-rain:       oklch(52% 0.13 264);   /* glyph rain: dusty ultramarine, set apart from ink */
 
+  /* cycling-word ink (home hero) · hue comes from the word itself, set by script;
+     lightness/chroma stay here so both themes keep their contrast */
+  --cycle-l: 45%;
+  --cycle-c: 0.19;
+
   /* ---- type · one family, weight and scale do the work ----
      both variable fonts are self-hosted (fontsource) — the page load makes
      no third-party request */
@@ -88,4 +93,8 @@ html[data-theme="dark"] {
   --color-accent:     oklch(68% 0.16 264);   /* ultramarine, lifted for the dark ground */
   --color-accent-ink: oklch(13% 0.006 255);  /* deep ink reads better than paper on the lifted plate */
   --color-rain:       oklch(92% 0.005 255);  /* glyph rain stays ink on charcoal */
+
+  /* cycling-word ink (home hero), dark ground lifts lightness, trims chroma */
+  --cycle-l: 68%;
+  --cycle-c: 0.16;
 }
