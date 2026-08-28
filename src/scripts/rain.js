@@ -77,11 +77,11 @@
         alpha = Math.min(0.9, alpha + hi * 0.75);
         if (Math.random() < hi * 0.08) g.ch = pick();
         ctx.fillStyle = hiCol;
-        ctx.font = '600 ' + (g.s + hi * 4).toFixed(1) + 'px Archivo, monospace';
+        ctx.font = '600 ' + (g.s + hi * 4).toFixed(1) + 'px "Archivo Variable", Archivo, monospace';
       } else {
         if (!still && Math.random() < 0.0004 * g.rate) g.ch = pick();
         ctx.fillStyle = baseCol;
-        ctx.font = '500 ' + g.s.toFixed(1) + 'px Archivo, monospace';
+        ctx.font = '500 ' + g.s.toFixed(1) + 'px "Archivo Variable", Archivo, monospace';
       }
       ctx.globalAlpha = Math.max(0.015, alpha);
       ctx.fillText(g.ch, g.x, g.y);

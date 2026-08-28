@@ -6,6 +6,8 @@ export type Locale = 'en' | 'zh';
 
 export const locales: Locale[] = ['en', 'zh'];
 
+export const ORG = 'https://github.com/wehuman01';
+
 const en = {
   htmlLang: 'en',
   masthead: {
@@ -26,6 +28,9 @@ const en = {
   },
   home: {
     display: ['Building tools', 'for humans', 'in the AI age'],
+    // the hero word cycles through these (scramble effect); rotate[0] must equal display[rotateLine]
+    rotateLine: 1,
+    rotate: ['for humans', 'for women', 'for men', 'for builders', 'for makers', 'for thinkers', 'for artists', 'for teachers'],
     lede: 'It should make us more human — more creative, more focused, freer. A small studio: three tools, and a notebook.',
     cta: 'Explore our products',
   },
@@ -111,8 +116,8 @@ const en = {
     tags: 'tags',
   },
   colophon: {
-    motto: 'patient making, in service of attention.',
-    dense: 'Building tools for humans in the AI age. Hand-set static pages: no analytics, no cookies, no banners. Source on GitHub — issues welcome. © 2026 wehuman.',
+    motto: 'The machine repeats. The person decides.',
+    dense: `Source on <a href="${ORG}">GitHub</a> — issues welcome. © 2026 wehuman.`,
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
   },
@@ -138,6 +143,9 @@ const zh = {
   },
   home: {
     display: ['在 AI 时代', '做工具', '给人用'],
+    // 同英文：rotate[0] 必须等于 display[rotateLine]
+    rotateLine: 2,
+    rotate: ['给人用', '给女人用', '给男人用', '给建造者用', '给手艺人用', '给思考者用', '给艺术家用', '给老师用'],
     lede: '它应该让我们更像人——更有创造力、更专注，也更自由。我们是一个小团队：三个工具，一本手记。',
     cta: '探索产品',
   },
@@ -223,8 +231,8 @@ const zh = {
     tags: '标签',
   },
   colophon: {
-    motto: '耐心创造，服务于人的注意力。',
-    dense: '在 AI 时代为人做工具。手工排版的静态页面：无统计、无 cookie、无弹窗。源码在 GitHub，欢迎 issue。© 2026 wehuman。',
+    motto: '机器负责重复，人负责决定。',
+    dense: `源码在 <a href="${ORG}">GitHub</a>，欢迎 issue。© 2026 wehuman。`,
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
   },

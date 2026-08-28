@@ -170,6 +170,9 @@ html[lang="zh"] .cta { letter-spacing: 0.14em; }
 
 .home-hero { padding-block: var(--space-3xl) var(--space-4xl); }
 
+/* the cycling word — the hero's one splash of signal ink */
+.display-line[data-cycle] { color: var(--color-accent); }
+
 /* ---- masthead (N6 · set flush left — one spine with the body) ---- */
 
 .mast {

@@ -14,7 +14,11 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
   <section class="band home-hero">
     <div class="grid12">
       <h1 class="display" style="grid-column: 1 / 13;">
-        {t.home.display.map((line) => <span class="display-line">{line}</span>)}
+        {t.home.display.map((line, i) =>
+          i === t.home.rotateLine
+            ? <span class="display-line" data-cycle={JSON.stringify(t.home.rotate)}>{line}</span>
+            : <span class="display-line">{line}</span>
+        )}
       </h1>
       <p class="lede prose" style="grid-column: 1 / 9; margin-block-start: var(--space-lg);">{t.home.lede}</p>
       <p style="grid-column: 1 / 13; margin-block-start: var(--space-2xl);">
@@ -23,3 +27,51 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
     </div>
   </section>
 </Base>
+
+<script>
+  // the cycling word in the hero · the same scramble the character rain speaks,
+  // borrowed from the awedot landing. Under prefers-reduced-motion the hero
+  // stays as set — "for humans" — and nothing moves.
+  (() => {
+    const el = document.querySelector<HTMLElement>('[data-cycle]');
+    if (!el) return;
+    let words: string[];
+    try { words = JSON.parse(el.dataset.cycle ?? '[]'); } catch { return; }
+    if (!Array.isArray(words) || words.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const glyphs = '01*+-:.';           // same set as the rain
+    const HOLD = 3400, STEP = 40, ROUNDS = 4, STAGGER = 30;
+    let idx = 0;
+
+    function scramble(target: string) {
+      const len = Math.max(el!.textContent!.length, target.length);
+      const prev = el!.textContent!.padEnd(len);
+      el!.textContent = '';
+      const spans: HTMLSpanElement[] = [];
+      for (let i = 0; i < len; i++) {
+        const s = document.createElement('span');
+        s.textContent = prev[i] ?? ' ';
+        el!.appendChild(s);
+        spans.push(s);
+      }
+      for (let i = 0; i < len; i++) {
+        const finalChar = i < target.length ? target[i] : '';
+        let rounds = ROUNDS;
+        const tick = () => {
+          if (rounds > 0) { spans[i].textContent = glyphs[(Math.random() * glyphs.length) | 0]; rounds--; setTimeout(tick, STEP); }
+          else { spans[i].textContent = finalChar; }
+        };
+        setTimeout(tick, i * STAGGER);
+      }
+      setTimeout(() => { el!.textContent = target; }, len * STAGGER + ROUNDS * STEP + 50);
+    }
+
+    function next() {
+      idx = (idx + 1) % words.length;
+      scramble(words[idx]!);
+      setTimeout(next, HOLD);
+    }
+    setTimeout(next, HOLD);
+  })();
+</script>

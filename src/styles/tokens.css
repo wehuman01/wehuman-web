@@ -21,8 +21,10 @@
   --color-focus:      var(--color-accent);
   --color-rain:       oklch(52% 0.13 264);   /* glyph rain: dusty ultramarine, set apart from ink */
 
-  /* ---- type · one family, weight and scale do the work ---- */
-  --font-display: "Archivo", "Noto Sans SC", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* ---- type · one family, weight and scale do the work ----
+     both variable fonts are self-hosted (fontsource) — the page load makes
+     no third-party request */
+  --font-display: "Archivo Variable", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-body:    var(--font-display);
   --display-weight: 800;
   --body-weight: 400;

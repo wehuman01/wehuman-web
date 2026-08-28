@@ -1,6 +1,8 @@
 ---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/noto-sans-sc';
 import '../styles/global.css';
-import { ui, type Locale } from '../i18n/ui';
+import { ui, ORG, type Locale } from '../i18n/ui';
 import { url } from '../lib/base';
 
 interface Props {
@@ -14,7 +16,6 @@ interface Props {
 const { locale, title, description, altHref, active } = Astro.props;
 const t = ui[locale];
 const prefix = url(locale === 'zh' ? '/zh' : '');
-const ORG = 'https://github.com/wehuman01';
 const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
 const site = Astro.site ?? new URL('https://wehuman01.github.io');
 const canonical = new URL(Astro.url.pathname, site);
@@ -29,12 +30,6 @@ const canonical = new URL(Astro.url.pathname, site);
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang={locale === 'en' ? 'en' : 'zh-CN'} href={canonical} />
     <link rel="alternate" hreflang={locale === 'en' ? 'zh-CN' : 'en'} href={new URL(altHref, site)} />
@@ -99,10 +94,9 @@ const canonical = new URL(Astro.url.pathname, site);
         <div class="grid12">
           <div style="grid-column: 1 / 9;">
             <p class="colophon__motto">{t.colophon.motto}</p>
-            <p class="colophon__dense">{t.colophon.dense}</p>
+            <p class="colophon__dense" set:html={t.colophon.dense} />
           </div>
           <div style="grid-column: 10 / 13; align-self: start;" class="colophon__links">
-            <a class="tlink" href={ORG} rel="noopener">{t.colophon.github}</a>
             <a class="tlink" href={`mailto:${t.colophon.email}`}>{t.colophon.email}</a>
           </div>
         </div>
