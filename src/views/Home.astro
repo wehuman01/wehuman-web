@@ -7,32 +7,19 @@ interface Props { locale: Locale; altHref: string; }
 const { locale, altHref } = Astro.props;
 const t = ui[locale];
 const prefix = url(locale === 'zh' ? '/zh' : '');
-const hrefs = [`${prefix}/philosophy/`, `${prefix}/product/`, `${prefix}/articles/`];
 ---
 
 <Base locale={locale} title={t.meta.home.title} description={t.meta.home.description} altHref={altHref} active="home">
-  <!-- opening · one statement, one paragraph, nothing borrowed from subpages -->
-  <section class="band">
+  <!-- opening · statement, subline, one CTA — nothing else -->
+  <section class="band home-hero">
     <div class="grid12">
-      <div style="grid-column: 1 / 9;">
-        <h1 class="display">{t.home.display}<span class="mark-period" aria-hidden="true"></span></h1>
-        <p class="lede prose" style="margin-block-start: var(--space-xl);">{t.home.lede}</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- index · three destinations, ruled rows, no section content -->
-  <section class="band--tight" style="padding-block: 0 var(--space-3xl);">
-    <div class="grid12">
-      <div class="rows" style="grid-column: 1 / 13;">
-        {t.home.index.map((item, i) => (
-          <a class="row row--dest" href={hrefs[i]}>
-            <span class="row__name">{item.name}</span>
-            <span class="row__desc">{item.hint}</span>
-            <span class="row__meta row__go" aria-hidden="true">→</span>
-          </a>
-        ))}
-      </div>
+      <h1 class="display" style="grid-column: 1 / 13;">
+        {t.home.display.map((line) => <span class="display-line">{line}</span>)}
+      </h1>
+      <p class="lede prose" style="grid-column: 1 / 9; margin-block-start: var(--space-lg);">{t.home.lede}</p>
+      <p style="grid-column: 1 / 13; margin-block-start: var(--space-2xl);">
+        <a class="cta" href={`${prefix}/product/`}>{t.home.cta}</a>
+      </p>
     </div>
   </section>
 </Base>

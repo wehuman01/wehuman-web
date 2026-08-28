@@ -9,7 +9,7 @@ export const locales: Locale[] = ['en', 'zh'];
 const en = {
   htmlLang: 'en',
   masthead: {
-    line: 'Building tools for humans in the AI age',
+    line: 'a small studio · est. 2026',
     nav: {
       main: 'main',
       product: 'product',
@@ -25,13 +25,9 @@ const en = {
     articles: { title: 'articles — wehuman', description: 'Field notes on human-first tooling, local-first AI infrastructure, and honest trust boundaries.' },
   },
   home: {
-    display: 'ai should not make people disappear',
+    display: ['Building tools', 'for humans', 'in the AI age'],
     lede: 'It should make us more human — more creative, more focused, freer. A small studio: three tools, and a notebook.',
-    index: [
-      { name: 'philosophy', hint: 'why tools at all' },
-      { name: 'product', hint: 'the three tools' },
-      { name: 'articles', hint: 'field notes' },
-    ],
+    cta: 'Explore our products',
   },
   product: {
     display: 'three tools, one stance',
@@ -125,7 +121,7 @@ const en = {
 const zh = {
   htmlLang: 'zh-CN',
   masthead: {
-    line: '在 AI 时代，为人做工具',
+    line: '一个小团队 · 始于 2026',
     nav: {
       main: '首页',
       product: '产品',
@@ -141,13 +137,9 @@ const zh = {
     articles: { title: '文章 — wehuman', description: '关于以人为本的工具、本地优先 AI 基础设施与诚实信任边界的笔记。' },
   },
   home: {
-    display: 'AI 不应让人消失',
+    display: ['在 AI 时代', '做工具', '给人用'],
     lede: '它应该让我们更像人——更有创造力、更专注，也更自由。我们是一个小团队：三个工具，一本手记。',
-    index: [
-      { name: '理念', hint: '工具的意义' },
-      { name: '产品', hint: '三个工具' },
-      { name: '文章', hint: '工作手记' },
-    ],
+    cta: '探索产品',
   },
   product: {
     display: '三个工具，一个立场',
