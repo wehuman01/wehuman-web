@@ -18,7 +18,8 @@ html {
   color: var(--color-ink);
   font-family: var(--font-body);
   font-weight: var(--body-weight);
-  font-size: var(--text-base);
+  /* 112.5% root — the whole rem scale (type and spacing) steps up together */
+  font-size: 112.5%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -228,9 +229,24 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
 .prose p + p { margin-block-start: var(--space-md); }
 .prose .lede { margin-block-end: var(--space-lg); }
 
+/* ---- philosophy spread · two cells per row, hairline between columns ---- */
+
+.phil { row-gap: var(--space-2xl); }
+.phil > :nth-child(even) {
+  border-inline-start: var(--rule-hair) solid var(--color-rule);
+  padding-inline-start: var(--space-xl);
+}
+
 /* ---- ruled index rows ---- */
 
-.rows { border-block-start: var(--rule-heavy) solid var(--color-ink); }
+/* the rows container must itself be a 12-col grid — subgrid on .row
+   only engages when the parent is a grid container */
+.rows {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 0;
+  border-block-start: var(--rule-heavy) solid var(--color-ink);
+}
 .row {
   display: grid;
   grid-template-columns: subgrid;
@@ -263,7 +279,17 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
 .row__meta a { transition: color var(--dur-short) var(--ease-out); }
 .row__meta a:hover { color: var(--color-accent); }
 
-/* ---- the marks kit (Tier A · pure CSS geometry) ---- */
+/* column plans · spans live here, not in markup, so the mobile collapse can neutralize them */
+.row__go { text-align: end; }
+.row--dest .row__name { grid-column: 1 / 4; }
+.row--dest .row__desc { grid-column: 4 / 9; }
+.row--dest .row__go { grid-column: 12 / 13; }
+.row--doc .row__date { grid-column: 1 / 3; font-weight: 600; color: var(--color-ink); }
+.row--doc .row__name { grid-column: 3 / 9; font-size: var(--text-md); }
+.row--doc .row__desc { grid-column: 9 / 12; }
+.row--doc .row__go { grid-column: 12 / 13; }
+
+/* ---- the period mark · the one signal square ---- */
 
 .mark-period {
   display: inline-block;
@@ -273,68 +299,11 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
   margin-inline-start: 0.1em;
 }
 
-.mark-register {
-  width: 22px;
-  height: 22px;
-  border: var(--rule-hair) solid var(--color-ink-30);
-  border-radius: 50%;
-  position: relative;
-}
-.mark-register::before, .mark-register::after {
-  content: "";
-  position: absolute;
-  background: var(--color-ink-30);
-}
-.mark-register::before { inset-inline: 0; block-size: 1px; top: 50%; }
-.mark-register::after { inset-block: 0; inline-size: 1px; left: 50%; }
-
-.mark-quarter {
-  width: 56px;
-  height: 56px;
-  background: var(--color-accent);
-  border-start-start-radius: 100%;
-  transition: rotate var(--dur-short) var(--ease-out);
-}
-.row:hover .mark-quarter, .row:focus-visible .mark-quarter { rotate: 90deg; }
-
-.mark-bars { display: flex; align-items: end; gap: var(--space-2xs); block-size: 56px; }
-.mark-bars span { display: block; background: var(--color-ink-30); }
-.mark-bars span:nth-child(1) { inline-size: 10px; block-size: 18px; }
-.mark-bars span:nth-child(2) { inline-size: 10px; block-size: 32px; }
-.mark-bars span:nth-child(3) { inline-size: 10px; block-size: 44px; }
-.mark-bars span:nth-child(4) { inline-size: 10px; block-size: 56px; background: var(--color-accent); }
-
-.mark-lattice {
-  inline-size: 84px;
-  block-size: 56px;
-  background-image: radial-gradient(var(--color-ink-30) 1px, transparent 1.6px);
-  background-size: 12px 12px;
-}
-
-.fig { display: grid; gap: var(--space-sm); justify-items: start; }
-.fig .label { line-height: 1.5; }
-
-/* ---- research records ---- */
+/* ---- product records ---- */
 
 .record {
-  --edge-inset: max(var(--page-gutter), calc(50% - var(--shell) / 2 + var(--page-gutter)));
   border-block-start: var(--rule-heavy) solid var(--color-ink);
   padding-block: var(--space-2xl) var(--space-3xl);
-  position: relative;
-  overflow: clip;
-}
-.record__numeral {
-  position: absolute;
-  top: -0.12em;
-  inset-inline-end: 0;
-  font-family: var(--font-display);
-  font-weight: var(--display-weight);
-  font-size: clamp(120px, 17vw, 250px);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  color: var(--color-ink-08);
-  user-select: none;
-  pointer-events: none;
 }
 .record__head { display: grid; gap: var(--space-sm); align-content: start; }
 .record__name {
@@ -464,10 +433,6 @@ html[lang="zh"] .doc-head h1 { line-height: 1.25; letter-spacing: 0; }
 .colophon__links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
 .colophon__links a { white-space: nowrap; }
 
-/* ---- shared figure caption voice ---- */
-
-.marginalia { display: grid; gap: var(--space-md); align-content: start; justify-items: start; }
-
 /* ---- responsive · layout breakpoint 60rem ---- */
 
 @media (max-width: 60rem) {
@@ -475,11 +440,12 @@ html[lang="zh"] .doc-head h1 { line-height: 1.25; letter-spacing: 0; }
   .grid12 > * { margin-block-end: var(--space-lg); }
   .grid12 > :last-child { margin-block-end: 0; }
   .band { padding-block: var(--space-2xl); }
-  .marginalia { display: none; }
-  .record__numeral { font-size: clamp(90px, 24vw, 140px); }
-  .row { display: grid; grid-template-columns: 1fr; gap: var(--space-xs); padding-block: var(--space-md); }
+  .phil > :nth-child(even) { border-inline-start: 0; padding-inline-start: 0; }
+  /* flex column: grid-column placement is ignored for flex items,
+     which stacks the row cells without fighting the span rules above */
+  .row { display: flex; flex-direction: column; gap: var(--space-xs); padding-block: var(--space-md); }
   .row:hover .row__name { transform: none; }
-  .row__meta { order: 3; }
+  .row__go { display: none; }
 }
 
 /* ---- responsive · typography breakpoint 40rem ---- */
@@ -503,5 +469,4 @@ html[lang="zh"] .doc-head h1 { line-height: 1.25; letter-spacing: 0; }
     transition-duration: 0.01ms !important;
   }
   .row:hover .row__name { transform: none; }
-  .row:hover .mark-quarter { rotate: 0deg; }
 }

@@ -9,36 +9,37 @@ export const locales: Locale[] = ['en', 'zh'];
 const en = {
   htmlLang: 'en',
   masthead: {
-    line: 'open source · since 2026',
+    line: 'Building tools for humans in the AI age',
     nav: {
-      philosophy: 'philosophy',
-      research: 'research',
+      main: 'main',
+      product: 'product',
       articles: 'articles',
+      philosophy: 'philosophy',
       github: 'GitHub ↗',
     },
   },
   meta: {
-    home: { title: 'wehuman — tools that give attention back', description: 'A small open-source studio. We build AI tools that protect attention, creativity, and human choice.' },
+    home: { title: 'wehuman — tools that give attention back', description: 'Building tools for humans in the AI age. AI tools that protect attention, creativity, and human choice.' },
     philosophy: { title: 'philosophy — wehuman', description: 'AI should make us more human: more creative, more focused, freer to work on what matters.' },
-    research: { title: 'research — wehuman', description: 'Three open-source tools: keep agent sessions, keep working hours warm, share AI capability without sharing keys.' },
+    product: { title: 'product — wehuman', description: 'Three tools: keep agent sessions, keep working hours warm, share AI capability without sharing keys.' },
     articles: { title: 'articles — wehuman', description: 'Field notes on human-first tooling, local-first AI infrastructure, and honest trust boundaries.' },
   },
   home: {
     display: 'ai should not make people disappear',
-    lede: 'It should make us more human — more creative, more focused, freer to work on what we care about. We are a small open-source studio: three tools, and a notebook.',
+    lede: 'It should make us more human — more creative, more focused, freer. A small studio: three tools, and a notebook.',
     index: [
       { name: 'philosophy', hint: 'why tools at all' },
-      { name: 'research', hint: 'the three tools' },
+      { name: 'product', hint: 'the three tools' },
       { name: 'articles', hint: 'field notes' },
     ],
   },
-  research: {
+  product: {
     display: 'three tools, one stance',
-    lede: 'All three are open source, and all three do the same thing: the machine carries the repetition, the person keeps the controls.',
+    lede: 'All three do the same thing: the machine carries the repetition, the person keeps the controls.',
     records: [
       {
         name: 'awedot',
-        intro: 'The moment attention moves on, an agent session should not vanish with it. awedot saves, organises, and restores them — session memory, project context, multiple agents.',
+        intro: 'When attention moves on, an agent session should not vanish with it. awedot saves, organises, restores — session memory, project context, multiple agents.',
         boundaries: [
           'Sessions stay on your machine; awedot is a local index, not a cloud.',
           'Restores are explicit — nothing auto-resumes.',
@@ -49,7 +50,7 @@ const en = {
       },
       {
         name: 'awewarm',
-        intro: 'While you do something else, coding-plan windows go cold. awewarm fires one minimal scheduled request around your working hours, so they are warm when you sit down.',
+        intro: 'While you are away, coding-plan windows go cold. awewarm fires one minimal scheduled request in your working hours, so they are warm when you return.',
         boundaries: [
           'Your schedule lives in a local config, nowhere else.',
           'The boundary is explicit: one small request at a planned time, nothing more.',
@@ -60,7 +61,7 @@ const en = {
       },
       {
         name: 'aweshare',
-        intro: 'A local-first, self-hostable relay for AI capability. Friends point ordinary OpenAI / Anthropic SDKs at a hub; keys are injected at call time, on the provider’s machine, and never travel.',
+        intro: 'A local-first relay for AI capability. Friends point ordinary OpenAI / Anthropic SDKs at a hub; keys are injected at call time, on the provider’s machine, and never travel.',
         boundaries: [
           'Stated plainly: prompts and responses pass the trusted hub in cleartext — not end-to-end encryption.',
           'Everyone still honours the upstream services’ terms.',
@@ -79,25 +80,25 @@ const en = {
       {
         head: 'agency',
         body: [
-          'AI should enlarge a person’s agency, not quietly reshape life around yet another tool. Who initiates, who interrupts, who decides something is finished — those moments belong to the person.',
+          'AI should enlarge a person’s agency, not reshape life around yet another tool. Who initiates, who interrupts, who decides something is finished — those moments belong to the person.',
         ],
       },
       {
         head: 'between intent and action',
         body: [
-          'Most attention is lost between intending a thing and starting it. That is where we work: keep the thread, prepare ahead, don’t interrupt, don’t take the controls.',
+          'Most attention is lost between intending and starting. That is where we work: keep the thread, prepare ahead, don’t interrupt, don’t take the controls.',
         ],
       },
       {
         head: 'what a good tool owes you',
         body: [
-          'Quiet handling of repetition and complexity. Boundaries shown honestly, including the ones it can’t fix. It stays explainable, and it leaves the important choices with you.',
+          'Quiet handling of repetition and complexity. Boundaries shown honestly, including the ones it can’t fix. It stays explainable; the important choices stay with you.',
         ],
       },
       {
         head: 'how we measure',
         body: [
-          'Afterwards, does a person have more attention, more creativity, more room to choose? Every tool we keep has to answer yes. The one that can’t gets changed, or retired.',
+          'Afterwards, does a person have more attention, more creativity, more room to choose? Every tool we keep has to answer yes. The rest gets changed, or retired.',
         ],
       },
     ],
@@ -115,7 +116,7 @@ const en = {
   },
   colophon: {
     motto: 'patient making, in service of attention.',
-    dense: 'wehuman · an open-source studio. A hand-set static page: no analytics, no cookies, no banners. The background is a quiet rain of characters; it brightens around your pointer. Source on GitHub — issues welcome. © 2026 wehuman.',
+    dense: 'Building tools for humans in the AI age. Hand-set static pages: no analytics, no cookies, no banners. Source on GitHub — issues welcome. © 2026 wehuman.',
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
   },
@@ -124,36 +125,37 @@ const en = {
 const zh = {
   htmlLang: 'zh-CN',
   masthead: {
-    line: '开源 · 始于 2026',
+    line: '在 AI 时代，为人做工具',
     nav: {
-      philosophy: '理念',
-      research: '研究',
+      main: '首页',
+      product: '产品',
       articles: '文章',
+      philosophy: '理念',
       github: 'GitHub ↗',
     },
   },
   meta: {
-    home: { title: 'wehuman — 把注意力还给人的工具', description: '一个开源小组。我们做保护注意力、创造力与人的选择的 AI 工具。' },
+    home: { title: 'wehuman — 把注意力还给人的工具', description: '在 AI 时代为人做工具。我们做保护注意力、创造力与人的选择的 AI 工具。' },
     philosophy: { title: '理念 — wehuman', description: 'AI 应该让我们更像人：更有创造力、更专注，也更自由地去做重要的事。' },
-    research: { title: '研究 — wehuman', description: '三个开源工具：留住 agent 会话、守住工作节奏、不交出密钥地共享 AI 能力。' },
+    product: { title: '产品 — wehuman', description: '三个工具：留住 agent 会话、守住工作节奏、不交出密钥地共享 AI 能力。' },
     articles: { title: '文章 — wehuman', description: '关于以人为本的工具、本地优先 AI 基础设施与诚实信任边界的笔记。' },
   },
   home: {
     display: 'AI 不应让人消失',
-    lede: '它应该让我们更像人——更有创造力、更专注，也更自由地去做在乎的事。我们是一个开源小组：三个工具，一本手记。',
+    lede: '它应该让我们更像人——更有创造力、更专注，也更自由。我们是一个小团队：三个工具，一本手记。',
     index: [
       { name: '理念', hint: '工具的意义' },
-      { name: '研究', hint: '三个工具' },
+      { name: '产品', hint: '三个工具' },
       { name: '文章', hint: '工作手记' },
     ],
   },
-  research: {
+  product: {
     display: '三个工具，一个立场',
-    lede: '三个都开源，也都在做同一件事：机器承担重复，控制权留在人手里。',
+    lede: '三个工具在做同一件事：机器承担重复，控制权留在人手里。',
     records: [
       {
         name: 'awedot',
-        intro: '注意力移开的那一刻，agent session 不该跟着消失。awedot 保存、整理并恢复它们——session 记忆、项目上下文、多 Agent。',
+        intro: '注意力移开的时候，agent session 不该跟着消失。awedot 保存、整理、恢复——session 记忆、项目上下文、多 Agent。',
         boundaries: [
           'session 留在你自己的机器上；awedot 是本地索引，不是云。',
           '恢复是显式的，没有东西自动续跑。',
@@ -164,7 +166,7 @@ const zh = {
       },
       {
         name: 'awewarm',
-        intro: '你去做别的事的时候，coding-plan 窗口在变凉。awewarm 按你的工作时间发一次极小的定时请求，让你坐下时窗口已经是热的。',
+        intro: '你不在的时候，coding-plan 窗口在变凉。awewarm 按你的工作时间发一次极小的定时请求，回来时窗口是热的。',
         boundaries: [
           '日程只存在本地配置里，不在别处。',
           '边界说得明白：计划时间的一次小请求，仅此而已。',
@@ -175,7 +177,7 @@ const zh = {
       },
       {
         name: 'aweshare',
-        intro: '本地优先、可自托管的能力中继。朋友把普通的 OpenAI / Anthropic SDK 指向 hub；密钥在调用那一刻、在提供者的机器上注入，从不出门。',
+        intro: '本地优先的能力中继。朋友把普通的 OpenAI / Anthropic SDK 指向 hub；密钥在调用那一刻、在提供者的机器上注入，从不出门。',
         boundaries: [
           '明说：提示词与响应以明文经过受信任的 hub，不是端到端加密。',
           '各方仍需遵守上游服务的条款。',
@@ -194,7 +196,7 @@ const zh = {
       {
         head: '能动性',
         body: [
-          'AI 应该扩大人的能动性，而不是悄悄让生活去适应又一个工具。谁发起、谁打断、谁决定一件事算不算完成——这些时刻应该留在人手里。',
+          'AI 应该扩大人的能动性，而不是让生活去适应又一个工具。谁发起、谁打断、谁决定一件事算不算完成——这些时刻留在人手里。',
         ],
       },
       {
@@ -230,7 +232,7 @@ const zh = {
   },
   colophon: {
     motto: '耐心创造，服务于人的注意力。',
-    dense: 'wehuman · 一个开源小组。一页手工排版的静态页面：无统计、无 cookie、无弹窗。背景是一场安静的字符雨，会跟着你的指针亮起来。工具源码在 GitHub，欢迎 issue。© 2026 wehuman。',
+    dense: '在 AI 时代为人做工具。手工排版的静态页面：无统计、无 cookie、无弹窗。源码在 GitHub，欢迎 issue。© 2026 wehuman。',
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
   },

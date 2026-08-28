@@ -8,7 +8,7 @@ interface Props {
   title: string;
   description: string;
   altHref: string;
-  active?: 'philosophy' | 'research' | 'articles';
+  active?: 'home' | 'philosophy' | 'product' | 'articles';
 }
 
 const { locale, title, description, altHref, active } = Astro.props;
@@ -16,6 +16,8 @@ const t = ui[locale];
 const prefix = url(locale === 'zh' ? '/zh' : '');
 const ORG = 'https://github.com/wehuman01';
 const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
+const site = Astro.site ?? new URL('https://wehuman01.github.io');
+const canonical = new URL(Astro.url.pathname, site);
 ---
 
 <!doctype html>
@@ -33,7 +35,18 @@ const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="alternate" hreflang={locale === 'en' ? 'zh-CN' : 'en'} href={altHref} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'en' : 'zh-CN'} href={canonical} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'zh-CN' : 'en'} href={new URL(altHref, site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(url('/'), site)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="wehuman" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en'} />
+    <meta property="og:locale:alternate" content={locale === 'zh' ? 'en' : 'zh_CN'} />
+    <meta name="twitter:card" content="summary" />
     <script is:inline>
       // set the mode before first paint — no flash of the wrong theme
       (function () {
@@ -52,11 +65,13 @@ const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
       <header class="mast">
         <div class="shell-in">
           <p class="mast__line label">{t.masthead.line}</p>
-          <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">wehuman</a>          <nav class="mast__nav" aria-label="primary">
+          <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">wehuman</a>
+          <nav class="mast__nav" aria-label="primary">
             <ul>
-              <li><a href={`${prefix}/philosophy/`} aria-current={active === 'philosophy' ? 'page' : undefined}>{t.masthead.nav.philosophy}</a></li>
-              <li><a href={`${prefix}/research/`} aria-current={active === 'research' ? 'page' : undefined}>{t.masthead.nav.research}</a></li>
+              <li><a href={`${prefix}/`} aria-current={active === 'home' ? 'page' : undefined}>{t.masthead.nav.main}</a></li>
+              <li><a href={`${prefix}/product/`} aria-current={active === 'product' ? 'page' : undefined}>{t.masthead.nav.product}</a></li>
               <li><a href={`${prefix}/articles/`} aria-current={active === 'articles' ? 'page' : undefined}>{t.masthead.nav.articles}</a></li>
+              <li><a href={`${prefix}/philosophy/`} aria-current={active === 'philosophy' ? 'page' : undefined}>{t.masthead.nav.philosophy}</a></li>
               <li><a href={ORG} rel="noopener">{t.masthead.nav.github}</a></li>
               <li>
                 {locale === 'en'
@@ -64,7 +79,7 @@ const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
                   : <a href={altHref} hreflang="en">en</a>}
               </li>
               <li>
-                <button class="theme-toggle" data-theme-toggle aria-label={locale === 'zh' ? '切换深浅模式' : 'toggle color mode'}>
+                <button class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label={locale === 'zh' ? '切换深浅模式' : 'toggle color mode'}>
                   <span data-mode="dark">{modeLabel[0]}</span>
                   <span class="sep" aria-hidden="true">/</span>
                   <span data-mode="light">{modeLabel[1]}</span>
@@ -96,12 +111,17 @@ const modeLabel = locale === 'zh' ? ['深', '浅'] : ['dark', 'light'];
 
     <script>
       const btn = document.querySelector('[data-theme-toggle]');
+      const syncPressed = () => {
+        btn?.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'dark'));
+      };
+      syncPressed();
       btn?.addEventListener('click', () => {
         const root = document.documentElement;
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
         root.dataset.theme = next;
         try { localStorage.setItem('wehuman-theme', next); } catch {}
         window.dispatchEvent(new Event('themechange'));
+        syncPressed();
       });
     </script>
     <script src="../scripts/rain.js"></script>

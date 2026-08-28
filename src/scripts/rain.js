@@ -101,16 +101,22 @@
   build();
   draw(0);
   if (!still) requestAnimationFrame(loop);
+  // the first draw may run before Archivo loads; redraw once it's ready
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => draw(0));
 
   window.addEventListener('resize', () => {
     build();
     draw(0);
   }, { passive: true });
 
+  let stillFrame = 0;
   window.addEventListener('pointermove', (e) => {
     mx = e.clientX;
     my = e.clientY;
-    if (still) draw(0);
+    // still-mode redraws are rAF-gated; pointermove can fire far faster than a frame
+    if (still && !stillFrame) {
+      stillFrame = requestAnimationFrame(() => { stillFrame = 0; draw(0); });
+    }
   }, { passive: true });
 
   document.documentElement.addEventListener('pointerleave', () => {

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/base';
+---
+
+<Base locale="en" title="404 — wehuman" description="Page not found." altHref={url('/404/')}>
+  <section class="band">
+    <div class="grid12">
+      <div style="grid-column: 1 / 9;">
+        <h1 class="display">404<span class="mark-period" aria-hidden="true"></span></h1>
+        <p class="lede prose" style="margin-block-start: var(--space-lg);">
+          This page does not exist — the rain continues. 这一页不存在。<a class="tlink" href={url('/')}>← wehuman</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

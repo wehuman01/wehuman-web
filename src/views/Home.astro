@@ -7,10 +7,10 @@ interface Props { locale: Locale; altHref: string; }
 const { locale, altHref } = Astro.props;
 const t = ui[locale];
 const prefix = url(locale === 'zh' ? '/zh' : '');
-const hrefs = [`${prefix}/philosophy/`, `${prefix}/research/`, `${prefix}/articles/`];
+const hrefs = [`${prefix}/philosophy/`, `${prefix}/product/`, `${prefix}/articles/`];
 ---
 
-<Base locale={locale} title={t.meta.home.title} description={t.meta.home.description} altHref={altHref}>
+<Base locale={locale} title={t.meta.home.title} description={t.meta.home.description} altHref={altHref} active="home">
   <!-- opening · one statement, one paragraph, nothing borrowed from subpages -->
   <section class="band">
     <div class="grid12">
@@ -26,10 +26,10 @@ const hrefs = [`${prefix}/philosophy/`, `${prefix}/research/`, `${prefix}/articl
     <div class="grid12">
       <div class="rows" style="grid-column: 1 / 13;">
         {t.home.index.map((item, i) => (
-          <a class="row" href={hrefs[i]}>
-            <span class="row__name" style="grid-column: 1 / 4;">{item.name}</span>
-            <span class="row__desc" style="grid-column: 4 / 9;">{item.hint}</span>
-            <span class="row__meta" style="grid-column: 12 / 13; text-align: end;" aria-hidden="true">→</span>
+          <a class="row row--dest" href={hrefs[i]}>
+            <span class="row__name">{item.name}</span>
+            <span class="row__desc">{item.hint}</span>
+            <span class="row__meta row__go" aria-hidden="true">→</span>
           </a>
         ))}
       </div>

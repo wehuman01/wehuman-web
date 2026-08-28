@@ -18,10 +18,10 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
     </div>
   </section>
 
-  {t.philosophy.sections.map((section) => (
-    <section class="band--tight" style="padding-block: var(--space-2xl);">
-      <div class="grid12">
-        <div style="grid-column: 1 / 9;">
+  <section class="band--tight">
+    <div class="grid12 phil">
+      {t.philosophy.sections.map((section) => (
+        <div style="grid-column: span 6;">
           <div class="sec-head">
             <p class="label">{section.head}</p>
           </div>
@@ -29,9 +29,9 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
             {section.body.map((p) => <p>{p}</p>)}
           </div>
         </div>
-      </div>
-    </section>
-  ))}
+      ))}
+    </div>
+  </section>
 
   <section class="band--tight">
     <div class="grid12">

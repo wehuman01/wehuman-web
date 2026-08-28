@@ -7,26 +7,20 @@ interface Props { locale: Locale; altHref: string; }
 const { locale, altHref } = Astro.props;
 const t = ui[locale];
 const prefix = url(locale === 'zh' ? '/zh' : '');
-
-const figs = ['lattice', 'bars', 'quarter'] as const;
-const figLabels = locale === 'zh'
-  ? ['图 1 — 留住的会话', '图 2 — 提前就绪的窗口', '图 3 — 密钥不出门']
-  : ['fig. 1 — sessions, kept', 'fig. 2 — windows, warm', 'fig. 3 — keys stay home'];
 ---
 
-<Base locale={locale} title={t.meta.research.title} description={t.meta.research.description} altHref={altHref} active="research">
+<Base locale={locale} title={t.meta.product.title} description={t.meta.product.description} altHref={altHref} active="product">
   <section class="band">
     <div class="grid12">
       <div style="grid-column: 1 / 9;">
-        <h1 class="display-s">{t.research.display}</h1>
-        <p class="lede prose" style="margin-block-start: var(--space-lg);">{t.research.lede}</p>
+        <h1 class="display-s">{t.product.display}</h1>
+        <p class="lede prose" style="margin-block-start: var(--space-lg);">{t.product.lede}</p>
       </div>
     </div>
   </section>
 
-  {t.research.records.map((record, i) => (
+  {t.product.records.map((record) => (
     <section class="record">
-      <span class="record__numeral" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <div class="grid12">
         <div class="record__head" style="grid-column: 1 / 4;">
           <h2 class="record__name">{record.name}</h2>
@@ -36,7 +30,7 @@ const figLabels = locale === 'zh'
           <p><a class="tlink" href={record.repo} rel="noopener">GitHub ↗</a></p>
           {record.site && <p><a class="tlink" href={record.site} rel="noopener">{record.site.replace('https://', '')} ↗</a></p>}
         </div>
-        <div class="record__body" style="grid-column: 5 / 10;">
+        <div class="record__body" style="grid-column: 5 / 13;">
           <div class="prose">
             <p>{record.intro}</p>
           </div>
@@ -47,12 +41,6 @@ const figLabels = locale === 'zh'
             </ul>
           </div>
         </div>
-        <aside class="marginalia" style="grid-column: 11 / 13; margin-block-start: var(--space-xl);">
-          {figs[i] === 'lattice' && <span class="mark-lattice" aria-hidden="true"></span>}
-          {figs[i] === 'bars' && <span class="mark-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>}
-          {figs[i] === 'quarter' && <span class="mark-quarter" aria-hidden="true"></span>}
-          <p class="label">{figLabels[i]}</p>
-        </aside>
       </div>
     </section>
   ))}
@@ -60,7 +48,7 @@ const figLabels = locale === 'zh'
   <section class="band--tight">
     <div class="grid12">
       <p style="grid-column: 1 / 13; padding-block: var(--space-lg);">
-        <a class="tlink" href={`${prefix}/`}>{t.research.back}</a>
+        <a class="tlink" href={`${prefix}/`}>{t.product.back}</a>
       </p>
     </div>
   </section>
