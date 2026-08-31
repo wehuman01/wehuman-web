@@ -1,0 +1,94 @@
+---
+// One-off preview: the zed.dev type system on the home page — IBM Plex Serif
+// (regular weight) display, iA Writer Quattro body, IBM Plex Sans labels/word
+// mark. A fixed before/after toggle flips html[data-fonts] so the original
+// Archivo and the Zed scheme can be compared live; nothing shared changes.
+// Delete this page once the font decision is made.
+import '@fontsource/ibm-plex-serif/400.css';
+import '@fontsource/ibm-plex-serif/400-italic.css';
+import '@fontsource/ia-writer-quattro/400.css';
+import '@fontsource/ia-writer-quattro/400-italic.css';
+import '@fontsource/ia-writer-quattro/700.css';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource/noto-serif-sc/400.css';
+import Base from '../layouts/Base.astro';
+---
+
+<Base locale="en" title="font sample — zed.dev type on wehuman" description="Before/after preview of the zed.dev type system on wehuman." altHref="/font-sample/">
+  <script is:inline>document.documentElement.dataset.fonts = 'zed';</script>
+
+  <style is:global>
+    html[data-fonts="zed"] {
+      --font-display: "IBM Plex Serif", "Noto Serif SC", Georgia, "Songti SC", serif;
+      --font-body: "iA Writer Quattro", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-label: "IBM Plex Sans Variable", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+      /* zed headlines are regular-weight serif — the old grotesk 800 reads far too heavy */
+      --display-weight: 400;
+      --tracking-display: -0.01em;
+    }
+    /* serif headlines need air; the 0.92 grotesk leading clips them */
+    html[data-fonts="zed"] .display { line-height: 1.08; }
+    /* label-voiced controls hardcode their family in global.css — give them the sans */
+    html[data-fonts="zed"] :is(.mast__nav a, .theme-toggle, .cta) { font-family: var(--font-label); }
+    /* the word mark follows zed's sans logo, not the serif display */
+    html[data-fonts="zed"] .mast__word { font-family: var(--font-label); font-weight: 600; letter-spacing: -0.02em; }
+    html[data-fonts="zed"] .colophon__motto { font-weight: 400; }
+
+    /* the before/after toggle — same voice as the theme toggle, floating top right */
+    .font-toggle {
+      position: fixed;
+      top: var(--space-md);
+      right: var(--page-gutter);
+      z-index: 10;
+      background: var(--color-paper);
+      border: var(--rule-hair) solid var(--color-ink-30);
+      padding: var(--space-2xs) var(--space-sm);
+      transition: color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .font-toggle:hover { color: var(--color-accent); border-color: var(--color-accent); }
+    .font-toggle [data-font-mode="zed"] { color: var(--color-accent); }
+    .font-toggle[data-active="false"] [data-font-mode="zed"] { color: inherit; }
+    .font-toggle[data-active="false"] [data-font-mode="before"] { color: var(--color-accent); }
+  </style>
+
+  <button class="font-toggle theme-toggle" data-font-toggle aria-pressed="true" aria-label="toggle font scheme">
+    <span data-font-mode="before">before</span>
+    <span class="sep" aria-hidden="true">/</span>
+    <span data-font-mode="zed">zed</span>
+  </button>
+
+  <!-- the home page main, unchanged -->
+  <section class="band home-hero">
+    <div class="grid12">
+      <h1 class="display" style="grid-column: 1 / 13;">
+        <span class="display-line">Building tools</span>
+        <span class="display-line">in the AI age</span>
+        <span class="display-line">for <span style="color: oklch(var(--cycle-l) var(--cycle-c) 264);">humans</span></span>
+      </h1>
+      <p class="lede prose" style="grid-column: 1 / 9; margin-block-start: var(--space-lg);">
+        It should make us more human — more creative, more focused, freer. A small studio: three tools, and a notebook.
+      </p>
+      <p style="grid-column: 1 / 13; margin-block-start: var(--space-2xl);">
+        <a class="cta" href="/product/">Explore our products</a>
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var btn = document.querySelector('[data-font-toggle]');
+      var mode = 'zed';
+      function apply() {
+        if (mode === 'zed') document.documentElement.dataset.fonts = 'zed';
+        else delete document.documentElement.dataset.fonts;
+        btn.setAttribute('aria-pressed', String(mode === 'zed'));
+        btn.dataset.active = String(mode === 'zed');
+      }
+      btn.addEventListener('click', function () {
+        mode = mode === 'zed' ? 'before' : 'zed';
+        apply();
+      });
+      apply();
+    })();
+  </script>
+</Base>
