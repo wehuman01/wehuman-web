@@ -21,7 +21,7 @@ const en = {
     },
   },
   meta: {
-    home: { title: 'wehuman — tools that give attention back', description: 'Building tools for humans in the AI age. AI tools that protect attention, creativity, and human choice.' },
+    home: { title: 'wehuman', description: 'Building tools for humans in the AI age. AI tools that protect attention, creativity, and human choice.' },
     philosophy: { title: 'philosophy — wehuman', description: 'AI should make us more human: more creative, more focused, freer to work on what matters.' },
     product: { title: 'product — wehuman', description: 'Three tools: keep agent sessions, keep working hours warm, share AI capability without sharing keys.' },
     articles: { title: 'articles — wehuman', description: 'Field notes on human-first tooling, local-first AI infrastructure, and honest trust boundaries.' },
@@ -147,7 +147,7 @@ const zh = {
     },
   },
   meta: {
-    home: { title: 'wehuman — 把注意力还给人的工具', description: '在 AI 时代为人做工具。我们做保护注意力、创造力与人的选择的 AI 工具。' },
+    home: { title: 'wehuman', description: '在 AI 时代为人做工具。我们做保护注意力、创造力与人的选择的 AI 工具。' },
     philosophy: { title: '理念 — wehuman', description: 'AI 应该让我们更像人：更有创造力、更专注，也更自由地去做重要的事。' },
     product: { title: '产品 — wehuman', description: '三个工具：留住 agent 会话、守住工作节奏、不交出密钥地共享 AI 能力。' },
     articles: { title: '文章 — wehuman', description: '关于以人为本的工具、本地优先 AI 基础设施与诚实信任边界的笔记。' },
