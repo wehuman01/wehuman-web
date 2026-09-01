@@ -1,6 +1,7 @@
 ---
 import '@fontsource/ibm-plex-serif/400.css';
 import '@fontsource/ibm-plex-serif/400-italic.css';
+import '@fontsource/ibm-plex-serif/700.css';
 import '@fontsource/ia-writer-quattro/400.css';
 import '@fontsource/ia-writer-quattro/400-italic.css';
 import '@fontsource/ia-writer-quattro/700.css';
@@ -66,7 +67,11 @@ const canonical = new URL(Astro.url.pathname, site);
       <header class="mast">
         <div class="shell-in">
           <p class="mast__line label">{t.masthead.line}</p>
-          <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">wehuman</a>
+          <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">
+            <svg class="mast__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <rect x="4" y="4" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" />
+              <rect x="18.5" y="18.5" width="8" height="8" fill="var(--color-accent)" />
+            </svg>wehuman</a>
           <nav class="mast__nav" aria-label="primary">
             <ul>
               <li><a href={`${prefix}/`} aria-current={active === 'home' ? 'page' : undefined}>{t.masthead.nav.main}</a></li>

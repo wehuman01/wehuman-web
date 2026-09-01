@@ -184,13 +184,21 @@ html[lang="zh"] .cta { letter-spacing: 0.14em; }
 .mast__line { margin-block-end: var(--space-sm); }
 .mast__word {
   display: inline-block;
-  /* the word mark follows zed's sans logo, not the serif display */
-  font-family: var(--font-label);
-  font-weight: 600;
+  /* zed's wordmark is set in the serif, bold — follow it */
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   letter-spacing: -0.02em;
   line-height: 1;
   margin-block-end: var(--space-md);
+}
+/* the mark · machine frame, human period — the colophon motto as a glyph */
+.mast__mark {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 0.74em;
+  height: 0.74em;
+  margin-inline-end: 0.28em;
 }
 .mast__nav { margin-block-end: var(--space-lg); }
 .mast__nav ul {
