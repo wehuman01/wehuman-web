@@ -21,6 +21,6 @@ npm run preview   # 本地预览 dist/
 
 ## 设计
 
-一个声部：Archivo（汉字用 Noto Sans SC），一种信号墨（ultramarine），发丝线与墨线做结构，零圆角、零阴影、零卡片。字体经 fontsource 自托管，页面加载零第三方请求。深浅两套模式跟随系统偏好，可手动切换并记住选择。背景是一场安静的字符雨，指针经过的地方会亮起来；首页大字末尾的名词会轮流变（humans / builders / … / you），每个词带自己的色相，明暗主题只调明度与彩度，用与字符雨同一套乱码字符做 scramble；`prefers-reduced-motion` 或省流量模式下一切为静态。
+一套 zed.dev 式的字系：IBM Plex Serif 大标题（regular 字重，汉字用 Noto Serif SC）、iA Writer Quattro 正文（汉字用 Noto Sans SC）、IBM Plex Sans 标签与 wordmark，一种信号墨（ultramarine），发丝线与墨线做结构，零圆角、零阴影、零卡片。字体经 fontsource 自托管，页面加载零第三方请求。深浅两套模式跟随系统偏好，可手动切换并记住选择。背景是一场安静的字符雨，指针经过的地方会亮起来；首页大字末尾的名词会轮流变（humans / builders / … / you），每个词带自己的色相，明暗主题只调明度与彩度，用与字符雨同一套乱码字符做 scramble；`prefers-reduced-motion` 或省流量模式下一切为静态。
 
 诚实原则：没有统计脚本，没有 cookie，页面加载没有第三方请求；工具的信任边界在研究页明说。

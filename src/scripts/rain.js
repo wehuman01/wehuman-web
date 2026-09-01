@@ -77,11 +77,11 @@
         alpha = Math.min(0.9, alpha + hi * 0.75);
         if (Math.random() < hi * 0.08) g.ch = pick();
         ctx.fillStyle = hiCol;
-        ctx.font = '600 ' + (g.s + hi * 4).toFixed(1) + 'px "Archivo Variable", Archivo, monospace';
+        ctx.font = '600 ' + (g.s + hi * 4).toFixed(1) + 'px "IBM Plex Sans Variable", IBM Plex Sans, monospace';
       } else {
         if (!still && Math.random() < 0.0004 * g.rate) g.ch = pick();
         ctx.fillStyle = baseCol;
-        ctx.font = '500 ' + g.s.toFixed(1) + 'px "Archivo Variable", Archivo, monospace';
+        ctx.font = '500 ' + g.s.toFixed(1) + 'px "IBM Plex Sans Variable", IBM Plex Sans, monospace';
       }
       ctx.globalAlpha = Math.max(0.015, alpha);
       ctx.fillText(g.ch, g.x, g.y);
@@ -101,7 +101,7 @@
   build();
   draw(0);
   if (!still) requestAnimationFrame(loop);
-  // the first draw may run before Archivo loads; redraw once it's ready
+  // the first draw may run before the sans loads; redraw once it's ready
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => draw(0));
 
   window.addEventListener('resize', () => {

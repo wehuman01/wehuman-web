@@ -1,7 +1,9 @@
 /* wehuman · design tokens
  * Custom theme (user-directed): terminal character-rain background with a
  * pointer highlight, in two modes — light (cool sheet) and dark (charcoal).
- * One grotesk (Archivo), one signal ink (ultramarine, brightened on dark),
+ * Type is the zed.dev system: IBM Plex Serif display (regular weight),
+ * iA Writer Quattro body, IBM Plex Sans labels — with Noto Serif/Sans SC
+ * carrying CJK. One signal ink (ultramarine, brightened on dark),
  * zero radius, zero shadow, zero cards. Structure is rules and ink.
  */
 
@@ -26,14 +28,16 @@
   --cycle-l: 45%;
   --cycle-c: 0.19;
 
-  /* ---- type · one family, weight and scale do the work ----
-     both variable fonts are self-hosted (fontsource) — the page load makes
-     no third-party request */
-  --font-display: "Archivo Variable", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-body:    var(--font-display);
-  --display-weight: 800;
+  /* ---- type · zed.dev system — serif display, writer body, sans labels ----
+     all self-hosted (fontsource) — the page load makes no third-party request;
+     CJK display falls to Noto Serif SC, body/labels to Noto Sans SC */
+  --font-display: "IBM Plex Serif", "Noto Serif SC", Georgia, "Songti SC", serif;
+  --font-body:    "iA Writer Quattro", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-label:   "IBM Plex Sans Variable", "Noto Sans SC Variable", ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* zed headlines are regular-weight serif — the old grotesk 800 reads far too heavy */
+  --display-weight: 400;
   --body-weight: 400;
-  --tracking-display: -0.045em;
+  --tracking-display: -0.01em;
   --tracking-label: 0.09em;
 
   /* scale · major third (1.25) · html root set to 112.5%, so 1rem = 18px */
