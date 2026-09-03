@@ -23,7 +23,7 @@ const en = {
   meta: {
     home: { title: 'wehuman', description: 'Building tools for humans in the AI age. AI tools that protect attention, creativity, and human choice.' },
     philosophy: { title: 'philosophy — wehuman', description: 'AI should make us more human: more creative, more focused, freer to work on what matters.' },
-    product: { title: 'product — wehuman', description: 'Three tools: keep agent sessions, keep working hours warm, share AI capability without sharing keys.' },
+    product: { title: 'product — wehuman', description: 'Three tools: keep agent sessions, keep coding-plan windows warm, share AI capability without sharing keys.' },
     articles: { title: 'articles — wehuman', description: 'Field notes on human-first tooling, local-first AI infrastructure, and honest trust boundaries.' },
   },
   home: {
@@ -51,29 +51,29 @@ const en = {
     records: [
       {
         name: 'awedot',
-        intro: 'When attention moves on, an agent session should not vanish with it. awedot saves, organises, restores — session memory, project context, multiple agents.',
+        intro: 'When attention moves on, an agent session should not vanish with it. awedot — a floating orb at your screen edge — bookmarks the session you are in with one click and resumes it later in your terminal, original API profile intact. It finds sessions on disk across Claude Code, Codex, OpenCode and more, and reaches remote servers over SSH.',
         boundaries: [
           'Sessions stay on your machine; awedot is a local index, not a cloud.',
           'Restores are explicit — nothing auto-resumes.',
         ],
         repo: 'https://github.com/mugpeng/awedot',
         site: 'https://awedot.wehuman.top/',
-        meta: ['sessions', 'project context', 'multi-agent'],
+        meta: ['session bookmarks', 'one-click resume', 'multi-agent'],
       },
       {
         name: 'awewarm',
-        intro: 'While you are away, coding-plan windows go cold. awewarm fires one minimal scheduled request in your working hours, so they are warm when you return.',
+        intro: 'Coding-plan windows run on a clock: use the plan and a five-hour window opens; stay away and it goes cold. awewarm fires one minimal scheduled request, so the next window is always already open when you return.',
         boundaries: [
-          'Your schedule lives in a local config, nowhere else.',
-          'The boundary is explicit: one small request at a planned time, nothing more.',
+          'Schedule and keys live in local files; a server only enters the picture if you delegate a connection to one.',
+          'The boundary is explicit: one small request — “Reply with exactly: ok” — at a planned time, nothing more.',
         ],
         repo: 'https://github.com/wehuman01/awewarm',
-        site: '',
-        meta: ['plans ready', 'local-first', 'explicit boundaries'],
+        site: 'https://awewarm.wehuman.top/',
+        meta: ['two scheduling modes', 'local-first', 'explicit boundaries'],
       },
       {
         name: 'aweshare',
-        intro: 'A local-first relay for AI capability. Friends point ordinary OpenAI / Anthropic SDKs at a hub; keys are injected at call time, on the provider’s machine, and never travel.',
+        intro: 'A local-first relay for AI capability. A friend shares an idle local model or an authorized subscription; you point an ordinary OpenAI / Anthropic SDK at the hub and call it by alias — peng/qwen, say. Upstream keys are injected at call time, on the provider’s machine, and never travel.',
         boundaries: [
           'Stated plainly: prompts and responses pass the trusted hub in cleartext — not end-to-end encryption.',
           'Everyone still honours the upstream services’ terms.',
@@ -149,7 +149,7 @@ const zh = {
   meta: {
     home: { title: 'wehuman', description: '在 AI 时代为人做工具。我们做保护注意力、创造力与人的选择的 AI 工具。' },
     philosophy: { title: '理念 — wehuman', description: 'AI 应该让我们更像人：更有创造力、更专注，也更自由地去做重要的事。' },
-    product: { title: '产品 — wehuman', description: '三个工具：留住 agent 会话、守住工作节奏、不交出密钥地共享 AI 能力。' },
+    product: { title: '产品 — wehuman', description: '三个工具：留住 agent 会话、给 coding-plan 窗口保温、不交出密钥地共享 AI 能力。' },
     articles: { title: '文章 — wehuman', description: '关于以人为本的工具、本地优先 AI 基础设施与诚实信任边界的笔记。' },
   },
   home: {
@@ -175,29 +175,29 @@ const zh = {
     records: [
       {
         name: 'awedot',
-        intro: '注意力移开的时候，agent session 不该跟着消失。awedot 保存、整理、恢复——session 记忆、项目上下文、多 Agent。',
+        intro: '注意力移开的时候，agent session 不该跟着消失。awedot 是屏幕边缘的一颗悬浮球：一键收藏当前会话，之后一键恢复到你自己的终端——API 配置还是当初那份。会话从本地磁盘发现，Claude Code、Codex、OpenCode 都算，SSH 还能把远程服务器接进来。',
         boundaries: [
           'session 留在你自己的机器上；awedot 是本地索引，不是云。',
           '恢复是显式的，没有东西自动续跑。',
         ],
         repo: 'https://github.com/mugpeng/awedot',
         site: 'https://awedot.wehuman.top/',
-        meta: ['session 记忆', '项目上下文', '多 Agent'],
+        meta: ['会话书签', '一键恢复', '多 Agent'],
       },
       {
         name: 'awewarm',
-        intro: '你不在的时候，coding-plan 窗口在变凉。awewarm 按你的工作时间发一次极小的定时请求，回来时窗口是热的。',
+        intro: 'Coding-plan 的窗口跟着时钟走：用一次，五小时的窗口打开；人一走开，它就凉了。awewarm 按计划发一次极小的请求，让下一个窗口在你回来之前就已经是热的。',
         boundaries: [
-          '日程只存在本地配置里，不在别处。',
-          '边界说得明白：计划时间的一次小请求，仅此而已。',
+          '日程和密钥都在本地文件里；只有当你把某个连接托付给一台常开的服务器，服务器才会进场。',
+          '边界说得明白：计划时间里一次极小的请求——让它回复一个 ok——仅此而已。',
         ],
         repo: 'https://github.com/wehuman01/awewarm',
-        site: '',
-        meta: ['计划就绪', '本地优先', '明确的边界'],
+        site: 'https://awewarm.wehuman.top/',
+        meta: ['两种调度模式', '本地优先', '明确的边界'],
       },
       {
         name: 'aweshare',
-        intro: '本地优先的能力中继。朋友把普通的 OpenAI / Anthropic SDK 指向 hub；密钥在调用那一刻、在提供者的机器上注入，从不出门。',
+        intro: '本地优先的能力中继。朋友共享闲置的本地模型或授权过的订阅；你把普通的 OpenAI / Anthropic SDK 指向 hub，按别名调用——比如 peng/qwen。上游密钥在调用那一刻、在提供者的机器上注入，从不出门。',
         boundaries: [
           '明说：提示词与响应以明文经过受信任的 hub，不是端到端加密。',
           '各方仍需遵守上游服务的条款。',
