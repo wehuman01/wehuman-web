@@ -591,6 +591,27 @@ html[lang="zh"] .doc-head h1 { line-height: 1.25; letter-spacing: 0; }
 .colophon__links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
 .colophon__links a { white-space: nowrap; }
 
+/* ---- WeChat QR lightbox (footer trigger · gzh-modal.js) ---- */
+
+.gzh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  /* the scrim stays dark ink in both themes — the bright banner reads on it either way */
+  background: oklch(16% 0.01 255 / 0.82);
+}
+.gzh-modal[hidden] { display: none; }
+.gzh-modal__card {
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  border: var(--rule-hair) solid var(--color-ink-30);
+}
+
 /* ---- responsive · layout breakpoint 60rem ---- */
 
 @media (max-width: 60rem) {

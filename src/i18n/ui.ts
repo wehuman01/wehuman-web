@@ -181,6 +181,8 @@ const en = {
     dense: `Source on <a href="${ORG}">GitHub</a> — issues welcome. © 2026 wehuman.`,
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
+    wechat: 'WeChat 公众号',
+    wechatAria: 'WeChat Official Account QR code',
   },
 };
 
@@ -355,6 +357,8 @@ const zh = {
     dense: `源码在 <a href="${ORG}">GitHub</a>，欢迎 issue。© 2026 wehuman。`,
     github: 'GitHub ↗',
     email: 'peng@wehuman.top',
+    wechat: '公众号',
+    wechatAria: '微信公众号二维码',
   },
 };
 

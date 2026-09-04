@@ -110,6 +110,7 @@ const canonical = new URL(Astro.url.pathname, site);
           </div>
           <div style="grid-column: 10 / 13; align-self: start;" class="colophon__links">
             <a class="tlink" href={`mailto:${t.colophon.email}`}>{t.colophon.email}</a>
+            <a class="tlink" href={url('/images/gongzhonghao.png')} data-gzh-qr target="_blank" rel="noopener" aria-label={t.colophon.wechatAria}>{t.colophon.wechat}</a>
           </div>
         </div>
       </footer>
@@ -131,5 +132,6 @@ const canonical = new URL(Astro.url.pathname, site);
       });
     </script>
     <script src="../scripts/rain.js"></script>
+    <script src="../scripts/gzh-modal.js"></script>
   </body>
 </html>
