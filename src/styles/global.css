@@ -437,6 +437,13 @@ html[lang="zh"] .sec-index__all { letter-spacing: 0.14em; }
 }
 /* full-width records inside a group keep their own bottom rhythm */
 .sec-group--flush > .sec-group__body { padding-block-end: 0; }
+/* the product group head carries the shell geometry itself — same box as a
+   grid12 child — because its records are self-constraining grid12s */
+.sec-group--flush > .sec-group__head {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
 
 /* ---- the period mark · the one signal square ---- */
 
