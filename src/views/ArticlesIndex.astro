@@ -8,6 +8,13 @@ interface Props { locale: Locale; altHref: string; }
 const { locale, altHref } = Astro.props;
 const t = ui[locale];
 const articles = await getArticles(locale);
+
+// one group per product, newest product first; anything unlisted falls in last
+const productOrder = ['awerouter', 'aweshare', 'aweswitch', 'awewarm', 'aweskill', 'aweshelf'];
+const rest = [...new Set(articles.map((a) => a.data.product))].filter((p) => !productOrder.includes(p));
+const groups = [...productOrder, ...rest]
+  .map((product) => ({ product, items: articles.filter((a) => a.data.product === product) }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <Base locale={locale} title={t.meta.articles.title} description={t.meta.articles.description} altHref={altHref} active="articles">
@@ -20,11 +27,16 @@ const articles = await getArticles(locale);
     </div>
   </section>
 
-  <section class="band--tight" style="padding-block: 0 var(--space-3xl);">
-    <div class="grid12">
-      <div style="grid-column: 1 / 13;">
-        <ArticleRows entries={articles} locale={locale} />
+  {groups.map((group) => (
+    <section class="band--tight" style="padding-block: var(--space-md) var(--space-2xl);">
+      <div class="grid12">
+        <div style="grid-column: 1 / 13;">
+          <div class="sec-head" style="margin-block-end: var(--space-lg);">
+            <p class="label">{group.product}</p>
+          </div>
+          <ArticleRows entries={group.items} locale={locale} />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 </Base>

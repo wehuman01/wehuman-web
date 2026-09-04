@@ -5,6 +5,7 @@ date: 2026-08-22
 locale: en
 path: cloudflare-tunnel
 tags: [aweshare, infrastructure, Cloudflare]
+product: aweshare
 ---
 
 An aweshare Hub on a VPS can look perfectly fine at first.

@@ -5,6 +5,7 @@ date: 2026-08-27
 locale: zh
 path: community-hub-beta
 tags: [aweshare, 社区, 测试]
+product: aweshare
 ---
 
 aweshare 的原理是把手头闲着的 AI 能力挂上一个标准门面：你在自己机器上跑一个轻量 producer，上游 key 待在 `secrets.json` 里不出门；朋友把普通的 OpenAI / Anthropic SDK 指向 hub，请求经一条出站 WebSocket 转回你这台机器，调用的那一刻才注入 key。整套东西都能自建——`aweshare hub serve` 一条命令就能起。它唯一的门槛是那台中转服务器：要有公网 IP、配好 TLS、还得有人盯着进程。社区版 hub 补上的就是这一环：这台机器已经有了。

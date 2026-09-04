@@ -5,6 +5,7 @@ date: 2026-08-27
 locale: en
 path: community-hub-beta
 tags: [aweshare, community, beta]
+product: aweshare
 ---
 
 aweshare works by putting your idle AI capacity behind a standard facade: you run a lightweight producer on your own machine, where the upstream keys stay in `secrets.json` and never leave; friends point ordinary OpenAI / Anthropic SDKs at a hub, whose requests travel back to your machine over an outbound WebSocket — keys are injected only at call time. The whole stack is self-hostable — `aweshare hub serve` is one command away. Its only real threshold is that relay server: it needs a public IP, TLS, and someone watching the process. That's the one link the community hub replaces: **that machine already exists.**

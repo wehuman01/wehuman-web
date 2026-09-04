@@ -5,6 +5,7 @@ date: 2026-08-28
 locale: zh
 path: three-roles
 tags: [aweshare, 架构, 信任]
+product: aweshare
 ---
 
 一个常见的朋友圈：有人显卡闲着，有人订阅用不满，还有人什么都缺。最直接的共享办法是把 API key 直接发过去——但谁都犹豫：key 给出去等于把整串钥匙交了出去，用超了、泄露了、账号被封了，后果全是自己的。

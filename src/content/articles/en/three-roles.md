@@ -5,6 +5,7 @@ date: 2026-08-28
 locale: en
 path: three-roles
 tags: [aweshare, architecture, trust]
+product: aweshare
 ---
 
 A familiar friend group: one has an idle GPU, one can't max out a subscription, and several have neither. The most direct way to share is to hand over an API key — and everyone hesitates. A key handed out is the whole keyring given away: overspend, leak, ban — the consequences all land on the owner.

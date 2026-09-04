@@ -5,6 +5,7 @@ date: 2026-08-20
 locale: zh
 path: agent-share-tokens
 tags: [aweshare, 智能体, 本地优先]
+product: aweshare
 ---
 
 现在模型越来越贵了，虽然现在有 [awerouter：不怕deepseek 涨价，一句话让智能路由给你省钱](https://mp.weixin.qq.com/s/8jucVeQWQRjCIUEXxj-fHQ) ，但能不能再省点？而且，其实还有很多空间：角落里的 4090 闲着，朋友们够不到的订阅 key 买了却用不满，这可怎么办？

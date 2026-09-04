@@ -341,10 +341,15 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
 
 /* ---- product records ---- */
 
+/* family group label (cli tools / desktop apps) */
+.group-head { padding-block-start: var(--space-md); }
+
 .record {
   border-block-start: var(--rule-heavy) solid var(--color-ink);
   padding-block: var(--space-2xl) var(--space-3xl);
 }
+/* one-line family entries — same columns, tighter rhythm */
+.record--brief { padding-block: var(--space-xl); }
 .record__head { display: grid; gap: var(--space-sm); align-content: start; }
 .record__name {
   font-family: var(--font-display);

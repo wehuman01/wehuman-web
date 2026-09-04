@@ -19,30 +19,55 @@ const prefix = url(locale === 'zh' ? '/zh' : '');
     </div>
   </section>
 
-  {t.product.records.map((record) => (
-    <section class="record">
-      <div class="grid12">
-        <div class="record__head" style="grid-column: 1 / 4;">
-          <h2 class="record__name">{record.name}</h2>
-          <ul class="record__meta label">
-            {record.meta.map((m) => <li>{m}</li>)}
-          </ul>
-          <p><a class="tlink" href={record.repo} rel="noopener">GitHub ↗</a></p>
-          {record.site && <p><a class="tlink" href={record.site} rel="noopener">{record.site.replace('https://', '')} ↗</a></p>}
-        </div>
-        <div class="record__body" style="grid-column: 5 / 13;">
-          <div class="prose">
-            <p>{record.intro}</p>
-          </div>
-          <div class="boundaries">
-            <span class="label">{locale === 'zh' ? '边界' : 'boundaries'}</span>
-            <ul>
-              {record.boundaries.map((b) => <li>{b}</li>)}
-            </ul>
-          </div>
+  {t.product.groups.map((group) => (
+    <Fragment>
+      <div class="grid12 group-head">
+        <div class="sec-head" style="grid-column: 1 / 13;">
+          <p class="label">{group.label}</p>
         </div>
       </div>
-    </section>
+      {group.records.map((record) => (
+        <section class="record">
+          <div class="grid12">
+            <div class="record__head" style="grid-column: 1 / 4;">
+              <h2 class="record__name">{record.name}</h2>
+              <ul class="record__meta label">
+                {record.meta.map((m) => <li>{m}</li>)}
+              </ul>
+              <p><a class="tlink" href={record.repo} rel="noopener">GitHub ↗</a></p>
+              {record.site && <p><a class="tlink" href={record.site} rel="noopener">{record.site.replace('https://', '')} ↗</a></p>}
+            </div>
+            <div class="record__body" style="grid-column: 5 / 13;">
+              <div class="prose">
+                <p>{record.intro}</p>
+              </div>
+              <div class="boundaries">
+                <span class="label">{locale === 'zh' ? '边界' : 'boundaries'}</span>
+                <ul>
+                  {record.boundaries.map((b) => <li>{b}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+      {group.briefs.map((brief) => (
+        <section class="record record--brief">
+          <div class="grid12">
+            <div class="record__head" style="grid-column: 1 / 4;">
+              <h2 class="record__name">{brief.name}</h2>
+              <p><a class="tlink" href={brief.repo} rel="noopener">GitHub ↗</a></p>
+              {brief.site && <p><a class="tlink" href={brief.site} rel="noopener">{brief.site.replace('https://', '')} ↗</a></p>}
+            </div>
+            <div class="record__body" style="grid-column: 5 / 13;">
+              <div class="prose">
+                <p>{brief.intro}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </Fragment>
   ))}
 
   <section class="band--tight">

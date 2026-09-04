@@ -11,6 +11,7 @@ const articles = defineCollection({
     locale: z.enum(['en', 'zh']),
     path: z.string(),
     tags: z.array(z.string()),
+    product: z.string(),
   }),
 });
 

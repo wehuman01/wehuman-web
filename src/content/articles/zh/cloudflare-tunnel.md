@@ -5,6 +5,7 @@ date: 2026-08-22
 locale: zh
 path: cloudflare-tunnel
 tags: [aweshare, 基础设施, Cloudflare]
+product: aweshare
 ---
 
 一台 VPS 跑着 aweshare Hub，一开始看起来一切正常。

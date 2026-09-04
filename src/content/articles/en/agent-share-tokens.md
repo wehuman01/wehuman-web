@@ -5,6 +5,7 @@ date: 2026-08-20
 locale: en
 path: agent-share-tokens
 tags: [aweshare, agents, local-first]
+product: aweshare
 ---
 
 Being the only person in the group with model access is its own tax: a 4090 sitting idle in the corner, subscription keys your friends can't reach, and every request landing back on you as copy-paste relay work. You are the API — and that scales to exactly one person.
