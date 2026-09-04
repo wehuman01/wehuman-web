@@ -159,6 +159,13 @@ const en = {
     ],
     back: '← back to the front page',
   },
+  sections: {
+    label: 'contents',
+    navLabel: 'sections',
+    expandAll: 'expand all',
+    collapseAll: 'collapse all',
+    toIndex: '↑ back to contents',
+  },
   articles: {
     display: 'field notes',
     lede: 'Notes written from real work.',
@@ -325,6 +332,13 @@ const zh = {
       },
     ],
     back: '← 回到首页',
+  },
+  sections: {
+    label: '目录',
+    navLabel: '目录导航',
+    expandAll: '全部展开',
+    collapseAll: '全部收起',
+    toIndex: '↑ 回到目录',
   },
   articles: {
     display: '手记',

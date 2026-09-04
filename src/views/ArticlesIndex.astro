@@ -27,16 +27,47 @@ const groups = [...productOrder, ...rest]
     </div>
   </section>
 
-  {groups.map((group) => (
-    <section class="band--tight" style="padding-block: var(--space-md) var(--space-2xl);">
-      <div class="grid12">
-        <div style="grid-column: 1 / 13;">
-          <div class="sec-head" style="margin-block-end: var(--space-lg);">
-            <p class="label">{group.product}</p>
-          </div>
-          <ArticleRows entries={group.items} locale={locale} />
-        </div>
+  <nav class="sec-index" id="contents" aria-label={t.sections.navLabel}>
+    <div class="grid12">
+      <div class="sec-index__inner" style="grid-column: 1 / 13;">
+        <p class="label">{t.sections.label}</p>
+        <ul>
+          {groups.map((group) => (
+            <li>
+              <a class="sec-index__link" href={`#${group.product}`}>{group.product}</a>
+              <span class="sec-count">{group.items.length}</span>
+            </li>
+          ))}
+        </ul>
+        <button class="sec-index__all" data-sections-all data-expand-label={t.sections.expandAll} data-collapse-label={t.sections.collapseAll}>{t.sections.expandAll}</button>
       </div>
-    </section>
-  ))}
+    </div>
+  </nav>
+
+  <section class="band--tight">
+    <div class="grid12">
+      {groups.map((group) => (
+        <details class="sec-group" id={group.product} style="grid-column: 1 / 13;">
+          <summary class="sec-group__head">
+            <span class="sec-group__title"><span class="label">{group.product}</span></span>
+            <span class="sec-count">{group.items.length}</span>
+            <span class="sec-group__glyph" aria-hidden="true">+</span>
+          </summary>
+          <div class="sec-group__body">
+            <ArticleRows entries={group.items} locale={locale} />
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="band--tight">
+    <div class="grid12">
+      <p style="grid-column: 1 / 13; padding-block: var(--space-lg);">
+        <a class="tlink" href="#contents">{t.sections.toIndex}</a>
+      </p>
+    </div>
+  </section>
 </Base>
+
+<script src="../scripts/sections.js"></script>

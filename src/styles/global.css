@@ -329,6 +329,115 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
 .row--doc .row__desc { grid-column: 9 / 12; }
 .row--doc .row__go { grid-column: 12 / 13; }
 
+/* ---- section index · jump links over collapsible groups ---- */
+
+.sec-index { scroll-margin-top: var(--space-lg); }
+.sec-index__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-sm) var(--space-lg);
+  padding-block: var(--space-md);
+  border-block-start: var(--rule-heavy) solid var(--color-ink);
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+}
+.sec-index__inner > .label { color: var(--color-ink); }
+.sec-index ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-xl);
+}
+.sec-index li { display: inline-flex; align-items: baseline; gap: 0.45em; }
+.sec-index__link {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  transition: color var(--dur-short) var(--ease-out);
+}
+html[lang="zh"] .sec-index__link { letter-spacing: 0.14em; }
+.sec-index__link:hover { color: var(--color-accent); }
+
+/* the one control · same typographic voice as the theme toggle */
+.sec-index__all {
+  font: inherit;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-inline-start: auto;
+  transition: color var(--dur-short) var(--ease-out);
+}
+html[lang="zh"] .sec-index__all { letter-spacing: 0.14em; }
+.sec-index__all:hover { color: var(--color-accent); }
+
+/* a collapsible group · the sec-head signal bar becomes the toggle row */
+.sec-group { padding-block: var(--space-md); scroll-margin-top: var(--space-lg); }
+.sec-group__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  cursor: pointer;
+  list-style: none;
+}
+.sec-group__head::-webkit-details-marker { display: none; }
+.sec-group__title {
+  display: block;
+  padding-block-start: var(--space-sm);
+}
+/* same signal bar as .sec-head — one width everywhere */
+.sec-group__title::before {
+  content: "";
+  display: block;
+  width: clamp(3rem, 12vw, 5rem);
+  border-block-start: 3px solid var(--color-accent);
+  margin-block-end: var(--space-sm);
+}
+.sec-group__title .label {
+  color: var(--color-ink);
+  transition: color var(--dur-short) var(--ease-out);
+}
+.sec-count {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+.sec-group__glyph {
+  margin-inline-start: auto;
+  font-family: var(--font-label);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-muted);
+  transition: transform var(--dur-short) var(--ease-out),
+              color var(--dur-short) var(--ease-out);
+}
+.sec-group__head:hover .sec-group__title .label,
+.sec-group__head:hover .sec-group__glyph { color: var(--color-accent); }
+/* open, the plus leans over into a close mark */
+.sec-group[open] .sec-group__glyph { transform: rotate(45deg); color: var(--color-accent); }
+.sec-group__body { padding-block-end: var(--space-xl); }
+/* reveal is added by script on user opens only — groups born open stay still */
+.sec-group--animate > .sec-group__body { animation: sec-reveal var(--dur-short) var(--ease-out); }
+@keyframes sec-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+/* full-width records inside a group keep their own bottom rhythm */
+.sec-group--flush > .sec-group__body { padding-block-end: 0; }
+
 /* ---- the period mark · the one signal square ---- */
 
 .mark-period {
@@ -340,9 +449,6 @@ html[data-theme="light"] .theme-toggle [data-mode="light"] { color: var(--color-
 }
 
 /* ---- product records ---- */
-
-/* family group label (cli tools / desktop apps) */
-.group-head { padding-block-start: var(--space-md); }
 
 .record {
   border-block-start: var(--rule-heavy) solid var(--color-ink);
