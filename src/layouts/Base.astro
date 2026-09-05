@@ -68,10 +68,19 @@ const canonical = new URL(Astro.url.pathname, site);
         <div class="shell-in">
           <p class="mast__line label">{t.masthead.line}</p>
           <a class="mast__word" href={`${prefix}/`} aria-label="wehuman">
-            <svg class="mast__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-              <rect width="32" height="32" fill="#1a48bc" />
-              <rect x="4" y="4" width="24" height="24" fill="none" stroke="#fafcfe" stroke-width="3" />
-              <rect x="18.5" y="18.5" width="8" height="8" fill="#fafcfe" />
+            <svg class="mast__mark" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+              <!-- same mark as /favicon.svg — keep in sync (sources: ref/icon) -->
+              <g fill="none" stroke="currentColor" stroke-width="24">
+                <rect x="116" y="116" width="64" height="64" />
+                <rect x="224" y="116" width="64" height="64" />
+                <rect x="332" y="116" width="64" height="64" />
+                <rect x="116" y="224" width="64" height="64" />
+                <rect x="224" y="224" width="64" height="64" />
+                <rect x="116" y="332" width="64" height="64" />
+                <rect x="224" y="332" width="64" height="64" />
+                <rect x="332" y="332" width="64" height="64" />
+              </g>
+              <rect x="314" y="206" width="100" height="100" fill="var(--color-accent)" />
             </svg>wehuman</a>
           <nav class="mast__nav" aria-label="primary">
             <ul>
