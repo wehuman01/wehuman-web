@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- wehuman · concept 1 · dark mode -->
+  <rect width="512" height="512" fill="#090B0E"/>
+  <g fill="none" stroke="#E2E5E8" stroke-width="24">
+    <rect x="116" y="116" width="64" height="64"/>
+    <rect x="224" y="116" width="64" height="64"/>
+    <rect x="332" y="116" width="64" height="64"/>
+    <rect x="116" y="224" width="64" height="64"/>
+    <rect x="224" y="224" width="64" height="64"/>
+    <rect x="116" y="332" width="64" height="64"/>
+    <rect x="224" y="332" width="64" height="64"/>
+    <rect x="332" y="332" width="64" height="64"/>
+  </g>
+  <rect x="314" y="206" width="100" height="100" fill="#6594FA"/>
+</svg>

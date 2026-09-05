@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- wehuman · concept 1 · the machine repeats, the person decides
+       8 repeated rings + 1 solid deciding square (ultramarine, breaks the rhythm) -->
+  <rect width="512" height="512" fill="#FAFCFE"/>
+  <g fill="none" stroke="#0A0E12" stroke-width="24">
+    <rect x="116" y="116" width="64" height="64"/>
+    <rect x="224" y="116" width="64" height="64"/>
+    <rect x="332" y="116" width="64" height="64"/>
+    <rect x="116" y="224" width="64" height="64"/>
+    <rect x="224" y="224" width="64" height="64"/>
+    <rect x="116" y="332" width="64" height="64"/>
+    <rect x="224" y="332" width="64" height="64"/>
+    <rect x="332" y="332" width="64" height="64"/>
+  </g>
+  <rect x="314" y="206" width="100" height="100" fill="#1A48BC"/>
+</svg>
